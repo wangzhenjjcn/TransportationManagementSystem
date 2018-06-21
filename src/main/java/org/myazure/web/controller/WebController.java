@@ -18,21 +18,22 @@ import com.alibaba.fastjson.JSON;
 
 @Controller
 public class WebController {
-	private static final Logger LOG = LoggerFactory.getLogger(WebController.class);
+	private static final Logger LOG = LoggerFactory
+			.getLogger(WebController.class);
 	@Autowired
 	PrimaryConfiguration primaryConfiguration;
 	@Autowired
 	MyazureDataService myazureDataService;
 
 	public WebController() {
+
 	}
 
-	@RequestMapping(path = "/", method = RequestMethod.POST)
-	public void addUser(HttpServletRequest request, HttpServletResponse response) {
-		 
-		return;
+	@RequestMapping(path = "/hello", method = RequestMethod.POST)
+	public void helloWord(HttpServletRequest request,
+			HttpServletResponse response) {
+		sentResponse(response, "HELLO");
 	}
-
 
 	protected void sentResponse(HttpServletResponse response, Object object) {
 		try {

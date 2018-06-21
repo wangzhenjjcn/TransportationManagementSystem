@@ -6,9 +6,6 @@ import javax.servlet.annotation.WebListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-
-import weixin.popular.support.TokenManager;
 
 
 
@@ -19,12 +16,12 @@ public class TokenManagerListener implements ServletContextListener {
 	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory
 			.getLogger(TokenManagerListener.class);
-	@Value("${weixin.compAppId}")
-	private String appid;
-	@Value("${weixin.compAppSecret}")
-	private String secret;
-
-	
+//	@Value("${weixin.compAppId}")
+//	private String appid;
+//	@Value("${weixin.compAppSecret}")
+//	private String secret;
+//
+//	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		// WEB容器 初始化时调用

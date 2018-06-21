@@ -8,23 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "factory")
-public class Factory {
-
+@Table(name = "vehicle")
+public class Vehicle extends BaseEntity {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "factory_id", nullable = false, length = 11)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "vehicle_id", nullable = false, length = 11)
 	private Long id;
 	
 	
 	
-	
-	
-	public Factory(){
+	public Vehicle(){
 		
 	}
-
-
 
 
 
@@ -32,11 +27,9 @@ public class Factory {
 		return id;
 	}
 
-
-
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	
 }

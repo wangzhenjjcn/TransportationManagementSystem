@@ -10,7 +10,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Configuration
 @EnableScheduling
 public class ScheduleMananger {
-	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory
 			.getLogger(ScheduleMananger.class);
 
@@ -19,14 +18,19 @@ public class ScheduleMananger {
 
 	@Scheduled(cron = "0/1 * *  * * ? ")
 	protected void secScanner() {
+		System.out.print(".");
+
 	}
 
 	@Scheduled(cron = "0/30 * *  * * ? ")
 	protected void thirtySecScanner() {
+		
 	}
 
 	@Scheduled(cron = "0 0/1 *  * * ? ")
 	protected void minScanner() {
+		System.out.print("\n");
+		System.out.println("Checking Order");
 	}
 
 	@Scheduled(cron = "0 0/10 *  * * ? ")
