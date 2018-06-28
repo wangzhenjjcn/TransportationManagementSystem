@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 @Entity
 @Table(name = "user")
 public class WebUser extends BaseEntity { 
@@ -26,24 +28,25 @@ public class WebUser extends BaseEntity {
 	@Column(name = "user_name", nullable = false)
 	private String username;
 
+    @JSONField(serialize=false)
 	@Column(name = "pass_word", nullable = false)
 	private String password ;
 
 	@Column(name = "name", nullable = false)
 	private String name;
-
+	@JSONField(serialize=false)
 	@Column(name = "salt", nullable = false)
 	private String salt ;
-
+	@JSONField(serialize=false)
 	@Column(name = "role", nullable = false)
 	private String role;
-
+	@JSONField(serialize=false)
 	@Column(name = "token", nullable = true)
 	private String token;
-
+	@JSONField(serialize=false)
 	@Column(name = "last_login_ip", nullable = true)
 	private String lastLoginIp;
-
+	@JSONField(serialize=false)
 	@Column(name = "last_login_time", nullable = true)
 	private String lastLoginTime;
 
