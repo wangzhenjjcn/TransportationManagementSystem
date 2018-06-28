@@ -7,64 +7,54 @@ import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.myazure.utils.S;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order extends BaseEntity implements Serializable {
 	// `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单编号',
 	// `customer_id` bigint(11) NOT NULL,
 	// `factory_id` bigint(11) NOT NULL,
-	// `plan_id` bigint(11) DEFAULT NULL,
 	// `delivery_id` bigint(11) DEFAULT NULL,
 	// `pick_id` bigint(20) DEFAULT NULL,
 	// `user_id` bigint(20) DEFAULT NULL,
-	// `weight` int(11) DEFAULT NULL,
-	// `size` int(11) DEFAULT NULL,
-	// `distence` int(11) DEFAULT NULL,
-	// `entry_number` varchar(255) DEFAULT NULL,
-	// `customer_number` bigint(20) DEFAULT NULL,
-	// `from` varchar(255) DEFAULT NULL,
-	// `to` varchar(255) DEFAULT NULL,
-	// `packages` int(11) DEFAULT NULL,
 	// `freight` int(11) DEFAULT NULL,
 	// `cushion_fee` int(11) DEFAULT NULL,
-	// `contact` varchar(255) DEFAULT NULL,
-	// `phone` varchar(255) DEFAULT NULL,
-	// `isCharterd` int(11) DEFAULT NULL,
 	// `shipping_type` int(11) DEFAULT NULL,
 	// `fee_time` datetime DEFAULT NULL,
-
-	/**
-	 * 
-	 */
+	@Transient
 	private static final long serialVersionUID = 1L;
-
-	// @Column(name=" ",columnDefinition="int(3) COMMENT '床位终端电量'")
 	@Id
+	@JsonProperty("order_id")
+	@JSONField(name = "order_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_id", nullable = false, length = 11, columnDefinition = "bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单编号'", insertable = true)
 	private Long orderId;
-
 	@JsonProperty("orderCreatDate")
-	@Column(name = "order_creat_date",columnDefinition = "datetime DEFAULT NULL")
 	@JSONField(name = "orderCreatDate")
+	@Column(name = "order_creat_date", columnDefinition = "datetime DEFAULT NULL")
 	private Date orderCreatDate;
-
 	@JsonProperty("orderDate")
-	@Column(name = "order_date",columnDefinition = "datetime DEFAULT NULL")
+	@Column(name = "order_date", columnDefinition = "datetime DEFAULT NULL")
 	@JSONField(name = "orderDate")
 	private Date orderDate;
 
-	@Transient
+	@JoinColumn(name = "creat_user_id")
+	@JSONField(name = "creat_user_id")
+	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
+	@JsonProperty("creat_user_id")
 	private WebUser creatorUser = new WebUser();
 	@Transient
 	private WebUser customerUser = new WebUser();
@@ -81,30 +71,53 @@ public class Order extends BaseEntity implements Serializable {
 	@Transient
 	private Factory factory = new Factory();
 	@JsonProperty("factoryId")
-	@Column(name = "factory_id",columnDefinition = "bigint(11) DEFAULT NULL")
+	@Column(name = "factory_id", columnDefinition = "bigint(11) DEFAULT NULL")
 	@JSONField(name = "factoryId")
 	private int factoryId;
 	@Transient
 	private String factoryName;
 	@Transient
 	private String factoryAddress;
-	@Transient
+	
+	// `from` varchar(255) DEFAULT NULL,
+	@JsonProperty("source")
+	@Column(name = "source", columnDefinition = "varchar(255) DEFAULT NULL")
+	@JSONField(name = "source")
 	private String from;
 	@Transient
 	private String transferNumber;
 	@Transient
 	private String pickUpNumber;
-	@Transient
+	// `entry_number` varchar(255) DEFAULT NULL,
+	@JsonProperty("entry_number")
+	@Column(name = "entry_number", columnDefinition = "varchar(255) DEFAULT NULL")
+	@JSONField(name = "entry_number")
 	private String entryNumber;
-	@Transient
+	// `packages` int(11) DEFAULT NULL,
+	@JsonProperty("packages")
+	@Column(name = "packages", columnDefinition = "int(11) DEFAULT NULL")
+	@JSONField(name = "packages")
 	private int pakagesNumber;
-	@Transient
+	
+	
+	@JsonProperty("weight")
+	@Column(name = "weight", columnDefinition = "int(11) DEFAULT NULL")
+	@JSONField(name = "weight")
 	private int weight;
-	@Transient
+	// `size` int(11) DEFAULT NULL,
+	@JsonProperty("size")
+	@Column(name = "size", columnDefinition = "int(11) DEFAULT NULL")
+	@JSONField(name = "size")
 	private int size;
-	@Transient
+	// `to` varchar(255) DEFAULT NULL,
+	@JsonProperty("destination")
+	@Column(name = "destination", columnDefinition = "varchar(255) DEFAULT NULL")
+	@JSONField(name = "destination")
 	private String destination;
-	@Transient
+	// `distence` int(11) DEFAULT NULL,
+	@JsonProperty("distence")
+	@Column(name = "distence", columnDefinition = "int(11) DEFAULT NULL")
+	@JSONField(name = "distence")
 	private int distence;
 	@Transient
 	private int carriageFee;
@@ -116,63 +129,76 @@ public class Order extends BaseEntity implements Serializable {
 	private String transportVehicleRegistrationNumber;
 	@Transient
 	private String deliveryVehicleRegistrationNumber;
-	@Transient
-	// @OneToOne(targetEntity = Customer.class, fetch = FetchType.EAGER)
-	// @JoinColumn(name = "customer_id")
-	@JsonProperty("customer_id")
+	@JoinColumn(name = "customer_id")
 	@JSONField(name = "customer_id")
+	@ManyToOne(targetEntity = Customer.class, fetch = FetchType.LAZY)
+	@JsonProperty("customer_id")
 	private Customer customer;
-	
-	@Transient
+	// `plan_id` bigint(11) DEFAULT NULL,
 	@JsonProperty("planId")
-	@Column(name = "plan_id",columnDefinition = "bigint(11) DEFAULT NULL")
 	@JSONField(name = "planId")
+	@JoinColumn(name = "plan_id", columnDefinition = "bigint(11) DEFAULT NULL")
+	@ManyToOne(targetEntity = Plan.class, fetch = FetchType.LAZY)
 	private Plan plan;
-	
-	
-	
-	@Transient
+
+	//  `customer_number` varchar(30) DEFAULT NULL,
+	@JsonProperty("customer_number")
+	@Column(name = "customer_number", columnDefinition = "varchar(30) DEFAULT NULL")
+	@JSONField(name = "customer_number")
 	private String customerNumber;
 	@Transient
 	private boolean isFreight;
-	@Transient
+	// `contact` varchar(255) DEFAULT NULL,
+	@JsonProperty("contact")
+	@Column(name = "contact", columnDefinition = "varchar(255) DEFAULT NULL")
+	@JSONField(name = "contact")
 	private String contactName;
-	@Transient
+	// `phone` varchar(255) DEFAULT NULL,
+	@JsonProperty("phone")
+	@Column(name = "phone", columnDefinition = "varchar(255) DEFAULT NULL")
+	@JSONField(name = "phone")
 	private String contactPhone;
-	@Transient
+	
+	// `isCharterd` int(11) DEFAULT NULL,
+	@JsonProperty("isCharterd")
+	@Column(name = "isCharterd", columnDefinition = "int(11) DEFAULT NULL")
+	@JSONField(name = "isCharterd")
 	private boolean isCharterd;
 	@Transient
 	private int feeTime;
 	@Transient
+	//0
+	//1
+	//2
+	//3
+	//4
+	//5
+	//6
+	//7
 	private int orderState;
 	@Transient
 	private String orderStateString;
 	@Transient
-	private Map<Date, String> feeHistory = new HashMap<Date, String>();
+	private Map<String, Date> feeHistory = new HashMap<String, Date>();
 
 	public Order() {
 	}
-
 
 	public Long getOrderId() {
 		return orderId;
 	}
 
-
 	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
-
 
 	public Plan getPlan() {
 		return plan;
 	}
 
-
 	public void setPlan(Plan plan) {
 		this.plan = plan;
 	}
-
 
 	public Date getOrderCreatDate() {
 		return orderCreatDate;
@@ -472,11 +498,91 @@ public class Order extends BaseEntity implements Serializable {
 		this.orderStateString = orderStateString;
 	}
 
-	public Map<Date, String> getFeeHistory() {
+	public Map<String, Date> getFeeHistory() {
 		return feeHistory;
 	}
 
-	public void setFeeHistory(Map<Date, String> feeHistory) {
+	public void setFeeHistory(Map<String, Date> feeHistory) {
 		this.feeHistory = feeHistory;
 	}
+	
+	
+	public static Order getOrderExp(){
+		Order order = new Order();
+		order.setCarriageFee(S.getRandomNum(3));
+		order.setCharterd(false);
+		order.setContactName("TEST"+S.getRandomNumString(3)+"NAME");
+		order.setContactPhone("139"+S.getRandomNumString(8));
+		order.setCustomerNumber("CSN"+S.getRandomNumString(5));
+		order.setDestination("苏州");
+		order.setDistence(S.getRandomNum(5));
+		order.setEntryNumber("TEST"+S.getRandomNumString(3)+"ENTRY");
+		order.setFactoryId(S.getRandomNum(7));
+		order.setFactoryName("TEST"+S.getRandomNumString(3)+"FACTORY");
+		order.setFactoryAddress("苏州观前街");
+		order.setFeeTime(S.getRandomNum(1));
+		order.setFreight(false);
+		order.setFrom("上海");
+		order.setOrderStateString("已完成");
+		order.setOrderDate(new Date(System.currentTimeMillis()));
+		order.setOrderCreatDate(new Date(System.currentTimeMillis()));
+		order.setPakagesNumber(S.getRandomNum(2));
+		order.setPickUpNumber("asdasd2x341");
+		order.setRemarks("MIU89u8JH");
+		order.setSize(S.getRandomNum(2));
+		order.setTransferNumber("h8knash89UHI");
+		order.setTransportVehicleRegistrationNumber("苏EABCDF");
+		order.setDeliveryVehicleRegistrationNumber("苏FABCDF");
+		order.setWeight(S.getRandomNum(2));
+		Plan plan = new Plan();
+		plan.setId(789689L);
+		plan.setCreatedAt(new Date(System.currentTimeMillis()));
+		plan.setLastModified(new Date(System.currentTimeMillis()));
+		order.setPlan(plan);
+		WebUser user = new WebUser();
+		user.setUsername("demo");
+		user.setId(11L);
+		user.setName("demouser");
+		user.setLastLoginIp("8.8.8.8");
+		user.setLastLoginTime(System.currentTimeMillis() + "");
+		order.setCreatorUser(user);
+		order.setCustomerUser(user);
+		Vehicle deliveryVehicle = new Vehicle();
+		deliveryVehicle.setLastModified(new Date(System.currentTimeMillis()));
+		deliveryVehicle.setCreatedAt(new Date(System.currentTimeMillis()));
+		order.setDeliveryVehicle(deliveryVehicle);
+		Factory factory = new Factory();
+		factory.setId(2L);
+		Map<String, Date> feeHistory = new HashMap<String, Date>();
+		feeHistory.put(S.getRandomNumString(5), new Date(System.currentTimeMillis() + 1));
+		feeHistory.put(S.getRandomNumString(5), new Date(System.currentTimeMillis() + 22));
+		feeHistory.put(S.getRandomNumString(5), new Date(System.currentTimeMillis() + 132));
+		order.setFeeHistory(feeHistory);
+		order.setFactory(factory);
+		Vehicle transportVehicle = new Vehicle();
+		transportVehicle.setLastModified(new Date(System.currentTimeMillis()));
+		transportVehicle.setCreatedAt(new Date(System.currentTimeMillis()));
+		order.setTransportVehicle(transportVehicle);
+		Customer customer=new Customer();
+		customer.setCustomerId(1L);
+		order.setCustomer(customer);
+		return order;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -13,7 +13,7 @@ public class Customer {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "customer_id", nullable = false, length = 11)
-	private Long id;
+	private Long customerId;
 	
 	
 	
@@ -23,13 +23,15 @@ public class Customer {
 
 
 
-	public Long getId() {
-		return id;
+	public Long getCustomerId() {
+		return customerId;
 	}
 
 
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
+
+
 }

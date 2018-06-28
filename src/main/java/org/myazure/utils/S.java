@@ -5,25 +5,23 @@ public class S {
 
 	}
 
-	@SuppressWarnings("unused")
-	public static String toStroageString(long data) {
-		int unit = 0;
-		long userdata = data;
-		long userdata2 = data - (data / 1000L) * 1000L;
-
-		while (userdata > 1000L) {
-			userdata = userdata / 1000L;
-			userdata2 = userdata%1000L;
-			unit++;
+	public static String getRandomNumString(int number) {
+		if (number > 0) {
+			StringBuffer numberStringBuffer = new StringBuffer();
+			for (int i = 0; i < number; i++) {
+				int num = (int) (Math.random() * 10L);
+				numberStringBuffer.append(num);
+			}
+			return numberStringBuffer.toString();
+		} else {
+			return "0";
 		}
-		StringBuffer dataBuffer=new StringBuffer();
-		dataBuffer.append(userdata).append((unit + "").replace("1", "KB").replace("2", "MB")
-						.replace("3", "GB").replace("4", "TB").replace("0", "B")
-						.replace("5", "PB"));
-//		dataBuffer.append(userdata2).append((unit + "").replace("1", "B").replace("2", "KB")
-//				.replace("3", "MB").replace("4", "GB")
-//				.replace("5", "TB"));
-		return dataBuffer.toString();
 	}
-
+	
+	public static int getRandomNum(int number){
+		if ((number>0 ) && (number<16)) {
+			return Integer.valueOf(getRandomNumString(number));
+		}
+		return 0;
+	}
 }

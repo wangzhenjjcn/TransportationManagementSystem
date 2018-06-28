@@ -7,5 +7,6 @@ import org.myazure.domain.Order;
 public interface OrderService {
 	 
 	List<Order> getLastOrders();
+	void saveOrder(Order order);
 
 }

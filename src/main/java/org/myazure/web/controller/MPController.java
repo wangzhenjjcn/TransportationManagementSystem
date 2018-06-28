@@ -43,33 +43,33 @@ public class MPController {
 
 	}
 
-	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public void getRoot(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, AesException {
-		LOG.debug("A GET Request==================================");
-		EventMessage eventMessage = getEventMessage(request, response);
-		if (eventMessage == null) {
-			return;
-		}
-		if (eventMessage.getMsgType() == null) {
-			return;
-		}
-		LOG.debug("MMMMMMMMMMSG:" + JSON.toJSONString(eventMessage));
-		return;
-	}
+//	@RequestMapping(path = "/", method = RequestMethod.GET)
+//	public void getRoot(HttpServletRequest request, HttpServletResponse response)
+//			throws IOException, AesException {
+//		LOG.debug("A GET Request==================================");
+//		EventMessage eventMessage = getEventMessage(request, response);
+//		if (eventMessage == null) {
+//			return;
+//		}
+//		if (eventMessage.getMsgType() == null) {
+//			return;
+//		}
+//		LOG.debug("MMMMMMMMMMSG:" + JSON.toJSONString(eventMessage));
+//		return;
+//	}
 
-	@RequestMapping(path = "/", method = RequestMethod.POST)
-	public void postRoot(HttpServletRequest request,
-			HttpServletResponse response) throws IOException, AesException {
-		EventMessage eventMessage = getEventMessage(request, response);
-		if (eventMessage == null) {
-			return;
-		} else if (eventMessage.getMsgType() == null) {
-			return;
-		}
-		LOG.debug("A fressssh connnnnnnnnnnnnnnnnnnt");
-		return;
-	}
+//	@RequestMapping(path = "/", method = RequestMethod.POST)
+//	public void postRoot(HttpServletRequest request,
+//			HttpServletResponse response) throws IOException, AesException {
+//		EventMessage eventMessage = getEventMessage(request, response);
+//		if (eventMessage == null) {
+//			return;
+//		} else if (eventMessage.getMsgType() == null) {
+//			return;
+//		}
+//		LOG.debug("A fressssh connnnnnnnnnnnnnnnnnnt");
+//		return;
+//	}
 
 	@RequestMapping(path = "/event/authorize", method = RequestMethod.POST)
 	public void acceptAuthorizeEvent(HttpServletRequest request,
@@ -94,6 +94,7 @@ public class MPController {
 		msg.outputStreamWrite(response.getOutputStream(), wxBizMsgCrypt);
 	}
 
+	@SuppressWarnings("unused")
 	private EventMessage getEventMessage(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		EventMessage eventMessage = null;
