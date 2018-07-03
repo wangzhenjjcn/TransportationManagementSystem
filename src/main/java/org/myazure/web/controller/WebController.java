@@ -49,7 +49,7 @@ public class WebController {
 			HttpServletResponse response) {
 		OrdersResponse orders = new OrdersResponse();
 		orders.addOrder(Order.getOrderExp());
-		orderService.saveOrder(Order.getOrderExp());
+		orderService.saveOrder(orderService.saveOrder(Order.getOrderExp()));
 		sentResponse(response, orders);
 	}
 
@@ -59,8 +59,7 @@ public class WebController {
 		OrdersResponse orders = new OrdersResponse();
 		int num = S.getRandomNum(2);
 		for (int i = 0; i < num; i++) {
-			orders.addOrder(Order.getOrderExp());
-			orderService.saveOrder(Order.getOrderExp());
+			orders.addOrder(orderService.saveOrder(Order.getOrderExp()));
 		}
 		sentResponse(response, orders);
 	}

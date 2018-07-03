@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name = "user")
 public class WebUser extends BaseEntity { 
+	
 	public static int ROLE_ADMIN = 8;
 	public static int WEB_USER = 0;
 	public static int ACCOUNTANT = 6;
@@ -38,13 +39,11 @@ public class WebUser extends BaseEntity {
     @JSONField(serialize=false)
 	@Column(name = "pass_word", nullable = false)
 	private String password ;
- 
     
     @JsonProperty("name")
     @JSONField(serialize=true,name = "name")
     @Column(name = "name", nullable = false)
     private String name;
-    
     
 	@JSONField(serialize=false)
 	@Column(name = "salt", nullable = false)
@@ -63,8 +62,6 @@ public class WebUser extends BaseEntity {
 	@JSONField(serialize=false)
 	@Column(name = "last_login_time", nullable = true)
 	private String lastLoginTime;
-
-	
 	
 	public WebUser() {
 		username="null";
@@ -75,79 +72,53 @@ public class WebUser extends BaseEntity {
 				.hashCode() + "";
 	}
 
-
-
 	public Long getId() {
 		return id;
 	}
-
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-
 	public String getUsername() {
 		return username;
 	}
-
-
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-
-
 	public String getPassword() {
 		return password;
 	}
-
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-
 	public String getName() {
 		return name;
 	}
-
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-
 	public String getSalt() {
 		return salt;
 	}
-
-
 
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
 
-
-
 	public String getRole() {
 		return role;
 	}
 
-
-
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-
 
 	public String getToken() {
 		return token;

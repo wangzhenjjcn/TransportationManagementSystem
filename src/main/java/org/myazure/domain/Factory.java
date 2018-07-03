@@ -43,14 +43,29 @@ public class Factory  extends BaseEntity implements Serializable {
 	}
 
 
+	public String getName() {
+		return name;
+	}
 
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getNamepy() {
+		return namepy;
+	}
+
+
+	public void setNamepy(String namepy) {
+		this.namepy = namepy;
+	}
 
 
 	public Long getId() {
 		return id;
 	}
-
-
 
 
 

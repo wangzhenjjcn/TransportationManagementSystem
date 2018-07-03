@@ -76,17 +76,18 @@ public class Order extends BaseEntity implements Serializable {
 	@JoinColumn(name = "delivery_vehicle_id")
 	@ManyToOne(targetEntity = Vehicle.class, fetch = FetchType.LAZY)
 	private Vehicle deliveryVehicle = new Vehicle();
-	@Transient
 	@JSONField(name = "factory")
 	@JsonProperty("factory")
+	@JoinColumn(name = "factory_id")
+	@ManyToOne(targetEntity = Factory.class, fetch = FetchType.LAZY)
 	private Factory factory = new Factory();
-	@JsonProperty("factory_id")
-	@Column(name = "factory_id", columnDefinition = "bigint(11) DEFAULT NULL")
-	@JSONField(name = "factory_id")
-	private int factoryId;
 	@Transient
+	@JSONField(name = "factory_name")
+	@JsonProperty("factory_name")
 	private String factoryName;
 	@Transient
+	@JSONField(name = "factory_address")
+	@JsonProperty("factory_address")
 	private String factoryAddress;
 	// `from` varchar(255) DEFAULT NULL,
 	@JsonProperty("source")
@@ -217,13 +218,16 @@ public class Order extends BaseEntity implements Serializable {
 		orderStateString = "新订单";
 	}
 
+
 	public Long getOrderId() {
 		return orderId;
 	}
 
+
 	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
+
 
 	public Date getOrderCreatDate() {
 		return orderCreatDate;
@@ -305,13 +309,6 @@ public class Order extends BaseEntity implements Serializable {
 		this.factory = factory;
 	}
 
-	public int getFactoryId() {
-		return factoryId;
-	}
-
-	public void setFactoryId(int factoryId) {
-		this.factoryId = factoryId;
-	}
 
 	public String getFactoryName() {
 		return factoryName;
@@ -557,7 +554,6 @@ public class Order extends BaseEntity implements Serializable {
 		order.setDestination("苏州");
 		order.setDistence(S.getRandomNum(5));
 		order.setEntryNumber(S.getRandomString(8));
-		order.setFactoryId(S.getRandomNum(7));
 		order.setFactoryName("TEST" + S.getRandomNumString(3) + "FACTORY");
 		order.setFactoryAddress("苏州观前街");
 		order.setFeeTime(S.getRandomNum(1));

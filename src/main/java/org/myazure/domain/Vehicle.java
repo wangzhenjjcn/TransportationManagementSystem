@@ -35,8 +35,6 @@ public class Vehicle extends BaseEntity implements Serializable{
 		
 	}
 
-
-
 	public Long getId() {
 		return id;
 	}
