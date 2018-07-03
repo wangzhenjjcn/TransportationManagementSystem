@@ -19,21 +19,12 @@ import javax.persistence.Transient;
 import org.myazure.utils.S;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "orders")
 public class Order extends BaseEntity implements Serializable {
-	// `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单编号',
-	// `customer_id` bigint(11) NOT NULL,
-	// `factory_id` bigint(11) NOT NULL,
-	// `delivery_id` bigint(11) DEFAULT NULL,
-	// `pick_id` bigint(20) DEFAULT NULL,
-	// `user_id` bigint(20) DEFAULT NULL,
-	// `freight` int(11) DEFAULT NULL,
-	// `cushion_fee` int(11) DEFAULT NULL,
-	// `shipping_type` int(11) DEFAULT NULL,
-	// `fee_time` datetime DEFAULT NULL,
 	@Transient
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -50,40 +41,72 @@ public class Order extends BaseEntity implements Serializable {
 	@Column(name = "order_date", columnDefinition = "datetime DEFAULT NULL")
 	@JSONField(name = "orderDate")
 	private Date orderDate;
-
+	@JSONField(name = "creat_user")
+	@JsonProperty("creat_user")
 	@JoinColumn(name = "creat_user_id")
-	@JSONField(name = "creat_user_id")
 	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
-	@JsonProperty("creat_user_id")
 	private WebUser creatorUser = new WebUser();
-	@Transient
+	@JSONField(name = "customer_user")
+	@JsonProperty("customer_user")
+	@JoinColumn(name = "customer_user_id")
+	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
 	private WebUser customerUser = new WebUser();
-	@Transient
+	@JSONField(name = "transport_driver_user")
+	@JsonProperty("transport_driver_user")
+	@JoinColumn(name = "transport_driver_user_id")
+	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
 	private WebUser transportDriverUser = new WebUser();
-	@Transient
+	@JSONField(name = "delivery_driver_user")
+	@JsonProperty("delivery_driver_user")
+	@JoinColumn(name = "delivery_driver_user_id")
+	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
 	private WebUser deliveryDriverUser = new WebUser();
-	@Transient
+	@JSONField(name = "factory_user")
+	@JsonProperty("factory_user")
+	@JoinColumn(name = "factory_user_id")
+	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
 	private WebUser factoryUser = new WebUser();
-	@Transient
+	@JSONField(name = "transport_vehicle")
+	@JsonProperty("transport_vehicle")
+	@JoinColumn(name = "transport_vehicle_id")
+	@ManyToOne(targetEntity = Vehicle.class, fetch = FetchType.LAZY)
 	private Vehicle transportVehicle = new Vehicle();
-	@Transient
+	@JSONField(name = "delivery_vehicle")
+	@JsonProperty("delivery_vehicle")
+	@JoinColumn(name = "delivery_vehicle_id")
+	@ManyToOne(targetEntity = Vehicle.class, fetch = FetchType.LAZY)
 	private Vehicle deliveryVehicle = new Vehicle();
 	@Transient
+	@JSONField(name = "factory")
+	@JsonProperty("factory")
 	private Factory factory = new Factory();
-	@JsonProperty("factoryId")
+	@JsonProperty("factory_id")
 	@Column(name = "factory_id", columnDefinition = "bigint(11) DEFAULT NULL")
-	@JSONField(name = "factoryId")
+	@JSONField(name = "factory_id")
 	private int factoryId;
 	@Transient
 	private String factoryName;
 	@Transient
 	private String factoryAddress;
-	
 	// `from` varchar(255) DEFAULT NULL,
 	@JsonProperty("source")
 	@Column(name = "source", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "source")
 	private String from;
+	@JsonProperty("sourcepy")
+	@JSONField(name = "sourcepy")
+	@Column(name = "sourcepy", columnDefinition = "varchar(25) DEFAULT NULL")
+	private String frompy;
+	// `to` varchar(255) DEFAULT NULL,
+	@JsonProperty("destination")
+	@Column(name = "destination", columnDefinition = "varchar(255) DEFAULT NULL")
+	@JSONField(name = "destination")
+	private String destination;
+	// `to` varchar(255) DEFAULT NULL,
+	@JsonProperty("destinationpy")
+	@Column(name = "destinationpy", columnDefinition = "varchar(25) DEFAULT NULL")
+	@JSONField(name = "destinationpy")
+	private String destinationpy;
 	@Transient
 	private String transferNumber;
 	@Transient
@@ -98,8 +121,6 @@ public class Order extends BaseEntity implements Serializable {
 	@Column(name = "packages", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "packages")
 	private int pakagesNumber;
-	
-	
 	@JsonProperty("weight")
 	@Column(name = "weight", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "weight")
@@ -109,25 +130,30 @@ public class Order extends BaseEntity implements Serializable {
 	@Column(name = "size", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "size")
 	private int size;
-	// `to` varchar(255) DEFAULT NULL,
-	@JsonProperty("destination")
-	@Column(name = "destination", columnDefinition = "varchar(255) DEFAULT NULL")
-	@JSONField(name = "destination")
-	private String destination;
 	// `distence` int(11) DEFAULT NULL,
 	@JsonProperty("distence")
 	@Column(name = "distence", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "distence")
 	private int distence;
-	@Transient
+	@JsonProperty("carriage_fee")
+	@Column(name = "carriage_fee", columnDefinition = "int(11) DEFAULT NULL")
+	@JSONField(name = "carriage_fee")
 	private int carriageFee;
-	@Transient
+	@JsonProperty("cushion_fee")
+	@Column(name = "cushion_fee", columnDefinition = "int(11) DEFAULT NULL")
+	@JSONField(name = "cushion_fee")
 	private int cushionFee;
-	@Transient
+	@JsonProperty("remarks")
+	@Column(name = "remarks", columnDefinition = "varchar(255) DEFAULT NULL")
+	@JSONField(name = "remarks")
 	private String remarks;
-	@Transient
+	@JsonProperty("transport_vehicle_registration_number")
+	@Column(name = "transport_vehicle_registration_number", columnDefinition = "varchar(9) DEFAULT NULL")
+	@JSONField(name = "transport_vehicle_registration_number")
 	private String transportVehicleRegistrationNumber;
-	@Transient
+	@JsonProperty("delivery_vehicle_registration_number")
+	@Column(name = "delivery_vehicle_registration_number", columnDefinition = "varchar(9) DEFAULT NULL")
+	@JSONField(name = "delivery_vehicle_registration_number")
 	private String deliveryVehicleRegistrationNumber;
 	@JoinColumn(name = "customer_id")
 	@JSONField(name = "customer_id")
@@ -140,8 +166,7 @@ public class Order extends BaseEntity implements Serializable {
 	@JoinColumn(name = "plan_id", columnDefinition = "bigint(11) DEFAULT NULL")
 	@ManyToOne(targetEntity = Plan.class, fetch = FetchType.LAZY)
 	private Plan plan;
-
-	//  `customer_number` varchar(30) DEFAULT NULL,
+	// `customer_number` varchar(30) DEFAULT NULL,
 	@JsonProperty("customer_number")
 	@Column(name = "customer_number", columnDefinition = "varchar(30) DEFAULT NULL")
 	@JSONField(name = "customer_number")
@@ -158,30 +183,38 @@ public class Order extends BaseEntity implements Serializable {
 	@Column(name = "phone", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "phone")
 	private String contactPhone;
-	
 	// `isCharterd` int(11) DEFAULT NULL,
 	@JsonProperty("isCharterd")
 	@Column(name = "isCharterd", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "isCharterd")
 	private boolean isCharterd;
-	@Transient
+	@JsonProperty("fee_time")
+	@JSONField(name = "fee_time")
+	@Column(name = "fee_time", columnDefinition = "int(2) DEFAULT NULL")
 	private int feeTime;
-	@Transient
-	//0
-	//1
-	//2
-	//3
-	//4
-	//5
-	//6
-	//7
-	private int orderState;
+	// 0创建
+	// 1审核
+	// 2运输
+	// 3送达
+	// 4上传
+	// 5完成
+	// 6结算
+	// 7关闭
+	@JsonProperty("order_state")
+	@Column(name = "order_state", columnDefinition = "int(2) unsigned DEFAULT '0'")
+	@JSONField(name = "order_state")
+	private int orderState = 0;
 	@Transient
 	private String orderStateString;
 	@Transient
-	private Map<String, Date> feeHistory = new HashMap<String, Date>();
+	private Map<String, Integer> feeHistory = new HashMap<String, Integer>();
 
 	public Order() {
+		orderCreatDate = new Date(System.currentTimeMillis());
+		orderDate = new Date(System.currentTimeMillis());
+		contactName = "";
+		orderState = 0;
+		orderStateString = "新订单";
 	}
 
 	public Long getOrderId() {
@@ -190,14 +223,6 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
-	}
-
-	public Plan getPlan() {
-		return plan;
-	}
-
-	public void setPlan(Plan plan) {
-		this.plan = plan;
 	}
 
 	public Date getOrderCreatDate() {
@@ -312,6 +337,30 @@ public class Order extends BaseEntity implements Serializable {
 		this.from = from;
 	}
 
+	public String getFrompy() {
+		return frompy;
+	}
+
+	public void setFrompy(String frompy) {
+		this.frompy = frompy;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public String getDestinationpy() {
+		return destinationpy;
+	}
+
+	public void setDestinationpy(String destinationpy) {
+		this.destinationpy = destinationpy;
+	}
+
 	public String getTransferNumber() {
 		return transferNumber;
 	}
@@ -358,14 +407,6 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setSize(int size) {
 		this.size = size;
-	}
-
-	public String getDestination() {
-		return destination;
-	}
-
-	public void setDestination(String destination) {
-		this.destination = destination;
 	}
 
 	public int getDistence() {
@@ -426,11 +467,11 @@ public class Order extends BaseEntity implements Serializable {
 		this.customer = customer;
 	}
 
-	public Plan getRate() {
+	public Plan getPlan() {
 		return plan;
 	}
 
-	public void setRate(Plan plan) {
+	public void setPlan(Plan plan) {
 		this.plan = plan;
 	}
 
@@ -498,27 +539,26 @@ public class Order extends BaseEntity implements Serializable {
 		this.orderStateString = orderStateString;
 	}
 
-	public Map<String, Date> getFeeHistory() {
+	public Map<String, Integer> getFeeHistory() {
 		return feeHistory;
 	}
 
-	public void setFeeHistory(Map<String, Date> feeHistory) {
+	public void setFeeHistory(Map<String, Integer> feeHistory) {
 		this.feeHistory = feeHistory;
 	}
-	
-	
-	public static Order getOrderExp(){
+
+	public static Order getOrderExp() {
 		Order order = new Order();
 		order.setCarriageFee(S.getRandomNum(3));
 		order.setCharterd(false);
-		order.setContactName("TEST"+S.getRandomNumString(3)+"NAME");
-		order.setContactPhone("139"+S.getRandomNumString(8));
-		order.setCustomerNumber("CSN"+S.getRandomNumString(5));
+		order.setContactName("TEST" + S.getRandomNumString(3) + "NAME");
+		order.setContactPhone("139" + S.getRandomNumString(8));
+		order.setCustomerNumber("CSN" + S.getRandomNumString(5));
 		order.setDestination("苏州");
 		order.setDistence(S.getRandomNum(5));
 		order.setEntryNumber(S.getRandomString(8));
 		order.setFactoryId(S.getRandomNum(7));
-		order.setFactoryName("TEST"+S.getRandomNumString(3)+"FACTORY");
+		order.setFactoryName("TEST" + S.getRandomNumString(3) + "FACTORY");
 		order.setFactoryAddress("苏州观前街");
 		order.setFeeTime(S.getRandomNum(1));
 		order.setFreight(false);
@@ -531,8 +571,8 @@ public class Order extends BaseEntity implements Serializable {
 		order.setRemarks(S.getRandomString(10));
 		order.setSize(S.getRandomNum(2));
 		order.setTransferNumber(S.getRandomString(8));
-		order.setTransportVehicleRegistrationNumber("苏E"+S.getRandomString(4));
-		order.setDeliveryVehicleRegistrationNumber("苏E"+S.getRandomString(4));
+		order.setTransportVehicleRegistrationNumber("苏E" + S.getRandomString(4));
+		order.setDeliveryVehicleRegistrationNumber("苏E" + S.getRandomString(4));
 		order.setWeight(S.getRandomNum(2));
 		Plan plan = new Plan();
 		plan.setId(789689L);
@@ -541,14 +581,12 @@ public class Order extends BaseEntity implements Serializable {
 		order.setPlan(plan);
 		WebUser creatorUser = new WebUser();
 		creatorUser.setUsername(S.getRandomString(4));
-		creatorUser.setId(11L);
 		creatorUser.setName(S.getRandomString(5));
 		creatorUser.setLastLoginIp("8.8.8.8");
 		creatorUser.setLastLoginTime(System.currentTimeMillis() + "");
 		order.setCreatorUser(creatorUser);
 		WebUser customerUser = new WebUser();
 		customerUser.setUsername(S.getRandomString(4));
-		customerUser.setId(12L);
 		customerUser.setName(S.getRandomString(5));
 		customerUser.setLastLoginIp("8.8.8.8");
 		customerUser.setLastLoginTime(System.currentTimeMillis() + "");
@@ -558,37 +596,24 @@ public class Order extends BaseEntity implements Serializable {
 		deliveryVehicle.setCreatedAt(new Date(System.currentTimeMillis()));
 		order.setDeliveryVehicle(deliveryVehicle);
 		Factory factory = new Factory();
-		factory.setId(2L);
-		Map<String, Date> feeHistory = new HashMap<String, Date>();
-		feeHistory.put(S.getRandomNumString(5), new Date(System.currentTimeMillis() + 1));
-		feeHistory.put(S.getRandomNumString(5), new Date(System.currentTimeMillis() + 22));
-		feeHistory.put(S.getRandomNumString(5), new Date(System.currentTimeMillis() + 132));
+		Map<String, Integer> feeHistory = new HashMap<String, Integer>();
+		feeHistory.put("代付费",
+				S.getRandomNum(2));
+		feeHistory.put("过路费",
+				S.getRandomNum(2));
+		feeHistory.put("其他",
+				S.getRandomNum(2));
 		order.setFeeHistory(feeHistory);
 		order.setFactory(factory);
 		Vehicle transportVehicle = new Vehicle();
+		transportVehicle.setId(1L);
 		transportVehicle.setLastModified(new Date(System.currentTimeMillis()));
 		transportVehicle.setCreatedAt(new Date(System.currentTimeMillis()));
 		order.setTransportVehicle(transportVehicle);
-		Customer customer=new Customer();
+		Customer customer = new Customer();
 		customer.setCustomerId(1L);
 		order.setCustomer(customer);
 		return order;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

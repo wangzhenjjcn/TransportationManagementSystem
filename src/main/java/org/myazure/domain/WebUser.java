@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "user")
@@ -23,21 +24,34 @@ public class WebUser extends BaseEntity {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonProperty("id")
+	@JSONField(name = "id")
 	@Column(name = "user_id", nullable = false, length = 11)
 	private Long id;
+	
+	@JsonProperty("user_name")
+	@JSONField(serialize=false,name = "user_name")
 	@Column(name = "user_name", nullable = false)
 	private String username;
 
+	@JsonProperty("password")
     @JSONField(serialize=false)
 	@Column(name = "pass_word", nullable = false)
 	private String password ;
-
-	@Column(name = "name", nullable = false)
-	private String name;
+ 
+    
+    @JsonProperty("name")
+    @JSONField(serialize=true,name = "name")
+    @Column(name = "name", nullable = false)
+    private String name;
+    
+    
 	@JSONField(serialize=false)
 	@Column(name = "salt", nullable = false)
 	private String salt ;
-	@JSONField(serialize=false)
+	
+	@JsonProperty("role")
+    @JSONField(serialize=true,name = "role")
 	@Column(name = "role", nullable = false)
 	private String role;
 	@JSONField(serialize=false)

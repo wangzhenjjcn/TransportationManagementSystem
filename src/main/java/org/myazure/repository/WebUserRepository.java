@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface WebUserRepository extends
 		PagingAndSortingRepository<WebUser, Long> {
 
+	WebUser findOneByUsername(String string);
+
 }

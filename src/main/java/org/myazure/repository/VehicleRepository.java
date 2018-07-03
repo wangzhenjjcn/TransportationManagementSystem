@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface VehicleRepository extends
 PagingAndSortingRepository<Vehicle, Long> {
 
+	Vehicle findOneByCarLicensePlate(String string);
+
 }

@@ -17,6 +17,8 @@ import org.myazure.domain.Vehicle;
 import org.myazure.domain.WebUser;
 import org.myazure.service.MyazureDataService;
 import org.myazure.service.OrderService;
+import org.myazure.transportation.response.OrdersResponse;
+import org.myazure.utils.S;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,6 @@ public class WebController {
 	MyazureDataService myazureDataService;
 	@Autowired
 	OrderService orderService;
-	
 
 	public WebController() {
 
@@ -46,23 +47,24 @@ public class WebController {
 	@RequestMapping(path = "/getOrder", method = RequestMethod.GET)
 	public void helloWord(HttpServletRequest request,
 			HttpServletResponse response) {
+		OrdersResponse orders = new OrdersResponse();
+		orders.addOrder(Order.getOrderExp());
 		orderService.saveOrder(Order.getOrderExp());
-		sentResponse(response, Order.getOrderExp());
+		sentResponse(response, orders);
 	}
 
 	@RequestMapping(path = "/getOrders", method = RequestMethod.GET)
 	public void helloWords(HttpServletRequest request,
 			HttpServletResponse response) {
-		Order [] orders=new Order[10];
-		for (int i = 0; i < orders.length; i++) {
-			orders[i]=Order.getOrderExp();
+		OrdersResponse orders = new OrdersResponse();
+		int num = S.getRandomNum(2);
+		for (int i = 0; i < num; i++) {
+			orders.addOrder(Order.getOrderExp());
 			orderService.saveOrder(Order.getOrderExp());
 		}
 		sentResponse(response, orders);
 	}
-	
-	
-	
+
 	protected void sentResponse(HttpServletResponse response, Object object) {
 		try {
 			response.setCharacterEncoding("UTF-8");
