@@ -131,7 +131,7 @@ public class OrderServiceImpl implements OrderService {
 		order.setDistence(S.getRandomNum(5));
 		order.setEntryNumber(S.getRandomString(8));
 		order.setFeeTime(S.getRandomNum(1));
-		order.setFreightType(1);
+		order.setFreightType(S.getRandomNum(1));
 		order.setSource("上海");
 		order.setOrderDate(new Date(System.currentTimeMillis()));
 		order.setOrderCreatDate(new Date(System.currentTimeMillis()));

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,12 +16,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name = "plan")
 public class Plan extends BaseEntity implements Serializable {
+	@Transient
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "plan_id", nullable = false, length = 11)
 	private Long id;
-
+	@JsonProperty("freight_tpye")
+	@JSONField(name = "freight_tpye")
+	@Column(name = "freight_tpye", columnDefinition = "int(11) unsigned DEFAULT NULL")
+	private int freight_tpye;
 	@JsonProperty("price")
 	@JSONField(name = "price")
 	@Column(name = "price", columnDefinition = "int(11) unsigned DEFAULT NULL")

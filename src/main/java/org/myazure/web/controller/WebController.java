@@ -45,20 +45,24 @@ public class WebController {
 	}
 
 	// just for test
+	@SuppressWarnings("unchecked")
 	@RequestMapping(path = "/getOrder", method = RequestMethod.GET)
 	public void helloWord(HttpServletRequest request,
 			HttpServletResponse response) {
+		@SuppressWarnings("rawtypes")
 		OrdersResponse orders = new OrdersResponse();
-		orders.addOrder(orderService.getOrder(1L));
+		orders.addData(orderService.getOrder(1L));
+		orders.setOrders(orders.getData());
 		sentResponse(response, orders);
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(path = "/getOrders", method = RequestMethod.GET)
 	public void helloWords(HttpServletRequest request,
 			HttpServletResponse response) {
 		OrdersResponse orders = new OrdersResponse();
 		for (int i = 0; i < 16; i++) {
-			orders.addOrder(orderService.getNewOrder());
+			orders.addData(orderService.getNewOrder());
 		}
 		sentResponse(response, orders);
 	}

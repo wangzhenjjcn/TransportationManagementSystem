@@ -79,7 +79,6 @@ public class WebUserServiceImpl implements WebUserService {
 		if (key == null) {
 			return webUser;
 		}
-
 		if (Long.valueOf(key) != null) {
 			if (Long.valueOf(key) > 0) {
 				if (webUserRepository.findOne(Long.valueOf(key)) != null) {
@@ -88,17 +87,23 @@ public class WebUserServiceImpl implements WebUserService {
 				}
 			}
 		}
-
-		
-		
-		
-		
-		
 		return webUser;
 	}
 
 	@Override
 	public List<WebUser> searchWebUsers(String key) {
+		return null;
+	}
+
+	@Override
+	public boolean checkUser(Long id, String token) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public String login(String username, String password) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

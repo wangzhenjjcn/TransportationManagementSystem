@@ -179,6 +179,14 @@ public class Order extends BaseEntity implements Serializable {
 	@JSONField(name = "freight_tpye")
 	@Column(name = "freight_tpye", columnDefinition = " int(1) DEFAULT '0'")
 	private int freightType;
+	@Transient
+	@JsonProperty("freight_tpye_String")
+	@JSONField(name = "freight_tpye_String")
+	private String freightTypeString;
+	@Transient
+	@JsonProperty("freight_tpye_string_py")
+	@JSONField(name = "freight_tpye_string_py")
+	private String freightTypeStringPy;
 	@JsonProperty("contact")
 	@Column(name = "contact", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "contact")
@@ -217,6 +225,11 @@ public class Order extends BaseEntity implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Payment.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_id")
 	private List<Payment> feeHistory = new ArrayList<Payment>();
+	@JSONField(name = "account_payable")
+	@JsonProperty("account_payable")
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Payment.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "order_id")
+	private List<Payment> accountPayable= new ArrayList<Payment>();
 
 	public Order() {
 		orderCreatDate = new Date(System.currentTimeMillis());
@@ -318,6 +331,7 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+		this.remarkspy=S.getPinYinFirstChar(remarks);
 	}
 
 	public void setCustomer(Customer customer) {
@@ -350,6 +364,10 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setFeeHistory(List<Payment> feeHistory) {
 		this.feeHistory = feeHistory;
+	}
+
+	public void setAccountPayable(List<Payment> accountPayable) {
+		this.accountPayable = accountPayable;
 	}
 
 	public Long getOrderId() {
@@ -488,6 +506,14 @@ public class Order extends BaseEntity implements Serializable {
 		return freightType;
 	}
 
+	public String getFreightTypeString() {
+		return freightTypeString;
+	}
+
+	public String getFreightTypeStringPy() {
+		return freightTypeStringPy;
+	}
+
 	public String getContactName() {
 		return contactName;
 	}
@@ -560,6 +586,7 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setContactName(String contactName) {
 		this.contactName = contactName;
+		this.contactNamepy=S.getPinYinFirstChar(contactName);
 	}
 
 	public void setContactNamepy(String contactNamepy) {
@@ -576,6 +603,18 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setOrderStateStringPY(String orderStateStringPY) {
 		this.orderStateStringPY = orderStateStringPY;
+	}
+
+	public List<Payment> getAccountPayable() {
+		return accountPayable;
+	}
+
+	public void setFreightTypeString(String freightTypeString) {
+		this.freightTypeString = freightTypeString;
+	}
+
+	public void setFreightTypeStringPy(String freightTypeStringPy) {
+		this.freightTypeStringPy = freightTypeStringPy;
 	}
 
 }

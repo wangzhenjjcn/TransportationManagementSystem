@@ -18,17 +18,17 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "payment")
-public class Payment  extends BaseEntity implements Serializable {
+@Table(name = "cushion")
+public class Cushion  extends BaseEntity implements Serializable {
 	@Transient
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@JsonProperty("payment_id")
-	@JSONField(name = "payment_id")
+	@JsonProperty("cushion_id")
+	@JSONField(name = "cushion_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "payment_id", nullable = false, length = 11, columnDefinition = "bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单编号'", insertable = true)
-	private Long payId;
+	@Column(name = "cushion_id", nullable = false, length = 11, columnDefinition = "bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单编号'", insertable = true)
+	private Long cushionId;
 	 
 	@JsonProperty("order_id")
 	@JSONField(name = "order_id")
@@ -62,16 +62,16 @@ public class Payment  extends BaseEntity implements Serializable {
 	@JSONField(name = "remarkspy")
 	private String remarkspy;
 	
-	public Payment(){
+	public Cushion(){
 		
 	}
 
-	public Long getPayId() {
-		return payId;
+	public Long getCushionId() {
+		return cushionId;
 	}
 
-	public void setPayId(Long payId) {
-		this.payId = payId;
+	public void setCushionId(Long cushionId) {
+		this.cushionId = cushionId;
 	}
 
 	public Long getOrderId() {
