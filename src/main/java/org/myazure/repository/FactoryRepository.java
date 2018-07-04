@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface FactoryRepository extends
 PagingAndSortingRepository<Factory, Long>{
 
-	Factory findOneByName(String string);
 
 }

@@ -31,6 +31,15 @@ public class Vehicle extends BaseEntity implements Serializable{
 	@JSONField(name = "car_license_plate")
 	private String carLicensePlate;
 	
+	
+	public String getCarLicensePlate() {
+		return carLicensePlate;
+	}
+
+	public void setCarLicensePlate(String carLicensePlate) {
+		this.carLicensePlate = carLicensePlate;
+	}
+
 	public Vehicle(){
 		
 	}

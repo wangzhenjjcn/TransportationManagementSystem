@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 @Controller
 public class WebController {
@@ -48,8 +49,7 @@ public class WebController {
 	public void helloWord(HttpServletRequest request,
 			HttpServletResponse response) {
 		OrdersResponse orders = new OrdersResponse();
-		orders.addOrder(Order.getOrderExp());
-		orderService.saveOrder(orderService.saveOrder(Order.getOrderExp()));
+		orders.addOrder(orderService.getOrder(1L));
 		sentResponse(response, orders);
 	}
 
@@ -57,9 +57,8 @@ public class WebController {
 	public void helloWords(HttpServletRequest request,
 			HttpServletResponse response) {
 		OrdersResponse orders = new OrdersResponse();
-		int num = S.getRandomNum(2);
-		for (int i = 0; i < num; i++) {
-			orders.addOrder(orderService.saveOrder(Order.getOrderExp()));
+		for (int i = 0; i < 16; i++) {
+			orders.addOrder(orderService.getNewOrder());
 		}
 		sentResponse(response, orders);
 	}
@@ -68,7 +67,7 @@ public class WebController {
 		try {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("");
-			response.getWriter().write(JSON.toJSONString(object));
+			response.getWriter().write(JSON.toJSONString(object,SerializerFeature.DisableCircularReferenceDetect));
 			response.getWriter().close();
 			return;
 		} catch (IOException e) {

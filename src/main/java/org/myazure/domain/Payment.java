@@ -23,10 +23,10 @@ public class Payment  extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@JsonProperty("pay_id")
-	@JSONField(name = "pay_id")
+	@JsonProperty("payment_id")
+	@JSONField(name = "payment_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "pay_id", nullable = false, length = 11, columnDefinition = "bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单编号'", insertable = true)
+	@Column(name = "payment_id", nullable = false, length = 11, columnDefinition = "bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单编号'", insertable = true)
 	private Long payId;
 	 
 	@JsonProperty("order_id")

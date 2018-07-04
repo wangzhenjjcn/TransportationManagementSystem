@@ -109,7 +109,7 @@ public class S {
 	//
 	//
 	// 将汉字转换为全拼
-	public static String getPingYin(String src) {
+	public static String getFullPingYin(String src) {
 		char[] t1 = null;
 		t1 = src.toCharArray();
 		String[] t2 = new String[t1.length];
@@ -141,16 +141,6 @@ public class S {
 		return t4;
 	}
 
-	// 将字符串转移为ASCII码
-	public static String getCnASCII(String cnStr) {
-		StringBuffer strBuf = new StringBuffer();
-		byte[] bGBK = cnStr.getBytes();
-		for (int i = 0; i < bGBK.length; i++) {
-			strBuf.append(Integer.toHexString(bGBK[i] & 0xff));
-		}
-		return strBuf.toString();
-	}
-
 	/**
 	 * 将汉字转换为全拼,未知的转成空格
 	 * 
@@ -164,7 +154,7 @@ public class S {
 		// 不显示拼音的声调
 		outputFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
 		// outputFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
-
+	
 		StringBuilder sb = new StringBuilder();
 		try {
 			for (char c : str.toCharArray()) {
@@ -205,6 +195,16 @@ public class S {
 			}
 		}
 		return sb.toString();
+	}
+
+	// 将字符串转移为ASCII码
+	public static String getCnASCII(String cnStr) {
+		StringBuffer strBuf = new StringBuffer();
+		byte[] bGBK = cnStr.getBytes();
+		for (int i = 0; i < bGBK.length; i++) {
+			strBuf.append(Integer.toHexString(bGBK[i] & 0xff));
+		}
+		return strBuf.toString();
 	}
 
 	/**

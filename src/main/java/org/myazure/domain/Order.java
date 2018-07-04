@@ -96,11 +96,11 @@ public class Order extends BaseEntity implements Serializable {
 	@JsonProperty("source")
 	@Column(name = "source", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "source")
-	private String from;
+	private String source;
 	@JsonProperty("sourcepy")
 	@JSONField(name = "sourcepy")
 	@Column(name = "sourcepy", columnDefinition = "varchar(25) DEFAULT NULL")
-	private String frompy;
+	private String sourcepy;
 	@JsonProperty("destination")
 	@Column(name = "destination", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "destination")
@@ -121,10 +121,6 @@ public class Order extends BaseEntity implements Serializable {
 	@Column(name = "entry_number", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "entry_number")
 	private String entryNumber;
-	@JsonProperty("packages")
-	@Column(name = "packages", columnDefinition = "int(11) DEFAULT NULL")
-	@JSONField(name = "packages")
-	private int pakagesNumber;
 	@JsonProperty("weight")
 	@Column(name = "weight", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "weight")
@@ -133,6 +129,10 @@ public class Order extends BaseEntity implements Serializable {
 	@Column(name = "size", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "size")
 	private int size;
+	@JsonProperty("packages")
+	@Column(name = "packages", columnDefinition = "int(11) DEFAULT NULL")
+	@JSONField(name = "packages")
+	private int pakages;
 	@JsonProperty("distence")
 	@Column(name = "distence", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "distence")
@@ -216,7 +216,6 @@ public class Order extends BaseEntity implements Serializable {
 	@JsonProperty("payments")
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Payment.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_id")
-	// @ManyToOne(targetEntity = Payment.class, fetch = FetchType.LAZY)
 	private List<Payment> feeHistory = new ArrayList<Payment>();
 
 	public Order() {
@@ -227,69 +226,356 @@ public class Order extends BaseEntity implements Serializable {
 		orderStateString = "新订单";
 	}
 
-	public static Order getOrderExp() {
-		Order order = new Order();
-		order.setCarriageFee(S.getRandomNum(3));
-		order.setCharterd(false);
-		order.setContactName("TEST" + S.getRandomNumString(3) + "NAME");
-		order.setContactPhone("139" + S.getRandomNumString(8));
-		order.setCustomerNumber("CSN" + S.getRandomNumString(5));
-		order.setDestination("苏州");
-		order.setDistence(S.getRandomNum(5));
-		order.setEntryNumber(S.getRandomString(8));
-		order.setFactoryName("TEST" + S.getRandomNumString(3) + "FACTORY");
-		order.setFactoryAddress("苏州观前街");
-		order.setFeeTime(S.getRandomNum(1));
-		order.setFreight(false);
-		order.setFrom("上海");
-		order.setOrderStateString("已完成");
-		order.setOrderDate(new Date(System.currentTimeMillis()));
-		order.setOrderCreatDate(new Date(System.currentTimeMillis()));
-		order.setPakagesNumber(S.getRandomNum(2));
-		order.setPickUpNumber(S.getRandomString(12));
-		order.setRemarks(S.getRandomString(10));
-		order.setSize(S.getRandomNum(2));
-		order.setTransferNumber(S.getRandomString(8));
-		order.setTransportVehicleRegistrationNumber("苏E" + S.getRandomString(4));
-		order.setDeliveryVehicleRegistrationNumber("苏E" + S.getRandomString(4));
-		order.setWeight(S.getRandomNum(2));
-		Plan plan = new Plan();
-		plan.setId(789689L);
-		plan.setCreatedAt(new Date(System.currentTimeMillis()));
-		plan.setLastModified(new Date(System.currentTimeMillis()));
-		order.setPlan(plan);
-		WebUser creatorUser = new WebUser();
-		creatorUser.setUsername(S.getRandomString(4));
-		creatorUser.setName(S.getRandomString(5));
-		creatorUser.setLastLoginIp("8.8.8.8");
-		creatorUser.setLastLoginTime(System.currentTimeMillis() + "");
-		order.setCreatorUser(creatorUser);
-		WebUser customerUser = new WebUser();
-		customerUser.setUsername(S.getRandomString(4));
-		customerUser.setName(S.getRandomString(5));
-		customerUser.setLastLoginIp("8.8.8.8");
-		customerUser.setLastLoginTime(System.currentTimeMillis() + "");
-		order.setCustomerUser(customerUser);
-		Vehicle deliveryVehicle = new Vehicle();
-		deliveryVehicle.setLastModified(new Date(System.currentTimeMillis()));
-		deliveryVehicle.setCreatedAt(new Date(System.currentTimeMillis()));
-		order.setDeliveryVehicle(deliveryVehicle);
-		Factory factory = new Factory();
-		Map<String, Integer> feeHistory = new HashMap<String, Integer>();
-		feeHistory.put("代付费", S.getRandomNum(2));
-		feeHistory.put("过路费", S.getRandomNum(2));
-		feeHistory.put("其他", S.getRandomNum(2));
-		order.setFeeHistory(feeHistory);
-		order.setFactory(factory);
-		Vehicle transportVehicle = new Vehicle();
-		transportVehicle.setId(1L);
-		transportVehicle.setLastModified(new Date(System.currentTimeMillis()));
-		transportVehicle.setCreatedAt(new Date(System.currentTimeMillis()));
-		order.setTransportVehicle(transportVehicle);
-		Customer customer = new Customer();
-		customer.setCustomerId(1L);
-		order.setCustomer(customer);
-		return order;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public void setCreatorUser(WebUser creatorUser) {
+		this.creatorUser = creatorUser;
+	}
+
+	public void setCustomerUser(WebUser customerUser) {
+		this.customerUser = customerUser;
+	}
+
+	public void setTransportDriverUser(WebUser transportDriverUser) {
+		this.transportDriverUser = transportDriverUser;
+	}
+
+	public void setDeliveryDriverUser(WebUser deliveryDriverUser) {
+		this.deliveryDriverUser = deliveryDriverUser;
+	}
+
+	public void setFactoryUser(WebUser factoryUser) {
+		this.factoryUser = factoryUser;
+	}
+
+	public void setTransportVehicle(Vehicle transportVehicle) {
+		this.transportVehicle = transportVehicle;
+		this.transportVehicleRegistrationNumber=transportVehicle.getCarLicensePlate();
+	}
+
+	public void setDeliveryVehicle(Vehicle deliveryVehicle) {
+		this.deliveryVehicle = deliveryVehicle;
+		this.deliveryVehicleRegistrationNumber=deliveryVehicle.getCarLicensePlate();
+	}
+
+	public void setFactory(Factory factory) {
+		this.factory = factory;
+		this.factoryName=factory.getName();
+		this.factoryAddress=factory.getAddress();
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+		this.sourcepy=S.getPinYinFirstChar(source);
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+		this.destinationpy=S.getPinYinFirstChar(destination);
+	}
+
+	public void setTransferNumber(String transferNumber) {
+		this.transferNumber = transferNumber;
+	}
+
+	public void setPickUpNumber(String pickUpNumber) {
+		this.pickUpNumber = pickUpNumber;
+	}
+
+	public void setEntryNumber(String entryNumber) {
+		this.entryNumber = entryNumber;
+	}
+
+	public void setPakages(int pakages) {
+		this.pakages = pakages;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public void setDistence(int distence) {
+		this.distence = distence;
+	}
+
+	public void setCarriageFee(int carriageFee) {
+		this.carriageFee = carriageFee;
+	}
+
+	public void setCushionFee(int cushionFee) {
+		this.cushionFee = cushionFee;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
+
+	public void setCustomerNumber(String customerNumber) {
+		this.customerNumber = customerNumber;
+	}
+
+	public void setFreightType(int freightType) {
+		this.freightType = freightType;
+	}
+
+	public void setChartered(boolean isChartered) {
+		this.isChartered = isChartered;
+	}
+
+	public void setFeeTime(int feeTime) {
+		this.feeTime = feeTime;
+	}
+
+	public void setOrderState(int orderState) {
+		this.orderState = orderState;
+	}
+
+	public void setFeeHistory(List<Payment> feeHistory) {
+		this.feeHistory = feeHistory;
+	}
+
+	public Long getOrderId() {
+		return orderId;
+	}
+
+	public Date getOrderCreatDate() {
+		return orderCreatDate;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public WebUser getCreatorUser() {
+		return creatorUser;
+	}
+
+	public WebUser getCustomerUser() {
+		return customerUser;
+	}
+
+	public WebUser getTransportDriverUser() {
+		return transportDriverUser;
+	}
+
+	public WebUser getDeliveryDriverUser() {
+		return deliveryDriverUser;
+	}
+
+	public WebUser getFactoryUser() {
+		return factoryUser;
+	}
+
+	public Vehicle getTransportVehicle() {
+		return transportVehicle;
+	}
+
+	public Vehicle getDeliveryVehicle() {
+		return deliveryVehicle;
+	}
+
+	public Factory getFactory() {
+		return factory;
+	}
+
+	public String getFactoryName() {
+		return factoryName;
+	}
+
+	public String getFactoryAddress() {
+		return factoryAddress;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public String getSourcepy() {
+		return sourcepy;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public String getDestinationpy() {
+		return destinationpy;
+	}
+
+	public String getTransferNumber() {
+		return transferNumber;
+	}
+
+	public String getPickUpNumber() {
+		return pickUpNumber;
+	}
+
+	public String getEntryNumber() {
+		return entryNumber;
+	}
+
+	public int getPakages() {
+		return pakages;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public int getDistence() {
+		return distence;
+	}
+
+	public int getCarriageFee() {
+		return carriageFee;
+	}
+
+	public int getCushionFee() {
+		return cushionFee;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public String getRemarkspy() {
+		return remarkspy;
+	}
+
+	public String getTransportVehicleRegistrationNumber() {
+		return transportVehicleRegistrationNumber;
+	}
+
+	public String getDeliveryVehicleRegistrationNumber() {
+		return deliveryVehicleRegistrationNumber;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public String getCustomerNumber() {
+		return customerNumber;
+	}
+
+	public int getFreightType() {
+		return freightType;
+	}
+
+	public String getContactName() {
+		return contactName;
+	}
+
+	public String getContactNamepy() {
+		return contactNamepy;
+	}
+
+	public String getContactPhone() {
+		return contactPhone;
+	}
+
+	public boolean isChartered() {
+		return isChartered;
+	}
+
+	public int getFeeTime() {
+		return feeTime;
+	}
+
+	public int getOrderState() {
+		return orderState;
+	}
+
+	public String getOrderStateString() {
+		return orderStateString;
+	}
+
+	public String getOrderStateStringPY() {
+		return orderStateStringPY;
+	}
+
+	public List<Payment> getFeeHistory() {
+		return feeHistory;
+	}
+
+	public void setOrderCreatDate(Date orderCreatDate) {
+		this.orderCreatDate = orderCreatDate;
+	}
+
+	public void setFactoryName(String factoryName) {
+		this.factoryName = factoryName;
+	}
+
+	public void setFactoryAddress(String factoryAddress) {
+		this.factoryAddress = factoryAddress;
+	}
+
+	public void setSourcepy(String sourcepy) {
+		this.sourcepy = sourcepy;
+	}
+
+	public void setDestinationpy(String destinationpy) {
+		this.destinationpy = destinationpy;
+	}
+
+	public void setRemarkspy(String remarkspy) {
+		this.remarkspy = remarkspy;
+	}
+
+	public void setTransportVehicleRegistrationNumber(
+			String transportVehicleRegistrationNumber) {
+		this.transportVehicleRegistrationNumber = transportVehicleRegistrationNumber;
+	}
+
+	public void setDeliveryVehicleRegistrationNumber(
+			String deliveryVehicleRegistrationNumber) {
+		this.deliveryVehicleRegistrationNumber = deliveryVehicleRegistrationNumber;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	public void setContactNamepy(String contactNamepy) {
+		this.contactNamepy = contactNamepy;
+	}
+
+	public void setContactPhone(String contactPhone) {
+		this.contactPhone = contactPhone;
+	}
+
+	public void setOrderStateString(String orderStateString) {
+		this.orderStateString = orderStateString;
+	}
+
+	public void setOrderStateStringPY(String orderStateStringPY) {
+		this.orderStateStringPY = orderStateStringPY;
 	}
 
 }

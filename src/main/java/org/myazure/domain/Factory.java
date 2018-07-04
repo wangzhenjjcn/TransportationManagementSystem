@@ -38,14 +38,34 @@ public class Factory  extends BaseEntity implements Serializable {
 	@Column(name = "namepy", columnDefinition = "varchar(255) DEFAULT NULL")
 	private String namepy;
 	
-	public Factory(){
-		
+	@JsonProperty("address")
+	@JSONField(name = "address")
+	@Column(name = "address", columnDefinition = "varchar(255) DEFAULT NULL")
+	private String address;
+	@JsonProperty("addresspy")
+	@JSONField(name = "addresspy")
+	@Column(name = "addresspy", columnDefinition = "varchar(255) DEFAULT NULL")
+	private String addresspy;
+	
+	@JsonProperty("contact")
+	@JSONField(name = "contact")
+	@Column(name = "contact", columnDefinition = "varchar(255) DEFAULT NULL")
+	private String contact;
+	@JsonProperty("phone")
+	@JSONField(name = "phone")
+	@Column(name = "phone", columnDefinition = "varchar(255) DEFAULT NULL")
+	private String phone;
+	
+	
+	
+	
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
-	public String getName() {
-		return name;
-	}
+
 
 
 	public void setName(String name) {
@@ -53,14 +73,39 @@ public class Factory  extends BaseEntity implements Serializable {
 	}
 
 
-	public String getNamepy() {
-		return namepy;
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 
-	public void setNamepy(String namepy) {
-		this.namepy = namepy;
+
+
+
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
+
+
+
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+
+
+
+	public Factory(){
+		
+	}
+
+
+
 
 
 	public Long getId() {
@@ -69,7 +114,67 @@ public class Factory  extends BaseEntity implements Serializable {
 
 
 
-	public void setId(Long id) {
-		this.id = id;
+
+
+	public String getName() {
+		return name;
 	}
+
+
+
+
+
+	public String getNamepy() {
+		return namepy;
+	}
+
+
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+
+
+	public String getAddresspy() {
+		return addresspy;
+	}
+
+
+
+
+
+	public String getContact() {
+		return contact;
+	}
+
+
+
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+
+
+
+	public void setNamepy(String namepy) {
+		this.namepy = namepy;
+	}
+
+
+
+
+
+	public void setAddresspy(String addresspy) {
+		this.addresspy = addresspy;
+	}
+
+ 
 }

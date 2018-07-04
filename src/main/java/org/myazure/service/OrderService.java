@@ -8,5 +8,6 @@ public interface OrderService {
 	 
 	Order saveOrder(Order order);
 	List<Order> getLast5Orders();
-
+	Order getNewOrder();
+	Order getOrder(long id);
 }
