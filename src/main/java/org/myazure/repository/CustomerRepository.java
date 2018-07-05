@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface CustomerRepository extends
 		PagingAndSortingRepository<Customer, Long> {
 
-	List<Customer> findByNameOrNamepyOrAddressOrAddresspyOrContactLike(
-			String key);
+//	List<Customer> findByNameOrNamepyOrAddressOrAddresspyOrContactLike(
+//			String key);
 
 }

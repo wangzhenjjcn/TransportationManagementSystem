@@ -15,23 +15,24 @@ import org.myazure.repository.FactoryRepository;
 import org.myazure.repository.VehicleRepository;
 import org.myazure.repository.WebUserRepository;
 import org.myazure.service.InfoDataService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("InfoDataService")
 public class InfoDataServiceImpl implements InfoDataService {
+	private static final Logger LOG = LoggerFactory
+			.getLogger(InfoDataService.class);
+
 	@Autowired
 	private WebUserRepository webUserRepository;
-
 	@Autowired
 	private VehicleRepository vehicleRepository;
-
 	@Autowired
 	private DriverRepository driverRepository;
-
 	@Autowired
 	private CustomerRepository customerRepository;
-
 	@Autowired
 	private FactoryRepository factoryRepository;
 

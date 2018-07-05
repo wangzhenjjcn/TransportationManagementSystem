@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,14 +23,28 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * Hello world!
  *
  */
+//@SpringBootApplication
+//@EnableAutoConfiguration
+//@Configuration
+//@ServletComponentScan
+//@ComponentScan
+//@EnableTransactionManagement
+//@EnableJpaRepositories
+//@EnableJpaAuditing
+
+
+
+
 @SpringBootApplication
 @EnableAutoConfiguration
 @Configuration
 @ServletComponentScan
-@ComponentScan
+@ComponentScan({"org.myazure"})
 @EnableTransactionManagement
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = {"org.myazure"})
 @EnableJpaAuditing
+@EntityScan(basePackages = {"org.myazure"})
+
 public class App {
 	private static final Logger LOG = LoggerFactory.getLogger(App.class);
 

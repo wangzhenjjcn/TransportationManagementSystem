@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.myazure.utils.S;
 
@@ -37,10 +36,8 @@ public class WebUser extends BaseEntity {
 		case 5:
 			return "客户";
 		case 6:
-
 			return "会计";
 		case 8:
-
 			return "角色管理员";
 		case 9:
 			return "系统管理员";

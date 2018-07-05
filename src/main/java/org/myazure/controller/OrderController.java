@@ -1,4 +1,4 @@
-package org.myazure.web.controller;
+package org.myazure.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

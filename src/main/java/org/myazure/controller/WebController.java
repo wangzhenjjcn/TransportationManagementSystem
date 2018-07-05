@@ -1,4 +1,4 @@
-package org.myazure.web.controller;
+package org.myazure.controller;
 
 import org.springframework.stereotype.Controller;
 
