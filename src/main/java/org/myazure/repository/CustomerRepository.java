@@ -14,4 +14,7 @@ public interface CustomerRepository extends
 	List<Customer> findByNameLikeOrNamepyLikeOrAddressLikeOrAddresspyLikeOrContactLike(
 			String key, String key2, String key3, String key4, String key5);
 
+	List<Customer> findByNameContainingOrNamepyContainingOrAddressContainingOrAddresspyContainingOrContactContaining(
+			String key, String key2, String key3, String key4, String key5);
+
 }

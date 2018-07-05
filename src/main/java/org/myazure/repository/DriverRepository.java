@@ -11,9 +11,12 @@ public interface DriverRepository extends
 		PagingAndSortingRepository<Driver, Long> {
 
 
-	List<Driver> findByNameLike(String key);
+	List<Driver> findByNameContaining(String key);
 
 
 	List<Driver> findByNameLikeOrNamepyLike(String key, String key2);
+
+
+	List<Driver> findByNameContainingOrNamepyContaining(String key, String key2);
 
 }

@@ -12,8 +12,9 @@ public interface PaymentRepository extends
 
 	List<Payment> findByOrderId(Long id);
 
-	List<Payment> findByRemarksLikeOrRemarkspyLike(String key, String key2);
-
 	List<Payment> findByCreatorUserId(Long id);
+
+	List<Payment> findByRemarksContainingOrRemarkspyContaining(String key,
+			String key2);
 
 }

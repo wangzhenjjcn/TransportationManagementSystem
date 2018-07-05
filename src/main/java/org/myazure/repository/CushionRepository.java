@@ -12,8 +12,9 @@ public interface CushionRepository extends
 
 	List<Cushion> findByOrderId(Long id);
 
-	List<Cushion> findByRemarksLikeOrRemarkspyLike(String key, String key2);
-
 	List<Cushion> findByCreatorUserId(Long id);
+
+	List<Cushion> findByRemarksContainingOrRemarkspyContaining(String key,
+			String key2);
 
 }

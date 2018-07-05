@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.myazure.domain.Customer;
 import org.myazure.domain.Driver;
+import org.myazure.domain.Factory;
 import org.myazure.response.StatusResponse;
 import org.myazure.service.InfoDataService;
 import org.myazure.transportation.response.DatasResponse;
@@ -102,5 +103,44 @@ public class UserController extends BaseController {
 		datasResponse.setCustomers(customers);
 		sentResponse(response, datasResponse);
 	}
+	
+	
+	
+	
+
+	@RequestMapping(path = "/getFactories", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public void getFactories(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		if (!checkUser(request)) {
+			sentUnauthorizedResponse(response);
+			return;
+		}
+		String key = request.getParameter("key");
+		if (key==null || key .isEmpty()) {
+			sentMissParamResponse(response);
+			return;
+		}
+		DatasResponse<Factory> datasResponse = new DatasResponse<Factory>();
+		datasResponse.setCode(0);
+		datasResponse.setMessage("sucess");
+		datasResponse.setSuccess(true);
+		List<Factory> factories=infoDataService.getFactories(key);
+		System.out.println(factories.size());
+		for (Factory factory : factories) {
+			datasResponse.addData(factory);
+		}
+		datasResponse.setFactories(factories);
+		sentResponse(response, datasResponse);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

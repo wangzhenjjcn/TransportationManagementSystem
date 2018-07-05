@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlanRepository extends PagingAndSortingRepository<Plan, Long> {
 
-	List<Plan> findByCompanyNameLikeOrSourceLikeOrSourcepyLikeOrDestinationLikeOrDestinationpyLike(
+
+	List<Plan> findByCompanyNameContainingOrSourceContainingOrSourcepyContainingOrDestinationContainingOrDestinationpyContaining(
 			String key, String key2, String key3, String key4, String key5);
 
 

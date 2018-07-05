@@ -47,24 +47,24 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Vehicle> getVehicles(String key) {
-		 return vehicleRepository.findByCarLicensePlateLike(key);
+		 return vehicleRepository.findByCarLicensePlateContaining(key);
 	}
 
 	@Override
 	public List<Driver> getDrivers(String key) {
-		 return driverRepository.findByNameLikeOrNamepyLike(key,key);
+		 return driverRepository.findByNameContainingOrNamepyContaining(key,key);
 	}
 
 	@Override
 	public List<Factory> getFactories(String key) {
 	  return
-		 factoryRepository.findByNameLikeOrNamepyLikeOrAddressLikeOrContactLike(key,key,key,key);
+		 factoryRepository.findByNameContainingOrNamepyContainingOrAddressContainingOrAddresspyContainingOrContactContaining(key,key,key,key,key);
 	}
 
 	@Override
 	public List<Customer> getCustomers(String key) {
 		 return
-		 customerRepository.findByNameLikeOrNamepyLikeOrAddressLikeOrAddresspyLikeOrContactLike(key,key,key,key,key);
+		 customerRepository.findByNameContainingOrNamepyContainingOrAddressContainingOrAddresspyContainingOrContactContaining(key,key,key,key,key);
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Payment> getPaymentsByRemarks(String key) {
-		return paymentRepository.findByRemarksLikeOrRemarkspyLike(key,key);
+		return paymentRepository.findByRemarksContainingOrRemarkspyContaining(key,key);
 	}
 
 	@Override
@@ -104,12 +104,12 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Cushion> getCushionsByRemarks(String key) {
-		return cushionRepository.findByRemarksLikeOrRemarkspyLike(key,key);
+		return cushionRepository.findByRemarksContainingOrRemarkspyContaining(key,key);
 	}
 
 	@Override
 	public List<Plan> getPlans(String key) {
-		return planRepository.findByCompanyNameLikeOrSourceLikeOrSourcepyLikeOrDestinationLikeOrDestinationpyLike(key,key,key,key,key);
+		return planRepository.findByCompanyNameContainingOrSourceContainingOrSourcepyContainingOrDestinationContainingOrDestinationpyContaining(key,key,key,key,key);
 	}
 
 
