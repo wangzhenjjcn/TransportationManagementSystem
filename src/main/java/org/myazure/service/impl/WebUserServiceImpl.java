@@ -114,7 +114,6 @@ public class WebUserServiceImpl implements WebUserService {
 			webUserRepository.save(user);
 			return true;
 		} else {
-
 			return false;
 		}
 	}

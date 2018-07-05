@@ -59,6 +59,15 @@ public class BaseController {
 		sentResponse(response, new StatusResponse("logon sucess", 0, true));
 	}
 
+	
+	protected void sentMissParamResponse(HttpServletResponse response) {
+		sentResponse(response, new StatusResponse("that a parameter is missing!double check pls!", 1, false));
+	}
+	
+	
+	
+	
+	
 	protected void sentResponse(HttpServletResponse response, Object object) {
 		try {
 			response.setCharacterEncoding("UTF-8");
