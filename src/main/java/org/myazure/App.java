@@ -30,8 +30,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaRepositories
 @EnableJpaAuditing
-public class App 
-{
+public class App {
 	private static final Logger LOG = LoggerFactory.getLogger(App.class);
 
 	@Bean

@@ -229,7 +229,7 @@ public class Order extends BaseEntity implements Serializable {
 	@JsonProperty("account_payable")
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Payment.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_id")
-	private List<Payment> accountPayable= new ArrayList<Payment>();
+	private List<Payment> accountPayable = new ArrayList<Payment>();
 
 	public Order() {
 		orderCreatDate = new Date(System.currentTimeMillis());
@@ -269,28 +269,30 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setTransportVehicle(Vehicle transportVehicle) {
 		this.transportVehicle = transportVehicle;
-		this.transportVehicleRegistrationNumber=transportVehicle.getCarLicensePlate();
+		this.transportVehicleRegistrationNumber = transportVehicle
+				.getCarLicensePlate();
 	}
 
 	public void setDeliveryVehicle(Vehicle deliveryVehicle) {
 		this.deliveryVehicle = deliveryVehicle;
-		this.deliveryVehicleRegistrationNumber=deliveryVehicle.getCarLicensePlate();
+		this.deliveryVehicleRegistrationNumber = deliveryVehicle
+				.getCarLicensePlate();
 	}
 
 	public void setFactory(Factory factory) {
 		this.factory = factory;
-		this.factoryName=factory.getName();
-		this.factoryAddress=factory.getAddress();
+		this.factoryName = factory.getName();
+		this.factoryAddress = factory.getAddress();
 	}
 
 	public void setSource(String source) {
 		this.source = source;
-		this.sourcepy=S.getPinYinFirstChar(source);
+		this.sourcepy = S.getPinYinFirstChar(source);
 	}
 
 	public void setDestination(String destination) {
 		this.destination = destination;
-		this.destinationpy=S.getPinYinFirstChar(destination);
+		this.destinationpy = S.getPinYinFirstChar(destination);
 	}
 
 	public void setTransferNumber(String transferNumber) {
@@ -331,7 +333,7 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
-		this.remarkspy=S.getPinYinFirstChar(remarks);
+		this.remarkspy = S.getPinYinFirstChar(remarks);
 	}
 
 	public void setCustomer(Customer customer) {
@@ -586,7 +588,7 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setContactName(String contactName) {
 		this.contactName = contactName;
-		this.contactNamepy=S.getPinYinFirstChar(contactName);
+		this.contactNamepy = S.getPinYinFirstChar(contactName);
 	}
 
 	public void setContactNamepy(String contactNamepy) {

@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FactoryRepository extends
-PagingAndSortingRepository<Factory, Long>{
+		PagingAndSortingRepository<Factory, Long> {
 
 	List<Factory> findByNameOrNamepyOrAddressOrContactLike(String key);
-
 
 }

@@ -7,9 +7,10 @@ public class PinYinTest {
 		System.out.println(S.getHardChineseWords());
 		System.out.println(S.getPinYin(S.getHardChineseWords()));
 		System.out.println("=======================");
-		System.out.println(S.getPinYinFirstChar(S.getHardChineseWords()).toUpperCase());
+		System.out.println(S.getPinYinFirstChar(S.getHardChineseWords())
+				.toUpperCase());
 		System.out.println(S.getPinYinFirstChar("长沙市长").toUpperCase());
-		
+
 	}
 
 }

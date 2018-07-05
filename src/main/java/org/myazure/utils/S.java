@@ -154,7 +154,7 @@ public class S {
 		// 不显示拼音的声调
 		outputFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
 		// outputFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
-	
+
 		StringBuilder sb = new StringBuilder();
 		try {
 			for (char c : str.toCharArray()) {

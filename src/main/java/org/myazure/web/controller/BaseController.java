@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.myazure.configuration.PrimaryConfiguration;
 import org.myazure.domain.WebUser;
 import org.myazure.response.StatusResponse;
+import org.myazure.service.InfoDataService;
 import org.myazure.service.MyazureDataService;
 import org.myazure.service.OrderService;
 import org.myazure.service.WebUserService;
@@ -27,11 +28,11 @@ public class BaseController {
 	@Autowired
 	PrimaryConfiguration primaryConfiguration;
 	@Autowired
-	MyazureDataService myazureDataService;
-	@Autowired
 	OrderService orderService;
 	@Autowired
 	WebUserService webUserService;
+	@Autowired
+	InfoDataService infoDataService;
 
 	public BaseController() {
 

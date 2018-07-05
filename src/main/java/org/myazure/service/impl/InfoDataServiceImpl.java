@@ -12,15 +12,14 @@ import org.myazure.domain.Vehicle;
 import org.myazure.repository.CustomerRepository;
 import org.myazure.repository.DriverRepository;
 import org.myazure.repository.FactoryRepository;
-import org.myazure.repository.PaymentRepository;
 import org.myazure.repository.VehicleRepository;
 import org.myazure.repository.WebUserRepository;
-import org.myazure.service.InfoService;
+import org.myazure.service.InfoDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("InfoService")
-public class InfoServiceImpl implements InfoService {
+@Service("InfoDataService")
+public class InfoDataServiceImpl implements InfoDataService {
 	@Autowired
 	private WebUserRepository webUserRepository;
 
@@ -31,46 +30,52 @@ public class InfoServiceImpl implements InfoService {
 	private DriverRepository driverRepository;
 
 	@Autowired
-	private PaymentRepository paymentRepository;
+	private CustomerRepository customerRepository;
 
 	@Autowired
-	private  CustomerRepository customerRepository;
-	@Autowired
 	private FactoryRepository factoryRepository;
+
 	@Override
 	public List<Vehicle> getVehicles(String key) {
-		return vehicleRepository.findByCarLicensePlateLike(key);
+		// return vehicleRepository.findByCarLicensePlateLike(key);
+		return null;
 	}
+
 	@Override
 	public List<Driver> getDrivers(String key) {
-		return driverRepository.findByNameOrNamepyLike(key);
+		return null;
+		// return driverRepository.findByNameOrNamepyLike(key);
 	}
+
 	@Override
 	public List<Factory> getFactories(String key) {
-		return factoryRepository.findByNameOrNamepyOrAddressOrContactLike(key);
+		// return
+		// factoryRepository.findByNameOrNamepyOrAddressOrContactLike(key);
+		return null;
 	}
+
 	@Override
 	public List<Customer> getCustomers(String key) {
-		return customerRepository.findByNameOrNamepyOrAddressOrAddresspyOrContactLike(key);
+		// return
+		// customerRepository.findByNameOrNamepyOrAddressOrAddresspyOrContactLike(key);
+		return null;
 	}
-	
+
 	@Override
 	public List<Payment> getPayments(String key) {
 		return null;
 	}
+
 	@Override
 	public List<Cushion> getCushions(String key) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	@Override
 	public List<Plan> getPlans(String key) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	
-	
-	
+
 }

@@ -103,21 +103,20 @@ public class WebUserServiceImpl implements WebUserService {
 	}
 
 	@Override
-	public boolean login(String username, String password, String sessionId, String logonIp) {
-		WebUser user=webUserRepository.findFirstByUsernameAndPassword(username,password);
-		if (user!=null) {
+	public boolean login(String username, String password, String sessionId,
+			String logonIp) {
+		WebUser user = webUserRepository.findFirstByUsernameAndPassword(
+				username, password);
+		if (user != null) {
 			user.setToken(sessionId);
-			user.setLastLoginTime(System.currentTimeMillis()+"");
+			user.setLastLoginTime(System.currentTimeMillis() + "");
 			user.setLastLoginIp(logonIp);
 			webUserRepository.save(user);
 			return true;
-		}else {
+		} else {
 
-			
-			
 			return false;
 		}
 	}
-
 
 }

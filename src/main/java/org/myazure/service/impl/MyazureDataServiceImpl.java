@@ -17,8 +17,7 @@ public class MyazureDataServiceImpl implements MyazureDataService {
 	private final MyazureDataRepository myazureDataRepository;
 
 	@Autowired
-	public MyazureDataServiceImpl(
-			MyazureDataRepository myazureDataRepository) {
+	public MyazureDataServiceImpl(MyazureDataRepository myazureDataRepository) {
 		this.myazureDataRepository = myazureDataRepository;
 	}
 

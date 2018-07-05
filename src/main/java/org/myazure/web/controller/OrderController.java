@@ -33,7 +33,7 @@ public class OrderController extends BaseController {
 	@RequestMapping(path = "/getOrders", method = RequestMethod.GET)
 	public void getOrders(HttpServletRequest request,
 			HttpServletResponse response) {
-		if (!checkUser(request )) {
+		if (!checkUser(request)) {
 			sentUnauthorizedResponse(response);
 			return;
 		}

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface WebUserRepository extends
 		PagingAndSortingRepository<WebUser, Long> {
 
-
 	WebUser findFirstByToken(String token);
 
 	WebUser findFirstByUsernameAndPassword(String username, String password);

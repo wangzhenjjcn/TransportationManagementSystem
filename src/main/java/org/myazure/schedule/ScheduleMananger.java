@@ -1,6 +1,5 @@
 package org.myazure.schedule;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +23,7 @@ public class ScheduleMananger {
 
 	@Scheduled(cron = "0/30 * *  * * ? ")
 	protected void thirtySecScanner() {
-		
+
 	}
 
 	@Scheduled(cron = "0 0/1 *  * * ? ")

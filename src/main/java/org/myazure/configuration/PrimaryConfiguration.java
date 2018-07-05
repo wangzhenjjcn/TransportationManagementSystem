@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration("PrimaryConfiguration")
 @EnableCaching
 public class PrimaryConfiguration {
-	
+
 	@Value("${server.port}")
 	private String serverPort;
 	@Value("${mail.smtp.auth}")
@@ -22,7 +22,7 @@ public class PrimaryConfiguration {
 	private String mailSmtpAuthPassword;
 	@Value("${mail.alert.recievers}")
 	private String mailAlertRecivers;
-	 
+
 	@Value("${weixin.compAppId}")
 	private String compAppId;
 	@Value("${weixin.compAppSecret}")
@@ -31,7 +31,7 @@ public class PrimaryConfiguration {
 	private String encodeToken;
 	@Value("${encode.key}")
 	private String encodeKey;
-	
+
 	public PrimaryConfiguration() {
 
 	}

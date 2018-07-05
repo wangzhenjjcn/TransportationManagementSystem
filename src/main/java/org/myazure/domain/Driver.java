@@ -15,11 +15,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "driver")
-public class Driver extends BaseEntity implements Serializable{
+public class Driver extends BaseEntity implements Serializable {
 	@Transient
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "driver_id", nullable = false, length = 11)
 	private Long id;
 	@JsonProperty("name")
@@ -34,50 +34,41 @@ public class Driver extends BaseEntity implements Serializable{
 	@JSONField(name = "phone")
 	@Column(name = "phone", columnDefinition = "varchar(255) DEFAULT NULL")
 	private String phone;
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
+	public Driver() {
 
-	public Driver(){
-		
 	}
-
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
 
 	public String getNamepy() {
 		return namepy;
 	}
 
-
 	public String getPhone() {
 		return phone;
 	}
 
-
 	public void setNamepy(String namepy) {
 		this.namepy = namepy;
 	}
-
 
 }

@@ -33,7 +33,7 @@ import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 public class MPController {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(MPController.class);
- 
+
 	@Autowired
 	PrimaryConfiguration primaryConfiguration;
 	WXBizMsgCrypt wxBizMsgCrypt = null;
@@ -43,38 +43,39 @@ public class MPController {
 
 	}
 
-//	@RequestMapping(path = "/", method = RequestMethod.GET)
-//	public void getRoot(HttpServletRequest request, HttpServletResponse response)
-//			throws IOException, AesException {
-//		LOG.debug("A GET Request==================================");
-//		EventMessage eventMessage = getEventMessage(request, response);
-//		if (eventMessage == null) {
-//			return;
-//		}
-//		if (eventMessage.getMsgType() == null) {
-//			return;
-//		}
-//		LOG.debug("MMMMMMMMMMSG:" + JSON.toJSONString(eventMessage));
-//		return;
-//	}
+	// @RequestMapping(path = "/", method = RequestMethod.GET)
+	// public void getRoot(HttpServletRequest request, HttpServletResponse
+	// response)
+	// throws IOException, AesException {
+	// LOG.debug("A GET Request==================================");
+	// EventMessage eventMessage = getEventMessage(request, response);
+	// if (eventMessage == null) {
+	// return;
+	// }
+	// if (eventMessage.getMsgType() == null) {
+	// return;
+	// }
+	// LOG.debug("MMMMMMMMMMSG:" + JSON.toJSONString(eventMessage));
+	// return;
+	// }
 
-//	@RequestMapping(path = "/", method = RequestMethod.POST)
-//	public void postRoot(HttpServletRequest request,
-//			HttpServletResponse response) throws IOException, AesException {
-//		EventMessage eventMessage = getEventMessage(request, response);
-//		if (eventMessage == null) {
-//			return;
-//		} else if (eventMessage.getMsgType() == null) {
-//			return;
-//		}
-//		LOG.debug("A fressssh connnnnnnnnnnnnnnnnnnt");
-//		return;
-//	}
+	// @RequestMapping(path = "/", method = RequestMethod.POST)
+	// public void postRoot(HttpServletRequest request,
+	// HttpServletResponse response) throws IOException, AesException {
+	// EventMessage eventMessage = getEventMessage(request, response);
+	// if (eventMessage == null) {
+	// return;
+	// } else if (eventMessage.getMsgType() == null) {
+	// return;
+	// }
+	// LOG.debug("A fressssh connnnnnnnnnnnnnnnnnnt");
+	// return;
+	// }
 
 	@RequestMapping(path = "/event/authorize", method = RequestMethod.POST)
 	public void acceptAuthorizeEvent(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, AesException {
-	
+
 		LOG.debug("event authorize!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		writeOutput(response, "success");
 	}

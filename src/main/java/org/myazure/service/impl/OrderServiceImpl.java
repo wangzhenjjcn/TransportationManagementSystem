@@ -3,11 +3,9 @@ package org.myazure.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.annotations.Check;
 import org.myazure.domain.Customer;
 import org.myazure.domain.Factory;
 import org.myazure.domain.Order;
-import org.myazure.domain.Payment;
 import org.myazure.domain.Plan;
 import org.myazure.domain.Vehicle;
 import org.myazure.domain.WebUser;
@@ -20,11 +18,13 @@ import org.myazure.repository.WebUserRepository;
 import org.myazure.service.OrderService;
 import org.myazure.utils.S;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 
 @Service("OrderService")
+@Component
 public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private OrderRepository orderRepository;

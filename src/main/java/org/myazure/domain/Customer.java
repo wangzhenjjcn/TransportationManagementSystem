@@ -16,13 +16,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "customer")
-public class Customer extends BaseEntity implements Serializable{
+public class Customer extends BaseEntity implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "customer_id", nullable = false, length = 11)
 	private Long customerId;
 	@JsonProperty("name")
@@ -49,80 +49,56 @@ public class Customer extends BaseEntity implements Serializable{
 	@JSONField(name = "phone")
 	@Column(name = "phone", columnDefinition = "varchar(255) DEFAULT NULL")
 	private String phone;
-	
-	
-	public Customer(){
-		
+
+	public Customer() {
+
 	}
-	
+
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
-		this.namepy=S.getPinYinFirstChar(name);
+		this.namepy = S.getPinYinFirstChar(name);
 	}
-
-
 
 	public void setAddress(String address) {
 		this.address = address;
-		this.addresspy=S.getPinYinFirstChar(address);
+		this.addresspy = S.getPinYinFirstChar(address);
 	}
-
-
 
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
 
-
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-
-
-
 
 	public Long getCustomerId() {
 		return customerId;
 	}
 
-
-
 	public String getName() {
 		return name;
 	}
-
-
 
 	public String getNamepy() {
 		return namepy;
 	}
 
-
-
 	public String getAddress() {
 		return address;
 	}
-
-
 
 	public String getAddresspy() {
 		return addresspy;
 	}
 
-
-
 	public String getContact() {
 		return contact;
 	}
-
-
 
 	public String getPhone() {
 		return phone;
@@ -135,6 +111,5 @@ public class Customer extends BaseEntity implements Serializable{
 	public void setAddresspy(String addresspy) {
 		this.addresspy = addresspy;
 	}
-
 
 }

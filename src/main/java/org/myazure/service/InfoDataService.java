@@ -10,13 +10,19 @@ import org.myazure.domain.Payment;
 import org.myazure.domain.Plan;
 import org.myazure.domain.Vehicle;
 
-public interface InfoService {
+public interface InfoDataService {
 	List<Vehicle> getVehicles(String key);
+
 	List<Driver> getDrivers(String key);
+
 	List<Factory> getFactories(String key);
+
 	List<Customer> getCustomers(String key);
+
 	List<Payment> getPayments(String key);
+
 	List<Cushion> getCushions(String key);
+
 	List<Plan> getPlans(String key);
 
 }

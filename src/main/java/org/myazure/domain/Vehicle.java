@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "vehicle")
-public class Vehicle extends BaseEntity implements Serializable{
+public class Vehicle extends BaseEntity implements Serializable {
 	@Transient
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -24,13 +24,12 @@ public class Vehicle extends BaseEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "vehicle_id", nullable = false, length = 11, columnDefinition = "bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号'", insertable = true)
 	private Long id;
-	
+
 	@JsonProperty("car_license_plate")
 	@Column(name = "car_license_plate", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "car_license_plate")
 	private String carLicensePlate;
-	
-	
+
 	public String getCarLicensePlate() {
 		return carLicensePlate;
 	}
@@ -39,8 +38,8 @@ public class Vehicle extends BaseEntity implements Serializable{
 		this.carLicensePlate = carLicensePlate;
 	}
 
-	public Vehicle(){
-		
+	public Vehicle() {
+
 	}
 
 	public Long getId() {
@@ -50,6 +49,5 @@ public class Vehicle extends BaseEntity implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
+
 }

@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrderRepository extends
-PagingAndSortingRepository<Order, Long>{
+		PagingAndSortingRepository<Order, Long> {
 
-//	List<Order>  findByFactoryId(int factoryId);
-	List<Order>  findTop5ByOrderByOrderIdDesc(); 
+	// List<Order> findByFactoryId(int factoryId);
+	List<Order> findTop5ByOrderByOrderIdDesc();
 
 }

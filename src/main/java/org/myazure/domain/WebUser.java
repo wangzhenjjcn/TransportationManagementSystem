@@ -214,8 +214,8 @@ public class WebUser extends BaseEntity {
 
 	public void setRole(int role) {
 		this.role = role;
-		this.roleString=getRoleString(role);
-		this.roleStringPy=S.getPinYinFirstChar(roleString);
+		this.roleString = getRoleString(role);
+		this.roleStringPy = S.getPinYinFirstChar(roleString);
 	}
 
 	public void setRoleId(Long roleId) {
