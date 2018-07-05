@@ -13,6 +13,7 @@ import javax.persistence.Transient;
 import org.myazure.utils.S;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -95,6 +96,7 @@ public class WebUser extends BaseEntity {
 	@Column(name = "role_string_py", columnDefinition = "varchar(255) DEFAULT NULL")
 	private String roleStringPy;
 	@JSONField(serialize = false)
+	@JsonIgnore
 	@Column(name = "token", nullable = true)
 	private String token;
 	@JSONField(serialize = false)

@@ -9,6 +9,8 @@ import org.myazure.service.WebUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
+
 @Service("WebUserService")
 public class WebUserServiceImpl implements WebUserService {
 	@Autowired
@@ -96,15 +98,26 @@ public class WebUserServiceImpl implements WebUserService {
 	}
 
 	@Override
-	public boolean checkUser(Long id, String token) {
-		// TODO Auto-generated method stub
-		return false;
+	public WebUser checkUser(String token) {
+		return webUserRepository.findFirstByToken(token);
 	}
 
 	@Override
-	public String login(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean login(String username, String password, String sessionId, String logonIp) {
+		WebUser user=webUserRepository.findFirstByUsernameAndPassword(username,password);
+		if (user!=null) {
+			user.setToken(sessionId);
+			user.setLastLoginTime(System.currentTimeMillis()+"");
+			user.setLastLoginIp(logonIp);
+			webUserRepository.save(user);
+			return true;
+		}else {
+
+			
+			
+			return false;
+		}
 	}
+
 
 }

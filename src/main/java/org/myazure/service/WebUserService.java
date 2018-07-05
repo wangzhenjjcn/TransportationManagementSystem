@@ -5,8 +5,8 @@ import java.util.List;
 import org.myazure.domain.WebUser;
 
 public interface WebUserService {
-	boolean checkUser(Long id,String token);
-	String login(String username,String password);
+	WebUser checkUser(String token);
+	boolean login(String username,String password,String sessionId,String logonIp);
 	WebUser getWebUser(long id);
 	List<WebUser> getWebUsers(List<Long> ids);
 	void creatWebUser(WebUser webUser);
