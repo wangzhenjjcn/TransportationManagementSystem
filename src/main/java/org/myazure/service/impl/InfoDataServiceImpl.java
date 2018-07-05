@@ -9,9 +9,12 @@ import org.myazure.domain.Factory;
 import org.myazure.domain.Payment;
 import org.myazure.domain.Plan;
 import org.myazure.domain.Vehicle;
+import org.myazure.repository.CushionRepository;
 import org.myazure.repository.CustomerRepository;
 import org.myazure.repository.DriverRepository;
 import org.myazure.repository.FactoryRepository;
+import org.myazure.repository.PaymentRepository;
+import org.myazure.repository.PlanRepository;
 import org.myazure.repository.VehicleRepository;
 import org.myazure.repository.WebUserRepository;
 import org.myazure.service.InfoDataService;
@@ -35,48 +38,79 @@ public class InfoDataServiceImpl implements InfoDataService {
 	private CustomerRepository customerRepository;
 	@Autowired
 	private FactoryRepository factoryRepository;
+	@Autowired
+	private PaymentRepository paymentRepository;
+	@Autowired
+	private CushionRepository cushionRepository;
+	@Autowired
+	private PlanRepository planRepository;
 
 	@Override
 	public List<Vehicle> getVehicles(String key) {
-		// return vehicleRepository.findByCarLicensePlateLike(key);
-		return null;
+		 return vehicleRepository.findByCarLicensePlateLike(key);
 	}
 
 	@Override
 	public List<Driver> getDrivers(String key) {
-		return null;
-		// return driverRepository.findByNameOrNamepyLike(key);
+		 return driverRepository.findByNameLikeOrNamepyLike(key,key);
 	}
 
 	@Override
 	public List<Factory> getFactories(String key) {
-		// return
-		// factoryRepository.findByNameOrNamepyOrAddressOrContactLike(key);
-		return null;
+	  return
+		 factoryRepository.findByNameLikeOrNamepyLikeOrAddressLikeOrContactLike(key,key,key,key);
 	}
 
 	@Override
 	public List<Customer> getCustomers(String key) {
-		// return
-		// customerRepository.findByNameOrNamepyOrAddressOrAddresspyOrContactLike(key);
-		return null;
+		 return
+		 customerRepository.findByNameLikeOrNamepyLikeOrAddressLikeOrAddresspyLikeOrContactLike(key,key,key,key,key);
 	}
 
 	@Override
-	public List<Payment> getPayments(String key) {
-		return null;
+	public List<Payment> getPaymentsByOrderId(Long id) {
+		return paymentRepository.findByOrderId(id);
 	}
 
 	@Override
-	public List<Cushion> getCushions(String key) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Payment> getPaymentsByCreatorId(Long id) {
+		return paymentRepository.findByCreatorUserId(id);
+	}
+
+	@Override
+	public Payment getPaymentsByPaymentId(Long id) {
+		return paymentRepository.findOne(id);
+	}
+
+	@Override
+	public List<Payment> getPaymentsByRemarks(String key) {
+		return paymentRepository.findByRemarksLikeOrRemarkspyLike(key,key);
+	}
+
+	@Override
+	public List<Cushion> getCushionsByOrderId(Long id) {
+		return cushionRepository.findByOrderId(id);
+	}
+
+	@Override
+	public List<Cushion> getCushionsByCreatorId(Long id) {
+		return cushionRepository.findByCreatorUserId(id);
+	}
+
+	@Override
+	public Cushion getCushionsByCushionId(Long id) {
+		return cushionRepository.findOne(id);
+	}
+
+	@Override
+	public List<Cushion> getCushionsByRemarks(String key) {
+		return cushionRepository.findByRemarksLikeOrRemarkspyLike(key,key);
 	}
 
 	@Override
 	public List<Plan> getPlans(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		return planRepository.findByCompanyNameLikeOrSourceLikeOrSourcepyLikeOrDestinationLikeOrDestinationpyLike(key,key,key,key,key);
 	}
+
 
 }

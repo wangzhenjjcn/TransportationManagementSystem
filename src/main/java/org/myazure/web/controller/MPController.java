@@ -1,4 +1,4 @@
-package org.myazure.controller;
+package org.myazure.web.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;

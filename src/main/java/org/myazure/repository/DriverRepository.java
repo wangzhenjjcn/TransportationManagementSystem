@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 public interface DriverRepository extends
 		PagingAndSortingRepository<Driver, Long> {
 
-//	List<Driver> findByNameOrNamepyLike(String key);
+
+	List<Driver> findByNameLike(String key);
+
+
+	List<Driver> findByNameLikeOrNamepyLike(String key, String key2);
 
 }

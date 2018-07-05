@@ -19,9 +19,21 @@ public interface InfoDataService {
 
 	List<Customer> getCustomers(String key);
 
-	List<Payment> getPayments(String key);
+	List<Payment> getPaymentsByOrderId(Long id);
 
-	List<Cushion> getCushions(String key);
+	List<Payment> getPaymentsByCreatorId(Long id);
+
+	Payment getPaymentsByPaymentId(Long id);
+
+	List<Payment> getPaymentsByRemarks(String key);
+
+	List<Cushion> getCushionsByOrderId(Long id);
+
+	List<Cushion> getCushionsByCreatorId(Long id);
+
+	Cushion getCushionsByCushionId(Long id);
+
+	List<Cushion> getCushionsByRemarks(String key);
 
 	List<Plan> getPlans(String key);
 
