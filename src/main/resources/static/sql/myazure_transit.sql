@@ -9,8 +9,10 @@ Source Database       : myazure_transit
 Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
-
-Date: 2018-07-05 00:21:46
+spring.datasource.url: jdbc:mysql://localhost:3306/myazure_transit?useUnicode=true&characterEncoding=UTF-8
+spring.datasource.username: dhxwl
+spring.datasource.password: 23457890
+Date: 2018-07-06 20:29:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +22,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `cushion`;
 CREATE TABLE `cushion` (
-  `payment_id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
+  `cushion_id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
   `order_id` bigint(11) unsigned NOT NULL,
   `payout` bigint(11) unsigned NOT NULL,
   `pay_time` datetime NOT NULL,
@@ -29,7 +31,7 @@ CREATE TABLE `cushion` (
   `remarkspy` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`payment_id`)
+  PRIMARY KEY (`cushion_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -53,12 +55,14 @@ CREATE TABLE `customer` (
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of customer
 -- ----------------------------
 INSERT INTO `customer` VALUES ('1', '未设置', '未设置', '未设置', '未设置', '未设置', '000000', '2018-06-26 10:19:11', '2018-07-04 18:18:06');
+INSERT INTO `customer` VALUES ('4', '王振', 'wz', '金鸡湖大道1355号', 'jjhdd1355h', '王振', '15106205593', '2018-07-06 07:10:38', '2018-07-06 07:10:38');
+INSERT INTO `customer` VALUES ('5', '王师傅', 'wsf', '金鸡湖大道国际科技园1355号二期C区501室', 'jjhddgjkjy1355heqCq501s', '王振', '15106205593', '2018-07-06 16:55:59', '2018-07-06 16:55:59');
 
 -- ----------------------------
 -- Table structure for `data`
@@ -86,12 +90,14 @@ CREATE TABLE `driver` (
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`driver_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of driver
 -- ----------------------------
 INSERT INTO `driver` VALUES ('1', 'default', 'd', '000000', '2018-07-04 16:52:49', '2018-07-04 16:52:49');
+INSERT INTO `driver` VALUES ('2', '王振', null, '15106205593', '2018-07-06 11:18:08', '2018-07-06 11:18:08');
+INSERT INTO `driver` VALUES ('3', '王师傅', 'wsf', '15106205593', '2018-07-06 11:19:05', '2018-07-06 11:19:05');
 
 -- ----------------------------
 -- Table structure for `factory`
@@ -108,12 +114,15 @@ CREATE TABLE `factory` (
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`factory_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of factory
 -- ----------------------------
 INSERT INTO `factory` VALUES ('1', 'default', 'default', 'default', 'default', 'default', '000000000', '2018-06-26 10:18:48', '2018-07-03 16:31:45');
+INSERT INTO `factory` VALUES ('4', '药尚网', 'ysw', '金鸡湖大道1355号国际科技园二期C区501室', 'jjhdd1355hgjkjyeqcq501c', '王振', '15106205593', '2018-07-06 07:36:17', '2018-07-06 07:37:23');
+INSERT INTO `factory` VALUES ('5', '三星半导体苏州有限公司', null, '星港街133号星海厂房', null, '三星', '0512-88887776', '2018-07-06 17:03:19', '2018-07-06 17:03:19');
+INSERT INTO `factory` VALUES ('6', '骐达商贸有限公司', 'qdsmyxgs', '景德镇市浮梁县下街街上', 'jdzsflxxjjs', '王师傅', '0333-88887776', '2018-07-06 17:05:19', '2018-07-06 17:05:19');
 
 -- ----------------------------
 -- Table structure for `orders`
@@ -130,7 +139,9 @@ CREATE TABLE `orders` (
   `delivery_driver_user_id` bigint(11) unsigned DEFAULT NULL,
   `factory_user_id` bigint(11) unsigned DEFAULT NULL,
   `transport_vehicle_id` bigint(11) unsigned DEFAULT NULL,
+  `transport_vehicle_driver_id` bigint(11) unsigned DEFAULT NULL,
   `delivery_vehicle_id` bigint(11) unsigned DEFAULT NULL,
+  `delivery_vehicle_driver_id` bigint(11) unsigned DEFAULT NULL,
   `customer_id` bigint(11) unsigned DEFAULT NULL,
   `factory_id` bigint(11) DEFAULT NULL,
   `plan_id` bigint(11) unsigned DEFAULT NULL,
@@ -155,32 +166,29 @@ CREATE TABLE `orders` (
   `contactpy` varchar(25) DEFAULT NULL,
   `phone` varchar(13) DEFAULT NULL,
   `is_chartered` bit(1) DEFAULT NULL,
-  `shipping_type` int(11) DEFAULT NULL,
   `fee_time` int(2) DEFAULT NULL,
   `remarks` varchar(255) DEFAULT NULL,
   `remarkspy` varchar(25) DEFAULT NULL,
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1903 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2027 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', '2018-07-05 00:06:14', '2018-07-05 00:06:14', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '5', '26', '19477', 'cOiaoTgU', 'CSN96959', 'zHJQLdMYFTcb', 'tUAFmWTx', '上海', 'sh', '苏州', 'sz', '53', '1', 'default', 'default', '939', '0', 'TEST850NAME', null, '13957993032', '', null, '1', 'PthMutUQxT', null, '2018-07-05 00:06:14', '2018-07-05 00:13:38');
-INSERT INTO `orders` VALUES ('1890', '2018-07-05 00:12:58', '2018-07-05 00:12:58', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '80', '42', '93768', 'UXhaQJjH', 'CSN78525', 'aRIbJfWsZRMy', 'EPSIuLup', '上海', 'sh', '苏州', 'sz', '87', '1', 'default', 'default', '340', '0', '王师傅', null, '13906122066', '', null, '7', 'wTjSXBAAxe', null, '2018-07-05 00:12:58', '2018-07-05 00:12:58');
-INSERT INTO `orders` VALUES ('1891', '2018-07-05 00:12:59', '2018-07-05 00:12:59', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '64', '8488', 'cHdsZsnC', 'CSN69281', 'OpWeTfDApSRg', 'ISlNiuDp', '上海', 'sh', '苏州', 'sz', '47', '1', 'default', 'default', '114', '0', '王师傅', null, '13985416333', '', null, '7', 'SlJnvUkhLv', null, '2018-07-05 00:12:59', '2018-07-05 00:12:59');
-INSERT INTO `orders` VALUES ('1892', '2018-07-05 00:12:59', '2018-07-05 00:12:59', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '66', '37', '98714', 'lKbRDErG', 'CSN18188', 'JvHMhcheXJPF', 'CmLbRMFd', '上海', 'sh', '苏州', 'sz', '76', '1', 'default', 'default', '756', '0', '王师傅', null, '13967791464', '', null, '2', 'fYdCMOdoVm', null, '2018-07-05 00:12:59', '2018-07-05 00:12:59');
-INSERT INTO `orders` VALUES ('1893', '2018-07-05 00:12:59', '2018-07-05 00:12:59', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '30', '55', '61007', 'gufgnbNz', 'CSN39706', 'tnrKooOtHeFW', 'bNgqAgaV', '上海', 'sh', '苏州', 'sz', '29', '1', 'default', 'default', '346', '0', '王师傅', null, '13982869328', '', null, '5', 'qWIbjfdRLT', null, '2018-07-05 00:12:59', '2018-07-05 00:12:59');
-INSERT INTO `orders` VALUES ('1894', '2018-07-05 00:12:59', '2018-07-05 00:12:59', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '22', '81', '74132', 'NxNtvfhE', 'CSN58073', 'ETWOenwJMXms', 'oacwFAjg', '上海', 'sh', '苏州', 'sz', '77', '1', 'default', 'default', '521', '0', '王师傅', null, '13974925635', '', null, '7', 'XdJhYoibYE', null, '2018-07-05 00:12:59', '2018-07-05 00:12:59');
-INSERT INTO `orders` VALUES ('1895', '2018-07-05 00:13:00', '2018-07-05 00:13:00', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '55', '34', '82238', 'FJoLfNAv', 'CSN93155', 'sLElvGUPfaAg', 'kbtZvXsS', '上海', 'sh', '苏州', 'sz', '39', '1', 'default', 'default', '128', '0', '王师傅', null, '13936888660', '', null, '7', 'iwWqkWizhH', null, '2018-07-05 00:13:00', '2018-07-05 00:13:00');
-INSERT INTO `orders` VALUES ('1896', '2018-07-05 00:13:00', '2018-07-05 00:13:00', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '82', '77', '93497', 'vBHnWtab', 'CSN12176', 'sPAkLwngQlkq', 'NJKsxyoZ', '上海', 'sh', '苏州', 'sz', '98', '1', 'default', 'default', '140', '0', '王师傅', null, '13944948376', '', null, '3', 'sYYndNAaQm', null, '2018-07-05 00:13:00', '2018-07-05 00:13:00');
-INSERT INTO `orders` VALUES ('1897', '2018-07-05 00:13:00', '2018-07-05 00:13:00', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '78', '57', '25890', 'cYmdfLWq', 'CSN06780', 'hDJxblKljHRL', 'qdmBYlFh', '上海', 'sh', '苏州', 'sz', '79', '1', 'default', 'default', '799', '0', '王师傅', null, '13978807070', '', null, '8', 'KlGpVgfGMP', null, '2018-07-05 00:13:00', '2018-07-05 00:13:00');
-INSERT INTO `orders` VALUES ('1898', '2018-07-05 00:13:00', '2018-07-05 00:13:00', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '92', '64', '2029', 'OsheCsyj', 'CSN43133', 'GKzgmWnUCebk', 'aYcuwlJN', '上海', 'sh', '苏州', 'sz', '47', '1', 'default', 'default', '161', '0', '王师傅', null, '13924771627', '', null, '9', 'oYWhbQkWyH', null, '2018-07-05 00:13:00', '2018-07-05 00:13:00');
-INSERT INTO `orders` VALUES ('1899', '2018-07-05 00:13:00', '2018-07-05 00:13:00', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '4', '85', '82218', 'OFHBtTTQ', 'CSN31120', 'aEXipqGjGyiD', 'ASTgkKPQ', '上海', 'sh', '苏州', 'sz', '25', '1', 'default', 'default', '907', '0', '王师傅', null, '13982407695', '', null, '4', 'idtuTjUoZz', null, '2018-07-05 00:13:00', '2018-07-05 00:13:00');
-INSERT INTO `orders` VALUES ('1900', '2018-07-05 00:13:27', '2018-07-05 00:13:27', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '82', '53', '82043', 'bfzZEarE', 'CSN41658', 'NzeBbATHyvto', 'vobDbcVE', '上海', 'sh', '苏州', 'sz', '84', '1', 'default', 'default', '586', '0', '王师傅', null, '13975065418', '', null, '9', 'WJxFXVYmRh', null, '2018-07-05 00:13:27', '2018-07-05 00:13:27');
-INSERT INTO `orders` VALUES ('1901', '2018-07-05 00:13:41', '2018-07-05 00:13:41', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '86', '13', '86664', 'AVXmXIJr', 'CSN42435', 'jEflmYXPTKcx', 'ldgZveTY', '上海', 'sh', '苏州', 'sz', '52', '1', 'default', 'default', '465', '0', '王师傅', null, '13962922863', '', null, '4', 'ymzpqADYcR', null, '2018-07-05 00:13:41', '2018-07-05 00:13:41');
-INSERT INTO `orders` VALUES ('1902', '2018-07-05 00:13:44', '2018-07-05 00:13:44', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '19', '47', '36922', 'gcgEtFxy', 'CSN85206', 'jcSlZcFBabMg', 'MwmGUtVV', '上海', 'sh', '苏州', 'sz', '84', '1', 'default', 'default', '697', '0', '王师傅', null, '13961619026', '', null, '3', 'hoBxHDMkEI', null, '2018-07-05 00:13:44', '2018-07-05 00:13:44');
+INSERT INTO `orders` VALUES ('1', '2018-07-05 00:06:14', '2018-07-05 00:06:14', '0', '1', '1', '1', '1', '1', '1', null, '1', null, '1', '1', '1', '5', '26', '19477', 'cOiaoTgU', 'CSN96959', 'zHJQLdMYFTcb', 'tUAFmWTx', '上海', 'sh', '苏州', 'sz', '53', '1', 'default', 'default', '939', '0', 'TEST850NAME', null, '13957993032', '', '1', 'PthMutUQxT', null, '2018-07-05 00:06:14', '2018-07-05 00:13:38');
+INSERT INTO `orders` VALUES ('2016', '2018-07-06 18:03:19', '2018-07-06 18:03:19', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '13', '55', '37878', 'VZyixQyk', 'CSN10635', 'lqQMMuieinGO', 'hiBvZlom', '上海', 'sh', '苏州', 'sz', '80', '4', 'default', 'default', '371', '0', '王师傅', 'wsf', '13996987820', '', '5', 'tlfqCPhaiy', 'tlfqCPhaiy', '2018-07-06 18:03:19', '2018-07-06 18:03:19');
+INSERT INTO `orders` VALUES ('2017', '2018-07-06 18:04:15', '2018-07-06 18:04:15', '0', '1', '1', '1', '1', '1', '2', '1', '5', '1', '1', '1', '1', '0', '41', '50034', 'idguMIxL', 'CSN90664', 'AmQkgnIGLYIP', 'slWVdTmp', '上海', 'sh', '苏州', 'sz', '92', '3', 'default', 'default', '197', '0', '王师傅', 'wsf', '13981695419', '', '5', 'BKOZSOsZnY', 'BKOZSOsZnY', '2018-07-06 18:04:15', '2018-07-06 19:49:44');
+INSERT INTO `orders` VALUES ('2018', '2018-07-06 18:04:16', '2018-07-06 18:04:16', '0', '1', '1', '1', '1', '1', '3', '1', '2', '1', '1', '1', '1', '80', '28', '93957', 'FhMiVotG', 'CSN96259', 'UQDGVnyfXwZH', 'hSomgGhj', '上海', 'sh', '苏州', 'sz', '77', '6', 'default', 'default', '472', '0', '王师傅', 'wsf', '13988637771', '', '5', 'PkPJGGuYMl', 'PkPJGGuYMl', '2018-07-06 18:04:16', '2018-07-06 19:49:43');
+INSERT INTO `orders` VALUES ('2019', '2018-07-06 18:04:16', '2018-07-06 18:04:16', '0', '1', '1', '1', '1', '1', '3', '1', '2', '1', '1', '1', '1', '80', '36', '17149', 'EbRkVPgk', 'CSN02981', 'IinpAXRbsQly', 'UcGeUYbZ', '上海', 'sh', '苏州', 'sz', '35', '3', 'default', 'default', '767', '0', '王师傅', 'wsf', '13930795762', '', '8', 'gbCspgqrVq', 'gbCspgqrVq', '2018-07-06 18:04:16', '2018-07-06 19:49:45');
+INSERT INTO `orders` VALUES ('2020', '2018-07-06 18:04:16', '2018-07-06 18:04:16', '0', '1', '1', '1', '1', '1', '2', '1', '4', '1', '1', '1', '1', '2', '32', '43764', 'jntEJOps', 'CSN49311', 'JfyekRPcrlzv', 'mjCtPsSF', '上海', 'sh', '苏州', 'sz', '9', '1', 'default', 'default', '812', '0', '王师傅', 'wsf', '13945339169', '', '0', 'dTAjLrzqgV', 'dTAjLrzqgV', '2018-07-06 18:04:16', '2018-07-06 19:49:46');
+INSERT INTO `orders` VALUES ('2021', '2018-07-06 18:04:16', '2018-07-06 18:04:16', '0', '1', '1', '1', '1', '1', '4', '1', '2', '1', '1', '1', '1', '84', '84', '30555', 'CUHpXOUJ', 'CSN74551', 'hGCgnGleuIdk', 'SIxbjvzJ', '上海', 'sh', '苏州', 'sz', '70', '5', 'default', 'default', '359', '0', '王师傅', 'wsf', '13926480844', '', '4', 'JFrHymddQm', 'JFrHymddQm', '2018-07-06 18:04:16', '2018-07-06 19:49:49');
+INSERT INTO `orders` VALUES ('2022', '2018-07-06 18:04:17', '2018-07-06 18:04:17', '0', '1', '1', '1', '1', '1', '4', '1', '2', '1', '1', '1', '1', '45', '63', '51209', 'BnHRCdWI', 'CSN88061', 'XPJNhNdTICLo', 'bZkaXAue', '上海', 'sh', '苏州', 'sz', '24', '7', 'default', 'default', '238', '0', '王师傅', 'wsf', '13910218074', '', '1', 'IMzOUtEkhp', 'IMzOUtEkhp', '2018-07-06 18:04:17', '2018-07-06 19:49:49');
+INSERT INTO `orders` VALUES ('2023', '2018-07-06 18:04:17', '2018-07-06 18:04:17', '0', '1', '1', '1', '1', '1', '4', '1', '2', '1', '1', '1', '1', '25', '60', '55935', 'vlsTpurv', 'CSN53848', 'ppAZdpxOydkR', 'nPQQcqbS', '上海', 'sh', '苏州', 'sz', '63', '7', 'default', 'default', '747', '0', '王师傅', 'wsf', '13925342822', '', '2', 'CUCqCjwzCA', 'CUCqCjwzCA', '2018-07-06 18:04:17', '2018-07-06 19:49:50');
+INSERT INTO `orders` VALUES ('2024', '2018-07-06 18:04:17', '2018-07-06 18:04:17', '0', '1', '1', '1', '1', '1', '2', '1', '3', '1', '1', '1', '1', '83', '76', '27712', 'HCDoaBXo', 'CSN81667', 'AyIDJNDQMdvN', 'QnztTSlu', '上海', 'sh', '苏州', 'sz', '55', '4', 'default', 'default', '742', '0', '王师傅', 'wsf', '13929636119', '', '9', 'LXWtoCfYyU', 'LXWtoCfYyU', '2018-07-06 18:04:17', '2018-07-06 19:49:50');
+INSERT INTO `orders` VALUES ('2025', '2018-07-06 18:04:17', '2018-07-06 18:04:17', '0', '1', '1', '1', '1', '1', '4', '1', '2', '1', '1', '1', '1', '24', '66', '59869', 'aTKpkqRJ', 'CSN76076', 'sMkAZiMgGsvn', 'IQYkQMQF', '上海', 'sh', '苏州', 'sz', '57', '6', 'default', 'default', '138', '0', '王师傅', 'wsf', '13920636698', '', '3', 'IRiElvUePc', 'IRiElvUePc', '2018-07-06 18:04:17', '2018-07-06 19:49:52');
+INSERT INTO `orders` VALUES ('2026', '2018-07-06 18:04:18', '2018-07-06 18:04:18', '0', '1', '1', '1', '1', '1', '2', '1', '1', '1', '1', '1', '1', '37', '8', '50529', 'IKQQZTdv', 'CSN55455', 'GctTiknjWAtM', 'dXkYZTed', '上海', 'sh', '苏州', 'sz', '30', '3', 'default', 'default', '5', '0', '王师傅', 'wsf', '13907412257', '', '8', 'tybwhZWkzE', 'tybwhZWkzE', '2018-07-06 18:04:18', '2018-07-06 19:49:57');
 
 -- ----------------------------
 -- Table structure for `payment`
@@ -211,12 +219,14 @@ INSERT INTO `payment` VALUES ('2', '1', '33', '2018-07-04 00:15:02', '1', '能',
 DROP TABLE IF EXISTS `plan`;
 CREATE TABLE `plan` (
   `plan_id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
+  `freight_tpye` int(2) unsigned DEFAULT '1',
   `price` int(11) unsigned DEFAULT NULL,
   `chartered_price` int(11) unsigned DEFAULT NULL,
   `weight` int(11) unsigned DEFAULT NULL,
   `size` int(11) unsigned DEFAULT NULL,
   `distance` int(11) unsigned DEFAULT NULL,
   `company_name` varchar(255) DEFAULT NULL,
+  `company_namepy` varchar(25) DEFAULT NULL,
   `source` varchar(255) DEFAULT NULL,
   `sourcepy` varchar(25) DEFAULT NULL,
   `destination` varchar(255) DEFAULT NULL,
@@ -224,12 +234,15 @@ CREATE TABLE `plan` (
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`plan_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of plan
 -- ----------------------------
-INSERT INTO `plan` VALUES ('1', '0', '0', '0', '0', '0', 'default', 'default', null, 'default', null, '2018-07-03 15:08:07', '2018-07-03 15:08:07');
+INSERT INTO `plan` VALUES ('1', '1', '0', '0', '0', '0', '0', 'default', 'd', 'default', 'd', 'default', 'd', '2018-07-03 15:08:07', '2018-07-06 20:15:26');
+INSERT INTO `plan` VALUES ('2', '1', '80', '400', '1000', '1000', '50', '德邦物流有限公司', 'dbwlyxgs', '苏州', 'sz', '上海', 'sh', '2018-07-06 20:24:01', '2018-07-06 20:24:01');
+INSERT INTO `plan` VALUES ('3', '1', '800', '4000', '1000', '1000', '500', '德邦物流有限公司', 'dbwlyxgs', '苏州', 'sz', '上海', 'sh', '2018-07-06 20:24:50', '2018-07-06 20:24:50');
+INSERT INTO `plan` VALUES ('4', '1', '8', '400', '10', '10', '5', '德邦物流有限公司', 'dbwlyxgs', '苏州', 'sz', '上海', 'sh', '2018-07-06 20:25:05', '2018-07-06 20:25:05');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -241,20 +254,23 @@ CREATE TABLE `user` (
   `pass_word` varchar(25) DEFAULT NULL,
   `name` varchar(25) DEFAULT NULL,
   `salt` varchar(25) DEFAULT NULL,
-  `role` varchar(15) DEFAULT NULL,
+  `role` int(1) DEFAULT NULL,
   `role_id` bigint(11) unsigned DEFAULT NULL,
-  `token` varchar(25) DEFAULT NULL,
+  `role_string` varchar(255) DEFAULT NULL,
+  `role_string_py` varchar(255) DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
   `last_login_ip` varchar(15) DEFAULT NULL,
   `last_login_time` varchar(25) DEFAULT NULL,
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'default', null, '默认', null, null, null, null, null, null, '2018-07-03 15:02:31', '2018-07-03 15:02:31');
+INSERT INTO `user` VALUES ('1', 'default', null, '默认', null, '-1', '1', '超级管理员', 'cjgly', null, null, null, '2018-07-03 15:02:31', '2018-07-05 04:20:13');
+INSERT INTO `user` VALUES ('2', 'wangzhen', '986986', '王振', '12321309', '-1', '1', '超级管理员', 'cjgly', 'F8C8F5757248F9D43E7E53DD477D4E2D', '127.0.0.1', '1530845333202', '2018-07-05 08:44:22', '2018-07-06 10:48:53');
 
 -- ----------------------------
 -- Table structure for `vehicle`
@@ -266,9 +282,14 @@ CREATE TABLE `vehicle` (
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`vehicle_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vehicle
 -- ----------------------------
 INSERT INTO `vehicle` VALUES ('1', 'default', '2018-07-03 15:06:00', '2018-07-04 16:49:47');
+INSERT INTO `vehicle` VALUES ('2', '苏EMM977', '2018-07-06 07:47:52', '2018-07-06 07:47:52');
+INSERT INTO `vehicle` VALUES ('3', '苏KTT82S', '2018-07-06 07:48:03', '2018-07-06 07:48:03');
+INSERT INTO `vehicle` VALUES ('4', '甘T12987', '2018-07-06 07:48:16', '2018-07-06 07:48:16');
+INSERT INTO `vehicle` VALUES ('5', '沪ASDD23', '2018-07-06 07:48:35', '2018-07-06 07:48:35');
+INSERT INTO `vehicle` VALUES ('6', '苏EK197C', '2018-07-06 07:48:46', '2018-07-06 07:48:46');

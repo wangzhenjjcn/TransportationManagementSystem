@@ -215,7 +215,7 @@ public class UserController extends BaseController {
 			return;
 		}
 		String key = request.getParameter("key");
-		if (key == null || key.isEmpty()) {
+		if (key == null) {
 			sentMissParamResponse(response);
 			return;
 		}
@@ -232,94 +232,5 @@ public class UserController extends BaseController {
 		sentResponse(response, datasResponse);
 	}
 
-	@RequestMapping(path = "/creatFactory", method = { RequestMethod.POST,
-			RequestMethod.GET })
-	public void creatFactory(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
-		if (!checkUser(request)) {
-			sentUnauthorizedResponse(response);
-			return;
-		}
-		if (checkParams(request)) {
-
-		}
-		LOG.debug(JSON.toJSONString(request.getParameterNames()));
-		Factory factory = infoDataService.getFactory(
-				request.getParameter("name"), request.getParameter("address"));
-		DatasResponse<Factory> data = new DatasResponse<Factory>();
-		if (factory != null) {
-			data.setMessage("driver already exists");
-			data.setSuccess(false);
-		} else {
-			factory = new Factory();
-			factory.setName(request.getParameter("name"));
-			factory.setAddress(request.getParameter("address"));
-			factory.setContact(request.getParameter("contact"));
-			factory.setPhone(request.getParameter("phone"));
-			factory = infoDataService.creatFactory(factory);
-			data.setMessage("creat sucess");
-			data.setSuccess(true);
-		}
-		data.addData(factory);
-		data.setFactories(data.getData());
-		sentResponse(response, data);
-	}
-
-	@RequestMapping(path = "/getVehicles", method = { RequestMethod.POST,
-			RequestMethod.GET })
-	public void getVehicles(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
-		if (!checkUser(request)) {
-			sentUnauthorizedResponse(response);
-			return;
-		}
-		String key = request.getParameter("key");
-		if (key == null || key.isEmpty()) {
-			sentMissParamResponse(response);
-			return;
-		}
-		DatasResponse<Vehicle> datasResponse = new DatasResponse<Vehicle>();
-		datasResponse.setCode(0);
-		datasResponse.setMessage("sucess");
-		datasResponse.setSuccess(true);
-		List<Vehicle> vehicles = infoDataService.getVehicles(key);
-		System.out.println(vehicles.size());
-		for (Vehicle vehicle : vehicles) {
-			datasResponse.addData(vehicle);
-		}
-		datasResponse.setVehicles(vehicles);
-		sentResponse(response, datasResponse);
-	}
-
-	@RequestMapping(path = "/creatVehicle", method = { RequestMethod.POST,
-			RequestMethod.GET })
-	public void creatVehicle(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
-		if (!checkUser(request)) {
-			sentUnauthorizedResponse(response);
-			return;
-		}
-		if (checkParams(request)) {
-
-		}
-		LOG.debug(JSON.toJSONString(request.getParameterNames()));
-		Vehicle vehicle = infoDataService.getVehicle(request
-				.getParameter("car_license_plate"));
-		DatasResponse<Vehicle> data = new DatasResponse<Vehicle>();
-		if (vehicle != null) {
-			data.setMessage("driver already exists");
-			data.setSuccess(false);
-		} else {
-			vehicle = new Vehicle();
-			vehicle.setCarLicensePlate(request
-					.getParameter("car_license_plate"));
-			vehicle = infoDataService.creatVehicle(vehicle);
-			data.setMessage("creat sucess");
-			data.setSuccess(true);
-		}
-		data.addData(vehicle);
-		data.setVehicles(data.getData());
-		sentResponse(response, data);
-	}
 
 }

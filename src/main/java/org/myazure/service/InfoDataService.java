@@ -81,8 +81,20 @@ public interface InfoDataService {
 	Factory creatFactory(Factory factory);
 
 	Vehicle getVehicle(String carLicensePlate);
-
+	
+	Vehicle getVehicle(Long id);
+	
 	Vehicle creatVehicle(Vehicle vehicle);
 
 	List<Driver> getDriversByLast5Orders();
+
+	Driver getDrivers(Long id);
+
+	Factory getFactories(Long id);
+
+	Plan getPlans(Long id);
+
+	Plan creatPlan(Plan plan);
+
+	Customer getCustomer(Long id);
 }

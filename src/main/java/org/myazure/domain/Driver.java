@@ -22,6 +22,8 @@ public class Driver extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonProperty("driver_id")
+	@JSONField(name = "driver_id")
 	@Column(name = "driver_id", nullable = false, length = 11)
 	private Long id;
 	@JsonProperty("name")

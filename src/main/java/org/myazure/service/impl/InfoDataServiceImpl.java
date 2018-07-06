@@ -57,6 +57,13 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Vehicle> getVehicles(String key) {
+		List<Vehicle> vehicles = new ArrayList<Vehicle>();
+		if (key.isEmpty()) {
+			for (Vehicle vehicle: vehicleRepository.findAll()) {
+				vehicles.add(vehicle);
+			}
+			return vehicles;
+		}
 		return vehicleRepository.findByCarLicensePlateContaining(key);
 	}
 
@@ -80,6 +87,13 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Factory> getFactories(String key) {
+		List<Factory> factories = new ArrayList<Factory>();
+		if (key.isEmpty()) {
+			for (Factory factory : factoryRepository.findAll()) {
+				factories.add(factory);
+			}
+			return factories;
+		}
 		return factoryRepository
 				.findByNameContainingOrNamepyContainingOrAddressContainingOrAddresspyContainingOrContactContaining(
 						key, key, key, key, key);
@@ -87,6 +101,13 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Customer> getCustomers(String key) {
+		List<Customer> customers = new ArrayList<Customer>();
+		if (key.isEmpty()) {
+			for (Customer customer : customerRepository.findAll()) {
+				customers.add(customer);
+			}
+			return customers;
+		}
 		return customerRepository
 				.findByNameContainingOrNamepyContainingOrAddressContainingOrAddresspyContainingOrContactContaining(
 						key, key, key, key, key);
@@ -136,6 +157,13 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Plan> getPlans(String key) {
+		List<Plan> plans = new ArrayList<Plan>();
+		if (key.isEmpty()) {
+			for (Plan plan : planRepository.findAll()) {
+				plans.add(plan);
+			}
+			return plans;
+		}
 		return planRepository
 				.findByCompanyNameContainingOrSourceContainingOrSourcepyContainingOrDestinationContainingOrDestinationpyContaining(
 						key, key, key, key, key);
@@ -143,7 +171,13 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Order> getOrders(String key) {
-
+		List<Order> orders = new ArrayList<Order>();
+		if (key.isEmpty()) {
+			for (Order order: orderRepository.findAll()) {
+				orders.add(order);
+			}
+			return orders;
+		}
 		return orderRepository
 				.findByEntryNumberContainingOrCustomerNumberContainingOrPickupNumberContainingOrTransferNumberContainingOrSourceContainingOrSourcepyContainingOrDestinationContainingOrDestinationpyContainingOrTransportVehicleRegistrationNumberContainingOrDeliveryVehicleRegistrationNumberContainingOrContactNameContainingOrContactNamepyContainingOrRemarksContainingOrRemarkspyContaining(
 						key, key, key, key, key, key, key, key, key, key, key,
@@ -281,6 +315,36 @@ public class InfoDataServiceImpl implements InfoDataService {
 			drivers.add(driver);
 		}
 		return drivers;
+	}
+
+	@Override
+	public Driver getDrivers(Long id) {
+		return driverRepository.findOne(id);
+	}
+
+	@Override
+	public Factory getFactories(Long id) {
+		return factoryRepository.findOne(id);
+	}
+
+	@Override
+	public Plan getPlans(Long id) {
+		return planRepository.findOne(id);
+	}
+
+	@Override
+	public Plan creatPlan(Plan plan) {
+		return planRepository.save(plan);
+	}
+
+	@Override
+	public Vehicle getVehicle(Long id) {
+		return vehicleRepository.findOne(id);
+	}
+
+	@Override
+	public Customer getCustomer(Long id) {
+		return customerRepository.findOne(id);
 	}
 
 }

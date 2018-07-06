@@ -2,6 +2,8 @@ package org.myazure.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.myazure.domain.WebUser;
 
 public interface WebUserService {
@@ -25,5 +27,7 @@ public interface WebUserService {
 	WebUser searchWebUser(String key);
 
 	List<WebUser> searchWebUsers(String key);
+
+	WebUser checkUser(HttpServletRequest request);
 
 }

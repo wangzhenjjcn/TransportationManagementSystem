@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.myazure.utils.S;
+
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,6 +22,8 @@ public class Plan extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonProperty("plan_id")
+	@JSONField(name = "plan_id")
 	@Column(name = "plan_id", nullable = false, length = 11)
 	private Long id;
 	@JsonProperty("freight_tpye")
@@ -50,6 +54,10 @@ public class Plan extends BaseEntity implements Serializable {
 	@JSONField(name = "company_name")
 	@Column(name = "company_name", columnDefinition = "varchar(255) DEFAULT NULL")
 	private String companyName;
+	@JsonProperty("company_namepy")
+	@JSONField(name = "company_namepy")
+	@Column(name = "company_namepy", columnDefinition = "varchar(255) DEFAULT NULL")
+	private String companyNamepy;
 	@JsonProperty("source")
 	@JSONField(name = "source")
 	@Column(name = "source", columnDefinition = "varchar(255) DEFAULT NULL")
@@ -93,14 +101,17 @@ public class Plan extends BaseEntity implements Serializable {
 
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+		this.companyNamepy=S.getPinYinFirstChar(companyName);
 	}
 
 	public void setSource(String source) {
 		this.source = source;
+		this.sourcepy=S.getPinYinFirstChar(source);
 	}
 
 	public void setDestination(String destination) {
 		this.destination = destination;
+		this.destinationpy=S.getPinYinFirstChar(destination);
 	}
 
 	public Plan() {
@@ -157,6 +168,22 @@ public class Plan extends BaseEntity implements Serializable {
 
 	public void setDestinationpy(String destinationpy) {
 		this.destinationpy = destinationpy;
+	}
+
+	public int getFreight_tpye() {
+		return freight_tpye;
+	}
+
+	public void setFreight_tpye(int freight_tpye) {
+		this.freight_tpye = freight_tpye;
+	}
+
+	public String getCompanyNamepy() {
+		return companyNamepy;
+	}
+
+	public void setCompanyNamepy(String companyNamepy) {
+		this.companyNamepy = companyNamepy;
 	}
 
 }

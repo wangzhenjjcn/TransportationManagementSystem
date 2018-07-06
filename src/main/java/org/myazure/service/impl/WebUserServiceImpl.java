@@ -3,6 +3,8 @@ package org.myazure.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.myazure.domain.WebUser;
 import org.myazure.repository.WebUserRepository;
 import org.myazure.service.WebUserService;
@@ -151,6 +153,24 @@ public class WebUserServiceImpl implements WebUserService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public WebUser checkUser(HttpServletRequest request) {
+		
+		if (request.getRequestedSessionId() == null) {
+			return null;
+		}
+		if (request.getRequestedSessionId().isEmpty()) {
+			return null;
+		}
+		WebUser user = webUserRepository.findFirstByToken(request.getRequestedSessionId());
+		System.out.println(request.getRequestedSessionId());
+		System.err.println(JSON.toJSONString(user));
+		if (user == null) {
+			return null;
+		}
+		return user;
 	}
 
 }

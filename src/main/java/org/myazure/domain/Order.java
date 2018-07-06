@@ -42,47 +42,47 @@ public class Order extends BaseEntity implements Serializable {
 	@Column(name = "order_date", columnDefinition = "datetime DEFAULT NULL")
 	@JSONField(name = "orderDate")
 	private Date orderDate;
-	@JSONField(name = "creator_user")
+	@JSONField(name = "creator_user", serialize = false)
 	@JsonProperty("creator_user")
 	@JoinColumn(name = "creator_user_id")
 	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
 	private WebUser creatorUser = new WebUser();
-	@JSONField(name = "customer_user")
+	@JSONField(name = "customer_user", serialize = false)
 	@JsonProperty("customer_user")
 	@JoinColumn(name = "customer_user_id")
 	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
 	private WebUser customerUser = new WebUser();
-	@JSONField(name = "transport_driver_user")
+	@JSONField(name = "transport_driver_user", serialize = false)
 	@JsonProperty("transport_driver_user")
 	@JoinColumn(name = "transport_driver_user_id")
 	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
 	private WebUser transportDriverUser = new WebUser();
-	@JSONField(name = "delivery_driver_user")
+	@JSONField(name = "delivery_driver_user", serialize = false)
 	@JsonProperty("delivery_driver_user")
 	@JoinColumn(name = "delivery_driver_user_id")
 	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
 	private WebUser deliveryDriverUser = new WebUser();
-	@JSONField(name = "factory_user")
+	@JSONField(name = "factory_user", serialize = false)
 	@JsonProperty("factory_user")
 	@JoinColumn(name = "factory_user_id")
 	@ManyToOne(targetEntity = WebUser.class, fetch = FetchType.LAZY)
 	private WebUser factoryUser = new WebUser();
-	@JSONField(name = "transport_vehicle")
+	@JSONField(name = "transport_vehicle", serialize = false)
 	@JsonProperty("transport_vehicle")
 	@JoinColumn(name = "transport_vehicle_id")
 	@ManyToOne(targetEntity = Vehicle.class, fetch = FetchType.LAZY)
 	private Vehicle transportVehicle = new Vehicle();
-	@JSONField(name = "delivery_vehicle")
+	@JSONField(name = "delivery_vehicle", serialize = false)
 	@JsonProperty("delivery_vehicle")
 	@JoinColumn(name = "delivery_vehicle_id")
 	@ManyToOne(targetEntity = Vehicle.class, fetch = FetchType.LAZY)
 	private Vehicle deliveryVehicle = new Vehicle();
-	@JSONField(name = "transport_vehicle_driver")
+	@JSONField(name = "transport_vehicle_driver", serialize = false)
 	@JsonProperty("transport_vehicle_driver")
 	@JoinColumn(name = "transport_vehicle_driver_id")
 	@ManyToOne(targetEntity = Driver.class, fetch = FetchType.LAZY)
 	private Driver transportVehicleDriver = new Driver();
-	@JSONField(name = "delivery_vehicle")
+	@JSONField(name = "delivery_vehicle", serialize = false)
 	@JsonProperty("delivery_vehicle")
 	@JoinColumn(name = "delivery_vehicle_driver_id")
 	@ManyToOne(targetEntity = Driver.class, fetch = FetchType.LAZY)
@@ -100,6 +100,10 @@ public class Order extends BaseEntity implements Serializable {
 	@JSONField(name = "factory_address")
 	@JsonProperty("factory_address")
 	private String factoryAddress;
+	@Transient
+	@JSONField(name = "factory_addresspy")
+	@JsonProperty("factory_addresspy")
+	private String factoryAddresspy;
 	@JsonProperty("source")
 	@Column(name = "source", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "source")
@@ -173,8 +177,8 @@ public class Order extends BaseEntity implements Serializable {
 	@JoinColumn(name = "customer_id")
 	@ManyToOne(targetEntity = Customer.class, fetch = FetchType.LAZY)
 	private Customer customer;
-	@JsonProperty("planId")
-	@JSONField(name = "planId")
+	@JsonProperty("plan")
+	@JSONField(name = "plan")
 	@JoinColumn(name = "plan_id", columnDefinition = "bigint(11) DEFAULT NULL")
 	@ManyToOne(targetEntity = Plan.class, fetch = FetchType.LAZY)
 	private Plan plan;
@@ -306,7 +310,6 @@ public class Order extends BaseEntity implements Serializable {
 		this.transferNumber = transferNumber;
 	}
 
-
 	public void setEntryNumber(String entryNumber) {
 		this.entryNumber = entryNumber;
 	}
@@ -354,6 +357,23 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setFreightType(int freightType) {
 		this.freightType = freightType;
+		switch (freightType) {
+		case 1:
+			this.freightTypeString = "陆运";
+			break;
+		case 2:
+			this.freightTypeString = "空运";
+			break;
+		case 3:
+			this.freightTypeString = "海运";
+			break;
+		case 4:
+			this.freightTypeString = "其他";
+			break;
+		default:
+			break;
+		}
+		this.freightTypeStringPy=S.getPinYinFirstChar(freightTypeString);
 	}
 
 	public void setChartered(boolean isChartered) {
@@ -366,6 +386,36 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setOrderState(int orderState) {
 		this.orderState = orderState;
+		switch (orderState) {
+		// 0草稿 // 1审核 // 2运输 // 3送达 // 4上传 // 5完成 // 6结算 // 7关闭
+		case 0:
+			this.orderStateString = "草稿";
+			break;
+		case 1:
+			this.orderStateString = "已审核";
+			break;
+		case 2:
+			this.orderStateString = "运输中";
+			break;
+		case 3:
+			this.orderStateString = "待上传";
+			break;
+		case 4:
+			this.orderStateString = "已送达";
+			break;
+		case 5:
+			this.orderStateString = "已交付";
+			break;
+		case 6:
+			this.orderStateString = "已结算";
+			break;
+		case 7:
+			this.orderStateString = "已关闭";
+			break;
+		default:
+			break;
+		}
+		this.orderStateStringPY = S.getPinYinFirstChar(orderStateString);
 	}
 
 	public void setFeeHistory(List<Payment> feeHistory) {
@@ -447,7 +497,6 @@ public class Order extends BaseEntity implements Serializable {
 	public String getTransferNumber() {
 		return transferNumber;
 	}
-
 
 	public String getEntryNumber() {
 		return entryNumber;
@@ -559,10 +608,12 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setFactoryName(String factoryName) {
 		this.factoryName = factoryName;
+		
 	}
 
 	public void setFactoryAddress(String factoryAddress) {
 		this.factoryAddress = factoryAddress;
+		this.factoryAddresspy=S.getPinYinFirstChar(factoryAddress);
 	}
 
 	public void setSourcepy(String sourcepy) {
@@ -642,6 +693,14 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setPickupNumber(String pickupNumber) {
 		this.pickupNumber = pickupNumber;
+	}
+
+	public String getFactoryAddresspy() {
+		return factoryAddresspy;
+	}
+
+	public void setFactoryAddresspy(String factoryAddresspy) {
+		this.factoryAddresspy = factoryAddresspy;
 	}
 
 }
