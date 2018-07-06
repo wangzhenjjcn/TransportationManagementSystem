@@ -17,4 +17,6 @@ public interface FactoryRepository extends
 	List<Factory> findByNameContainingOrNamepyContainingOrAddressContainingOrAddresspyContainingOrContactContaining(
 			String key, String key2, String key3, String key4, String key5);
 
+	Factory findFirstByNameAndAddress(String name, String address);
+
 }

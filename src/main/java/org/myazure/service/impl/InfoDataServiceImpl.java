@@ -1,6 +1,11 @@
 package org.myazure.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javassist.expr.NewArray;
 
 import org.myazure.domain.Cushion;
 import org.myazure.domain.Customer;
@@ -23,6 +28,7 @@ import org.myazure.service.InfoDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service("InfoDataService")
@@ -56,8 +62,20 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Driver> getDrivers(String key) {
+		List<Driver> drivers = new ArrayList<Driver>();
+		if (key.isEmpty()) {
+			for (Driver driver : driverRepository.findAll()) {
+				drivers.add(driver);
+			}
+			return drivers;
+		}
 		return driverRepository
 				.findByNameContainingOrNamepyContaining(key, key);
+	}
+
+	@Override
+	public Driver getDriver(String name, String phone) {
+		return driverRepository.findFirstByNameAndPhone(name, phone);
 	}
 
 	@Override
@@ -125,8 +143,11 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Order> getOrders(String key) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return orderRepository
+				.findByEntryNumberContainingOrCustomerNumberContainingOrPickupNumberContainingOrTransferNumberContainingOrSourceContainingOrSourcepyContainingOrDestinationContainingOrDestinationpyContainingOrTransportVehicleRegistrationNumberContainingOrDeliveryVehicleRegistrationNumberContainingOrContactNameContainingOrContactNamepyContainingOrRemarksContainingOrRemarkspyContaining(
+						key, key, key, key, key, key, key, key, key, key, key,
+						key, key, key);
 	}
 
 	@Override
@@ -211,6 +232,55 @@ public class InfoDataServiceImpl implements InfoDataService {
 	public List<Order> getOrdersByRemarks(String remarks) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Driver creatDriver(Driver driver) {
+		return driverRepository.save(driver);
+	}
+
+	@Override
+	public Customer getCustomer(String name, String address) {
+		return customerRepository.findFirstByNameAndAddress(name, address);
+	}
+
+	@Override
+	public Customer creatCustomer(Customer customer) {
+		return customerRepository.save(customer);
+	}
+
+	@Override
+	public Factory getFactory(String name, String address) {
+		return factoryRepository.findFirstByNameAndAddress(name, address);
+	}
+
+	@Override
+	public Factory creatFactory(Factory factory) {
+		return factoryRepository.save(factory);
+	}
+
+	@Override
+	public Vehicle getVehicle(String carLicensePlate) {
+		return vehicleRepository.findFirstByCarLicensePlate(carLicensePlate);
+	}
+
+	@Override
+	public Vehicle creatVehicle(Vehicle vehicle) {
+		return vehicleRepository.save(vehicle);
+	}
+
+	@Override
+	public List<Driver> getDriversByLast5Orders() {
+		Map<Long, Driver> driversMap=new HashMap<Long, Driver>();
+		for (Order	order : orderRepository.findTop5ByOrderByOrderIdDesc()) {
+			driversMap.put(order.getDeliveryVehicleDriver().getId(), order.getDeliveryVehicleDriver());
+			driversMap.put(order.getTransportVehicleDriver().getId(), order.getTransportVehicleDriver());
+		}
+		List<Driver> drivers=new ArrayList<Driver>();
+		for (Driver driver : driversMap.values()) {
+			drivers.add(driver);
+		}
+		return drivers;
 	}
 
 }

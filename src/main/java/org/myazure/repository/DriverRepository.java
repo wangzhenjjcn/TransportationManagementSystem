@@ -19,4 +19,7 @@ public interface DriverRepository extends
 
 	List<Driver> findByNameContainingOrNamepyContaining(String key, String key2);
 
+
+	Driver findFirstByNameAndPhone(String name, String phone);
+
 }

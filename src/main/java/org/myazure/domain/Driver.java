@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.myazure.utils.S;
+
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -41,6 +43,7 @@ public class Driver extends BaseEntity implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+		this.namepy=S.getPinYinFirstChar(name);
 	}
 
 	public void setPhone(String phone) {

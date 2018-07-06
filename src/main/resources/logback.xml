@@ -28,7 +28,7 @@
     </rollingPolicy>
   </appender>
 
-  <logger name="org.myazure.transportation" level="DEBUG"/>
+  <logger name="org.myazure" level="DEBUG"/>
   
   <root level="INFO">
     <appender-ref ref="stdout"/>

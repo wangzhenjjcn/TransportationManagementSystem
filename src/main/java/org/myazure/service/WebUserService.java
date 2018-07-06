@@ -10,6 +10,8 @@ public interface WebUserService {
 	boolean login(String username, String password, String sessionId,
 			String logonIp);
 
+	boolean logout(String serverSESSIONID, String logonIp);
+
 	WebUser getWebUser(long id);
 
 	List<WebUser> getWebUsers(List<Long> ids);

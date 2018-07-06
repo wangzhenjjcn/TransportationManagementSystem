@@ -77,6 +77,16 @@ public class Order extends BaseEntity implements Serializable {
 	@JoinColumn(name = "delivery_vehicle_id")
 	@ManyToOne(targetEntity = Vehicle.class, fetch = FetchType.LAZY)
 	private Vehicle deliveryVehicle = new Vehicle();
+	@JSONField(name = "transport_vehicle_driver")
+	@JsonProperty("transport_vehicle_driver")
+	@JoinColumn(name = "transport_vehicle_driver_id")
+	@ManyToOne(targetEntity = Driver.class, fetch = FetchType.LAZY)
+	private Driver transportVehicleDriver = new Driver();
+	@JSONField(name = "delivery_vehicle")
+	@JsonProperty("delivery_vehicle")
+	@JoinColumn(name = "delivery_vehicle_driver_id")
+	@ManyToOne(targetEntity = Driver.class, fetch = FetchType.LAZY)
+	private Driver deliveryVehicleDriver = new Driver();
 	@JSONField(name = "factory")
 	@JsonProperty("factory")
 	@JoinColumn(name = "factory_id")
@@ -113,7 +123,7 @@ public class Order extends BaseEntity implements Serializable {
 	@JsonProperty("pickup_number")
 	@Column(name = "pickup_number", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "pickup_number")
-	private String pickUpNumber;
+	private String pickupNumber;
 	@JsonProperty("entry_number")
 	@Column(name = "entry_number", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "entry_number")
@@ -296,9 +306,6 @@ public class Order extends BaseEntity implements Serializable {
 		this.transferNumber = transferNumber;
 	}
 
-	public void setPickUpNumber(String pickUpNumber) {
-		this.pickUpNumber = pickUpNumber;
-	}
 
 	public void setEntryNumber(String entryNumber) {
 		this.entryNumber = entryNumber;
@@ -441,9 +448,6 @@ public class Order extends BaseEntity implements Serializable {
 		return transferNumber;
 	}
 
-	public String getPickUpNumber() {
-		return pickUpNumber;
-	}
 
 	public String getEntryNumber() {
 		return entryNumber;
@@ -614,6 +618,30 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setFreightTypeStringPy(String freightTypeStringPy) {
 		this.freightTypeStringPy = freightTypeStringPy;
+	}
+
+	public Driver getTransportVehicleDriver() {
+		return transportVehicleDriver;
+	}
+
+	public void setTransportVehicleDriver(Driver transportVehicleDriver) {
+		this.transportVehicleDriver = transportVehicleDriver;
+	}
+
+	public Driver getDeliveryVehicleDriver() {
+		return deliveryVehicleDriver;
+	}
+
+	public void setDeliveryVehicleDriver(Driver deliveryVehicleDriver) {
+		this.deliveryVehicleDriver = deliveryVehicleDriver;
+	}
+
+	public String getPickupNumber() {
+		return pickupNumber;
+	}
+
+	public void setPickupNumber(String pickupNumber) {
+		this.pickupNumber = pickupNumber;
 	}
 
 }

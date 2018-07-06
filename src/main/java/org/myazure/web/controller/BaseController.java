@@ -1,6 +1,7 @@
 package org.myazure.web.controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -39,8 +40,16 @@ public class BaseController {
 	}
 
 	protected boolean checkUser(HttpServletRequest request) {
+		if (request.getRequestedSessionId() == null) {
+			return false;
+		}
+		if (request.getRequestedSessionId().isEmpty()) {
+			return false;
+		}
 		WebUser user = webUserService
 				.checkUser(request.getRequestedSessionId());
+		System.out.println(request.getRequestedSessionId());
+		System.err.println(JSON.toJSONString(user));
 		if (user == null) {
 			return false;
 		}
@@ -48,6 +57,13 @@ public class BaseController {
 	}
 
 	protected void sentUnauthorizedResponse(HttpServletResponse response) {
+		response.addCookie(new Cookie("4682543566466", System
+				.currentTimeMillis() + ""));
+		sentResponse(response, new StatusResponse(
+				"access denied,login required", 6, false));
+	}
+
+	protected void sentLoginErrResponse(HttpServletResponse response) {
 		response.addCookie(new Cookie("4682543566466", System
 				.currentTimeMillis() + ""));
 		sentResponse(response, new StatusResponse(
@@ -59,15 +75,16 @@ public class BaseController {
 		sentResponse(response, new StatusResponse("logon sucess", 0, true));
 	}
 
-	
 	protected void sentMissParamResponse(HttpServletResponse response) {
-		sentResponse(response, new StatusResponse("that a parameter is missing!double check pls!", 1, false));
+		sentResponse(response, new StatusResponse(
+				"that a parameter is missing!double check pls!", 1, false));
 	}
-	
-	
-	
-	
-	
+
+	protected boolean checkParams(HttpServletRequest request) {
+
+		return true;
+	}
+
 	protected void sentResponse(HttpServletResponse response, Object object) {
 		try {
 			response.setCharacterEncoding("UTF-8");

@@ -14,4 +14,6 @@ public interface VehicleRepository extends
 
 	List<Vehicle> findByCarLicensePlateContaining(String key);
 
+	Vehicle findFirstByCarLicensePlate(String carLicensePlate);
+
 }

@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.myazure.domain.Customer;
+import org.myazure.domain.Driver;
 import org.myazure.domain.Factory;
 import org.myazure.domain.Order;
 import org.myazure.domain.Plan;
 import org.myazure.domain.Vehicle;
 import org.myazure.domain.WebUser;
 import org.myazure.repository.CustomerRepository;
+import org.myazure.repository.DriverRepository;
 import org.myazure.repository.FactoryRepository;
 import org.myazure.repository.OrderRepository;
 import org.myazure.repository.PlanRepository;
@@ -44,11 +46,15 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private PlanRepository planRepository;
 
+	@Autowired
+	private DriverRepository driverRepository;
+	
 	public static WebUser defaultUser;
 	public static Vehicle defaultVehicle;
 	public static Factory defaultFactory;
 	public static Customer defaultCustomer;
 	public static Plan defaultPlan;
+	public static Driver defaultDriver;
 
 	protected void Check() {
 		if (defaultUser == null) {
@@ -65,6 +71,9 @@ public class OrderServiceImpl implements OrderService {
 		}
 		if (defaultPlan == null) {
 			defaultPlan = planRepository.findOne(1L);
+		}
+		if (defaultDriver==null) {
+			defaultDriver=driverRepository.findOne(1L);
 		}
 
 	}
@@ -136,7 +145,7 @@ public class OrderServiceImpl implements OrderService {
 		order.setOrderDate(new Date(System.currentTimeMillis()));
 		order.setOrderCreatDate(new Date(System.currentTimeMillis()));
 		order.setPakages(S.getRandomNum(2));
-		order.setPickUpNumber(S.getRandomString(12));
+		order.setPickupNumber(S.getRandomString(12));
 		order.setTransferNumber(S.getRandomString(8));
 		order.setRemarks(S.getRandomString(10));
 		order.setSize(S.getRandomNum(2));
@@ -148,6 +157,8 @@ public class OrderServiceImpl implements OrderService {
 		order.setTransportVehicle(defaultVehicle);
 		order.setFactory(defaultFactory);
 		order.setCustomer(defaultCustomer);
+		order.setDeliveryVehicleDriver(defaultDriver);
+		order.setTransportVehicleDriver(defaultDriver);
 		orderRepository.save(order);
 		return order;
 	}
