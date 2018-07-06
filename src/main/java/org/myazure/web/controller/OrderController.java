@@ -168,9 +168,13 @@ public class OrderController extends BaseController {
 		}
 		
 		LOG.debug(JSON.toJSONString(request.getParameterNames()));
-		WebUser creatorUser = webUserService.checkUser(request);
+		WebUser currentUser = webUserService.checkUser(request);
 		Order order = orderService.getOrder(Long.valueOf(request.getParameter("order_id")));
 		if (order==null) {
+			sentMissParamResponse(response);
+			return;
+		}
+		if (currentUser.getRoleId() < order.getCreatorUser().getRole()) {
 			sentMissParamResponse(response);
 			return;
 		}

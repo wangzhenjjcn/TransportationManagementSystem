@@ -1,0 +1,1121 @@
+{
+	"variables": [],
+	"info": {
+		"name": "货运",
+		"_postman_id": "a272143d-e0a5-4a52-da99-807cdf40fa17",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1登陆失败",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/login?username=wangzhen&password=9869862",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "wangzhen",
+							"equals": true,
+							"description": "用户名"
+						},
+						{
+							"key": "password",
+							"value": "9869862",
+							"equals": true,
+							"description": "密码（这个是错误密码实例）"
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "uy76fgr76rf67",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "2登陆成功",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/login?username=wangzhen&password=986986",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "wangzhen",
+							"equals": true,
+							"description": "用户名"
+						},
+						{
+							"key": "password",
+							"value": "986986",
+							"equals": true,
+							"description": "密码，（这个是正确实例）"
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "data",
+							"value": "uy76fgr76rf67",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3登出成功",
+			"request": {
+				"url": "127.0.0.1:8888/loogout",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "注意登出的URL不是logout"
+			},
+			"response": []
+		},
+		{
+			"name": "4检索订单",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getOrders?key=上海",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getOrders"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "上海",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4-2创建样例订单",
+			"request": {
+				"url": "127.0.0.1:8888/creatSampleOrders",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4-2创建订单",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/creatOrder?transport_vehicle_id=3&delivery_vehicle_id=2&transport_driver_id=2&delivery_driver_id=3&customer_id=2&factory_id=4&plan_id=3&weight=122&size=312&distance=1231&entry_number=JLHCM551006&customer_number=1006&pickup_number=0A115-0497695&transfer_number=SUZ18JQLG465&source=浦德莎&destination=外高桥凤威&packages=4&freight_tpye=1&carriage_fee=200&cushion_fee=420&contact=锦诚&phone=0512-87362632&isChartered=false&fee_time=2&remarks=长3.4M 销毁搞定费100",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"creatOrder"
+					],
+					"query": [
+						{
+							"key": "transport_vehicle_id",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "delivery_vehicle_id",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "transport_driver_id",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "delivery_driver_id",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "customer_id",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "factory_id",
+							"value": "4",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "plan_id",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "weight",
+							"value": "122",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "size",
+							"value": "312",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "distance",
+							"value": "1231",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "entry_number",
+							"value": "JLHCM551006",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "customer_number",
+							"value": "1006",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "pickup_number",
+							"value": "0A115-0497695",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "transfer_number",
+							"value": "SUZ18JQLG465",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "source",
+							"value": "浦德莎",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "destination",
+							"value": "外高桥凤威",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "packages",
+							"value": "4",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "freight_tpye",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "carriage_fee",
+							"value": "200",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "cushion_fee",
+							"value": "420",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "contact",
+							"value": "锦诚",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "phone",
+							"value": "0512-87362632",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "isChartered",
+							"value": "false",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "fee_time",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "remarks",
+							"value": "长3.4M 销毁搞定费100",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4-2修改订单",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/updateOrder?transport_vehicle_id=3&delivery_vehicle_id=2&transport_driver_id=2&delivery_driver_id=3&factory_id=4&plan_id=3&weight=12&size=31&distance=123&entry_number=JLHCM551006&customer_number=1006&pickup_number=0A115-0497695&transfer_number=SUZ18JQLG465&source=浦德莎&destination=外高桥凤威&packages=4&freight_tpye=1&carriage_fee=200&cushion_fee=420&contact=锦诚&phone=0512-87362632&isChartered=false&fee_time=2&remarks=长3.4M 销毁搞定费100&order_id=2019&customer_id=4",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"updateOrder"
+					],
+					"query": [
+						{
+							"key": "transport_vehicle_id",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "delivery_vehicle_id",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "transport_driver_id",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "delivery_driver_id",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "factory_id",
+							"value": "4",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "plan_id",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "weight",
+							"value": "12",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "size",
+							"value": "31",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "distance",
+							"value": "123",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "entry_number",
+							"value": "JLHCM551006",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "customer_number",
+							"value": "1006",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "pickup_number",
+							"value": "0A115-0497695",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "transfer_number",
+							"value": "SUZ18JQLG465",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "source",
+							"value": "浦德莎",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "destination",
+							"value": "外高桥凤威",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "packages",
+							"value": "4",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "freight_tpye",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "carriage_fee",
+							"value": "200",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "cushion_fee",
+							"value": "420",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "contact",
+							"value": "锦诚",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "phone",
+							"value": "0512-87362632",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "isChartered",
+							"value": "false",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "fee_time",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "remarks",
+							"value": "长3.4M 销毁搞定费100",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "order_id",
+							"value": "2019",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "customer_id",
+							"value": "4",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "5创建司机",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/creatDriver?name=王师傅&phone=15106205593",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"creatDriver"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "王师傅",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "phone",
+							"value": "15106205593",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "5-2查找所有司机",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getDrivers?key=",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getDrivers"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "5-2查找最近使用的司机",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getDrivers?key=last",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getDrivers"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "last",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "5-2查找某些司机",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getDrivers?key=王",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getDrivers"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "王",
+							"equals": true,
+							"description": "关键字"
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "6创建客户",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/creatCustomer?name=王师傅&address=金鸡湖大道国际科技园1355号二期C区501室&contact=王振&phone=15106205593",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"creatCustomer"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "王师傅",
+							"equals": true,
+							"description": "客户名称"
+						},
+						{
+							"key": "address",
+							"value": "金鸡湖大道国际科技园1355号二期C区501室",
+							"equals": true,
+							"description": "地址"
+						},
+						{
+							"key": "contact",
+							"value": "王振",
+							"equals": true,
+							"description": "联系人"
+						},
+						{
+							"key": "phone",
+							"value": "15106205593",
+							"equals": true,
+							"description": "联系电话"
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "6-2查找所有客户",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getCustomers?key=",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getCustomers"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "",
+							"equals": true,
+							"description": "key为空"
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "6-2查找某些客户",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getCustomers?key=w",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getCustomers"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "w",
+							"equals": true,
+							"description": " 关键字"
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "7创建工厂",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/creatFactory?name=骐达商贸有限公司&address=景德镇市浮梁县下街街上&contact=王师傅&phone=0333-88887776",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"creatFactory"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "骐达商贸有限公司",
+							"equals": true,
+							"description": "工厂名称"
+						},
+						{
+							"key": "address",
+							"value": "景德镇市浮梁县下街街上",
+							"equals": true,
+							"description": "地址"
+						},
+						{
+							"key": "contact",
+							"value": "王师傅",
+							"equals": true,
+							"description": "联系人"
+						},
+						{
+							"key": "phone",
+							"value": "0333-88887776",
+							"equals": true,
+							"description": "联系电话"
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "7-2查找所有工厂",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getFactories?key",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getFactories"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "",
+							"equals": false,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "7-2查找某些工厂",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getFactories?key=w",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getFactories"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "w",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "8创建车辆",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/creatVehicle?car_license_plate=苏EK197C",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"creatVehicle"
+					],
+					"query": [
+						{
+							"key": "car_license_plate",
+							"value": "苏EK197C",
+							"equals": true,
+							"description": "车牌号码"
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "8-2查找所有车辆",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getVehicles?key=",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getVehicles"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "8-2查找某些车辆",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getVehicles?key=苏EK197C",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getVehicles"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "苏EK197C",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "9创建运输方案",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/creatPlan?company_name=德邦物流有限公司&freight_tpye=1&source=苏州&destination=上海&chartered_price=400&price=8&size=10&weight=10&distance=5",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"creatPlan"
+					],
+					"query": [
+						{
+							"key": "company_name",
+							"value": "德邦物流有限公司",
+							"equals": true,
+							"description": "运输公司名称"
+						},
+						{
+							"key": "freight_tpye",
+							"value": "1",
+							"equals": true,
+							"description": "1.陆运，2.空运，3.海运，4.其他"
+						},
+						{
+							"key": "source",
+							"value": "苏州",
+							"equals": true,
+							"description": "起始地"
+						},
+						{
+							"key": "destination",
+							"value": "上海",
+							"equals": true,
+							"description": "目的地"
+						},
+						{
+							"key": "chartered_price",
+							"value": "400",
+							"equals": true,
+							"description": "包车价格"
+						},
+						{
+							"key": "price",
+							"value": "8",
+							"equals": true,
+							"description": "价格"
+						},
+						{
+							"key": "size",
+							"value": "10",
+							"equals": true,
+							"description": "大小"
+						},
+						{
+							"key": "weight",
+							"value": "10",
+							"equals": true,
+							"description": "重量"
+						},
+						{
+							"key": "distance",
+							"value": "5",
+							"equals": true,
+							"description": "距离"
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "9-2查找所有运输方案",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getPlans?key",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getPlans"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "",
+							"equals": false,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "9-2查找某些运输方案",
+			"request": {
+				"url": {
+					"raw": "127.0.0.1:8888/getPlans?key=上海",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8888",
+					"path": [
+						"getPlans"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "上海",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
