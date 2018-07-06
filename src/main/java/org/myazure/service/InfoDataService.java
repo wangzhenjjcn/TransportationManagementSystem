@@ -6,6 +6,7 @@ import org.myazure.domain.Cushion;
 import org.myazure.domain.Customer;
 import org.myazure.domain.Driver;
 import org.myazure.domain.Factory;
+import org.myazure.domain.Order;
 import org.myazure.domain.Payment;
 import org.myazure.domain.Plan;
 import org.myazure.domain.Vehicle;
@@ -36,5 +37,34 @@ public interface InfoDataService {
 	List<Cushion> getCushionsByRemarks(String key);
 
 	List<Plan> getPlans(String key);
-
+	
+	List<Order> getOrders(String key);
+	
+	List<Order> getOrdersByState(int state);
+	
+	List<Order> getOrdersByCreator(Long id);
+	
+	List<Order> getOrdersByCustomer(Long id);
+	
+	List<Order> getOrdersByFactory(Long id);
+	
+	List<Order> getOrdersByVehicle(Long id);
+	
+	List<Order> getOrdersByTransportDriver(Long id);
+	
+	List<Order> getOrdersByDeliveryDriver(Long id);
+	
+	List<Order> getOrdersByEntryNumber(String number);
+	
+	List<Order> getOrdersByCustomerNumber(String number);
+	
+	List<Order> getOrdersByPickupNumber(String number);
+	
+	List<Order> getOrdersByTransferNumber(String number);
+	
+	List<Order> getOrdersBySource(String source);
+	
+	List<Order> getOrdersByDestination(String destination);
+	
+	List<Order> getOrdersByRemarks(String remarks);
 }

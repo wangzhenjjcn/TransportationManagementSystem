@@ -6,6 +6,7 @@ import org.myazure.domain.Cushion;
 import org.myazure.domain.Customer;
 import org.myazure.domain.Driver;
 import org.myazure.domain.Factory;
+import org.myazure.domain.Order;
 import org.myazure.domain.Payment;
 import org.myazure.domain.Plan;
 import org.myazure.domain.Vehicle;
@@ -13,6 +14,7 @@ import org.myazure.repository.CushionRepository;
 import org.myazure.repository.CustomerRepository;
 import org.myazure.repository.DriverRepository;
 import org.myazure.repository.FactoryRepository;
+import org.myazure.repository.OrderRepository;
 import org.myazure.repository.PaymentRepository;
 import org.myazure.repository.PlanRepository;
 import org.myazure.repository.VehicleRepository;
@@ -44,27 +46,32 @@ public class InfoDataServiceImpl implements InfoDataService {
 	private CushionRepository cushionRepository;
 	@Autowired
 	private PlanRepository planRepository;
+	@Autowired
+	private OrderRepository orderRepository;
 
 	@Override
 	public List<Vehicle> getVehicles(String key) {
-		 return vehicleRepository.findByCarLicensePlateContaining(key);
+		return vehicleRepository.findByCarLicensePlateContaining(key);
 	}
 
 	@Override
 	public List<Driver> getDrivers(String key) {
-		 return driverRepository.findByNameContainingOrNamepyContaining(key,key);
+		return driverRepository
+				.findByNameContainingOrNamepyContaining(key, key);
 	}
 
 	@Override
 	public List<Factory> getFactories(String key) {
-	  return
-		 factoryRepository.findByNameContainingOrNamepyContainingOrAddressContainingOrAddresspyContainingOrContactContaining(key,key,key,key,key);
+		return factoryRepository
+				.findByNameContainingOrNamepyContainingOrAddressContainingOrAddresspyContainingOrContactContaining(
+						key, key, key, key, key);
 	}
 
 	@Override
 	public List<Customer> getCustomers(String key) {
-		 return
-		 customerRepository.findByNameContainingOrNamepyContainingOrAddressContainingOrAddresspyContainingOrContactContaining(key,key,key,key,key);
+		return customerRepository
+				.findByNameContainingOrNamepyContainingOrAddressContainingOrAddresspyContainingOrContactContaining(
+						key, key, key, key, key);
 	}
 
 	@Override
@@ -84,7 +91,8 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Payment> getPaymentsByRemarks(String key) {
-		return paymentRepository.findByRemarksContainingOrRemarkspyContaining(key,key);
+		return paymentRepository.findByRemarksContainingOrRemarkspyContaining(
+				key, key);
 	}
 
 	@Override
@@ -104,13 +112,105 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public List<Cushion> getCushionsByRemarks(String key) {
-		return cushionRepository.findByRemarksContainingOrRemarkspyContaining(key,key);
+		return cushionRepository.findByRemarksContainingOrRemarkspyContaining(
+				key, key);
 	}
 
 	@Override
 	public List<Plan> getPlans(String key) {
-		return planRepository.findByCompanyNameContainingOrSourceContainingOrSourcepyContainingOrDestinationContainingOrDestinationpyContaining(key,key,key,key,key);
+		return planRepository
+				.findByCompanyNameContainingOrSourceContainingOrSourcepyContainingOrDestinationContainingOrDestinationpyContaining(
+						key, key, key, key, key);
 	}
 
+	@Override
+	public List<Order> getOrders(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByState(int state) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByCreator(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByCustomer(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByFactory(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByVehicle(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByTransportDriver(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByDeliveryDriver(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByEntryNumber(String number) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByCustomerNumber(String number) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByPickupNumber(String number) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByTransferNumber(String number) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersBySource(String source) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByDestination(String destination) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getOrdersByRemarks(String remarks) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

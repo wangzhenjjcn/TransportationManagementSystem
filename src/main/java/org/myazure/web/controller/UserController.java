@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.myazure.domain.Customer;
 import org.myazure.domain.Driver;
 import org.myazure.domain.Factory;
+import org.myazure.domain.Vehicle;
 import org.myazure.response.StatusResponse;
 import org.myazure.service.InfoDataService;
 import org.myazure.transportation.response.DatasResponse;
@@ -135,6 +136,34 @@ public class UserController extends BaseController {
 	}
 	
 	
+	
+	
+
+	@RequestMapping(path = "/getVehicles", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public void getVehicles(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		if (!checkUser(request)) {
+			sentUnauthorizedResponse(response);
+			return;
+		}
+		String key = request.getParameter("key");
+		if (key==null || key .isEmpty()) {
+			sentMissParamResponse(response);
+			return;
+		}
+		DatasResponse<Vehicle> datasResponse = new DatasResponse<Vehicle>();
+		datasResponse.setCode(0);
+		datasResponse.setMessage("sucess");
+		datasResponse.setSuccess(true);
+		List<Vehicle> vehicles=infoDataService.getVehicles(key);
+		System.out.println(vehicles.size());
+		for (Vehicle vehicle : vehicles) {
+			datasResponse.addData(vehicle);
+		}
+		datasResponse.setVehicles(vehicles);
+		sentResponse(response, datasResponse);
+	}
 	
 	
 	
