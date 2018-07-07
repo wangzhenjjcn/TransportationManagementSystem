@@ -220,18 +220,8 @@ public class OrderController extends BaseController {
 
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 	
 	
 	@RequestMapping(path = "/creatFactory", method = { RequestMethod.POST,
