@@ -38,14 +38,14 @@
   <!-- Google Font
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
    -->
-  
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>D</b>XH</span>
       <!-- logo for regular state and mobile devices -->
@@ -53,8 +53,10 @@
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-  
+        <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
        
     </nav>
   </header>
@@ -285,12 +287,104 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        
-              
+		<section class="col-lg-7 connectedSortable">
+		
+          <!-- TABLE: LATEST ORDERS -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">最新订单</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                  <tr>
+                    <th>订单号</th>
+                    <th>摘要</th>
+                    <th>状态</th>
+                    <th>司机</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td><a href="order.html">OR9842</a></td>
+                    <td>上海浦东-苏州工业园-鼎泰</td>
+                    <td><span class="label label-success">已送达</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
+                    </td>
+                  </tr>
+                   <tr>
+                    <td><a href="order.html">OR9842</a></td>
+                    <td>上海浦东-苏州工业园-鼎泰</td>
+                    <td><span class="label label-warning">运输超时</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
+                    </td>
+                  </tr>
+				   <tr>
+                    <td><a href="order.html">OR9842</a></td>
+                    <td>上海浦东-苏州工业园-鼎泰</td>
+                    <td><span class="label label-info">运输中</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
+                    </td>
+                  </tr>
+				   <tr>
+                    <td><a href="order.html">OR9842</a></td>
+                    <td>上海浦东-苏州工业园-鼎泰</td>
+                    <td><span class="label label-danger">严重超时</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
+                    </td>
+                  </tr>
+				   <tr>
+                    <td><a href="order.html">OR9842</a></td>
+                    <td>上海浦东-苏州工业园-鼎泰</td>
+                    <td><span class="label label-success">已送达</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
+                    </td>
+                  </tr>
+				   <tr>
+                    <td><a href="order.html">OR9842</a></td>
+                    <td>上海浦东-苏州工业园-鼎泰</td>
+                    <td><span class="label label-success">已送达</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
+                    </td>
+                  </tr>
+				   <tr>
+                    <td><a href="order.html">OR9842</a></td>
+                    <td>上海浦东-苏州工业园-鼎泰</td>
+                    <td><span class="label label-success">已送达</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">新订单</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">查看所有订单</a>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+        </section>     
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
         <section class="col-lg-5 connectedSortable">
-
-
  
           <!-- Calendar -->
           <div class="box box-solid bg-green-gradient">
