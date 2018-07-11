@@ -3,6 +3,7 @@ package org.myazure.repository;
 import java.util.List;
 
 import org.myazure.domain.Order;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,6 @@ public interface OrderRepository extends
 
 	// List<Order> findByFactoryId(int factoryId);
 	List<Order> findTop5ByOrderByOrderIdDesc();
-
 
 
 

@@ -35,7 +35,7 @@ public class UserController extends BaseController {
 
 	}
 
-	@RequestMapping(path = "/login", method = { RequestMethod.POST,
+	@RequestMapping(path = "/l0gin", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public void login(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -43,15 +43,35 @@ public class UserController extends BaseController {
 		LOG.debug("ServerSESSION:" + request.getSession().getId());
 		StatusResponse loginStatusResponse = null;
 		String username = request.getParameter("username");
-		LOG.debug("User:" + username);
 		String password = request.getParameter("password");
 		String logonIp = request.getRemoteAddr();
+		LOG.debug(request.getLocalAddr());
+		LOG.debug(request.getPathTranslated());
+		LOG.debug(request.getProtocol());
+		LOG.debug(request.getRemoteAddr());
+		LOG.debug(request.getRemoteHost());
+		LOG.debug(request.getRemoteUser());
+		LOG.debug(request.getContextPath());
+		LOG.debug(request.getLocalName());
+		LOG.debug(request.getPathInfo());
+		LOG.debug(request.getRequestURI());
+		LOG.debug(request.getScheme());
+		LOG.debug(request.getServerName());
+		LOG.debug(request.getServletPath());
+		LOG.debug(request.getRequestURL().toString());
+		LOG.debug(request.getServerPort()+"");
+		LOG.debug(request.getScheme());
+		LOG.debug("User:" + username+" ,Password:"+password+" .");
 		if (!webUserService.login(username, password, request.getSession()
 				.getId(), logonIp)) {
 			loginStatusResponse = new StatusResponse(
 					"invalid username/password logon denied", 6, false);
 			response.addCookie(new Cookie("4682543566466", System
 					.currentTimeMillis() + ""));
+			if (username==null||password==null) {
+			}else {
+				response.sendRedirect(request.getRequestURL().toString()+".html");
+			}
 		} else {
 			loginStatusResponse = new StatusResponse("user:" + username
 					+ " logon sucess", 0, true);
