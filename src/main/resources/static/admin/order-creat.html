@@ -50,7 +50,37 @@
   <!-- Google Font
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
    -->
+  <style>
+    .color-palette {
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+    }
 
+    .color-palette-set {
+      margin-bottom: 15px;
+    }
+
+    .color-palette span {
+      display: none;
+      font-size: 12px;
+    }
+
+    .color-palette:hover span {
+      display: block;
+    }
+
+    .color-palette-box h4 {
+      position: absolute;
+      top: 100%;
+      left: 25px;
+      margin-top: -40px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 12px;
+      display: block;
+      z-index: 7;
+    }
+  </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -287,7 +317,17 @@
                   <option>园区雷我</option>
                 </select></div>
               </div>
-			  
+		 	  
+			    
+			    <div class="form-group">
+			  <div class="col-md-2">
+			  <label>客户编号：</label>
+			   </div>
+			  <div class="input-group col-md-10">
+                <input type="text" class="form-control" id="customer_number" placeholder="customer_number">
+              </div>
+			   </div>
+	 	  
 			    <div class="form-group">
 			  <div class="col-md-2">
 			  <label>运编号：</label>
@@ -315,15 +355,7 @@
               </div>
 			   </div>
 			  
-			  
-			    <div class="form-group">
-			  <div class="col-md-2">
-			  <label>客户编号：</label>
-			   </div>
-			  <div class="input-group col-md-10">
-                <input type="text" class="form-control" id="customer_number" placeholder="customer_number">
-              </div>
-			   </div>
+			
 			  
 			  
 			  <div class="form-group">
@@ -591,21 +623,42 @@
             <!-- form start -->
             <form class="form-horizontal">
               <div class="box-body">
+			  
+			   <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> 创建成功</h4>
+                你可以使用此客户了.
+              </div>
+			  
+			  
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">客户名称</label>
+                  <label for="customerName" class="col-sm-2 control-label">客户名称</label>
 
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="客户名称">
+                    <input type="text" class="form-control" id="customerName" placeholder="客户全称">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">联系方式</label>
+                  <label for="customerAddress" class="col-sm-2 control-label">客户地址</label>
 
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="联系方式">
+                    <input type="text" class="form-control" id="customerAddress" placeholder="详细地址">
                   </div>
                 </div>
-                 
+                   <div class="form-group">
+                  <label for="customerContactName" class="col-sm-2 control-label">联系人</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="customerContactName" placeholder="客户联系人姓名">
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <label for="customerContactPhone" class="col-sm-2 control-label">联系电话</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="customerContactPhone" placeholder="客户联系人电话">
+                  </div>
+                </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
@@ -618,6 +671,81 @@
           <!-- /.box -->
 		  
            
+		   <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">创建工厂</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+              <div class="box-body">
+			  
+			  <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			   <h4><i class="icon fa fa-ban"></i> 创建失败!</h4>
+                该工厂已经存在！
+              </div>
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+                <div class="form-group">
+                  <label for="factoryName" class="col-sm-2 control-label">工厂名称</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="factoryName" placeholder="工厂全称">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="factoryAddress" class="col-sm-2 control-label">工厂地址</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="factoryAddress" placeholder="工厂详细地址">
+                  </div>
+                </div>
+                   <div class="form-group">
+                  <label for="factoryContactName" class="col-sm-2 control-label">联系人</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="factoryContactName" placeholder="工厂联系人姓名">
+                  </div>
+                </div> 
+                  <div class="form-group">
+                  <label for="factoryContactPhone" class="col-sm-2 control-label">联系电话</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="factoryContactPhone" placeholder="工厂联系人电话">
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-default">清空</button>
+                <button type="submit" class="btn btn-info pull-right">创建</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+          <!-- /.box -->
+		  
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
         </div>
         <!--/.col (right) -->
       </div>
