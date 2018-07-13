@@ -35,8 +35,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.permitAll().and().logout().deleteCookies("remember-me")
 				.permitAll().and().rememberMe();
 	}
-
-	
 	
 	@Bean
 	public AnonymousAuthenticationProvider anonymousAuthenticationProvider() {

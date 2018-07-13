@@ -116,15 +116,15 @@
             <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Username</p>
+            <p>王振</p>
             <a href="#">
-              <i class="fa fa-circle text-success"></i> Online</a>
+              <i class="fa fa-circle text-success"></i> 超级管理员</a>
           </div>
         </div>
         <!-- search form -->
         <form action="#" method="get" class="sidebar-form">
           <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Search...">
+            <input type="text" name="q" class="form-control" placeholder="检索">
             <span class="input-group-btn">
               <button type="submit" name="search" id="search-btn" class="btn btn-flat">
                 <i class="fa fa-search"></i>
@@ -150,7 +150,7 @@
                   <i class="fa fa-circle-o"></i> 监控中心</a>
               </li>
               <li>
-                <a href="index2.html">
+                <a href="index.html">
                   <i class="fa fa-circle-o"></i> 财务中心</a>
               </li>
             </ul>
@@ -169,31 +169,31 @@
             </a>
             <ul class="treeview-menu">
               <li class="active">
-                <a href="orderCreat.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 创建订单</a>
               </li>
               <li>
-                <a href="pages/layout/top-nav.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 待审订单</a>
               </li>
               <li>
-                <a href="pages/layout/boxed.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 运输订单</a>
               </li>
               <li>
-                <a href="pages/layout/fixed.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 送达订单</a>
               </li>
               <li>
-                <a href="pages/layout/fixed.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 待付费订单</a>
               </li>
               <li>
-                <a href="pages/layout/fixed.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 历史订单</a>
               </li>
               <li>
-                <a href="pages/layout/fixed.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 查询订单</a>
               </li>
             </ul>
@@ -210,11 +210,11 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="pages/forms/general.html">
+                <a href="customer-creat.html">
                   <i class="fa fa-circle-o"></i> 创建客户</a>
               </li>
               <li>
-                <a href="pages/forms/advanced.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 查找客户</a>
               </li>
             </ul>
@@ -234,11 +234,11 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="pages/tables/simple.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 创建工厂</a>
               </li>
               <li>
-                <a href="pages/tables/data.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 查找工厂</a>
               </li>
             </ul>
@@ -254,11 +254,11 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="pages/tables/simple.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 创建货车</a>
               </li>
               <li>
-                <a href="pages/tables/data.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 查找货车</a>
               </li>
             </ul>
@@ -274,11 +274,11 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="pages/tables/simple.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 创建司机</a>
               </li>
               <li>
-                <a href="pages/tables/data.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 查找司机</a>
               </li>
             </ul>
@@ -295,11 +295,11 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="pages/tables/simple.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 创建物流方案</a>
               </li>
               <li>
-                <a href="pages/tables/data.html">
+                <a href="#">
                   <i class="fa fa-circle-o"></i> 查找物流方案</a>
               </li>
             </ul>
@@ -340,7 +340,7 @@
         </h1>
         <ol class="breadcrumb">
           <li>
-            <a href="#">
+            <a href="index.html">
               <i class="fa fa-dashboard"></i> 系统</a>
           </li>
           <li>
@@ -363,8 +363,10 @@
                 <h3 class="box-title">创建订单</h3>
               </div>
               <!-- /.box-header -->
-              <!-- form start -->
-              <form role="form">
+              <!-- form start          <form role="form" action="/creatOrder" > -->
+         
+			  
+			  <form role="form"   >
                 <div class="box-body">
                   <div class="form-group">
                     <div class="col-md-2">
@@ -374,7 +376,7 @@
                       <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                       </div>
-                      <input type="text" class="form-control pull-right" value="" id="datepicker">
+                      <input type="text" class="form-control pull-right" value="" name="orderTime"  id="datepicker">
                     </div>
                     <!-- /.input group -->
                   </div>
@@ -386,7 +388,7 @@
                     </div>
                     <div class="  input-group  col-md-10">
             
-                         <select class="form-control select2 js-getCustomers-data-ajax" style="width: 100%;">
+                         <select class="form-control select2 js-getCustomers-data-ajax"  name="customer_id"   style="width: 100%;">
                       </select>
                     </div>
                   </div>
@@ -398,7 +400,7 @@
                       <label>工厂：</label>
                     </div>
                      <div class="input-group  col-md-10">
-                      <select class="form-control select2 js-getFactories-data-ajax" style="width: 100%;">
+                      <select class="form-control select2 js-getFactories-data-ajax" name="factory_id"   style="width: 100%;">
                         
                       </select>
                     </div>
@@ -410,7 +412,7 @@
                       <label>客户编号：</label>
                     </div>
                     <div class="  input-group  col-md-10">
-                      <input type="text" class="form-control" id="customer_number" placeholder="customer_number">
+                      <input type="text" class="form-control" id="customer_number"  name="customer_number"  placeholder="customer_number">
                     </div>
                   </div>
 
@@ -419,7 +421,7 @@
                       <label>运编号：</label>
                     </div>
                     <div class="  input-group  col-md-10">
-                      <input type="text" class="form-control" id="transfer_number" placeholder="transfer_number">
+                      <input type="text" class="form-control" id="transfer_number"  name="transfer_number"  placeholder="transfer_number">
                     </div>
                   </div>
 
@@ -428,7 +430,7 @@
                       <label>进仓编号：</label>
                     </div>
                     <div class="  input-group  col-md-10">
-                      <input type="text" class="form-control" id="entry_number" placeholder="entry_number">
+                      <input type="text" class="form-control" id="entry_number"  name="entry_number"  placeholder="entry_number">
                     </div>
                   </div>
 
@@ -437,7 +439,7 @@
                       <label>取件号：</label>
                     </div>
                     <div class=" input-group  col-md-10">
-                      <input type="text" class="form-control" id="pickup_number" placeholder="pickup_number">
+                      <input type="text" class="form-control" id="pickup_number"   name="pickup_number" placeholder="pickup_number">
                     </div>
                   </div>
 
@@ -450,7 +452,7 @@
                       <span class="input-group-addon">
                         <i class="fa fa-th "></i>
                       </span>
-                      <input type="text" class="form-control">
+                      <input type="text"   name="pakage"  class="form-control">
                       <span class="input-group-addon">
                         <i class="fa fa-truck"></i>
                       </span>
@@ -466,7 +468,7 @@
                       <span class="input-group-addon">
                         <i class="fa fa-reorder  "></i>
                       </span>
-                      <input type="text" class="form-control">
+                      <input type="text"   name="size"  class="form-control">
                       <span class="input-group-addon">
                         <i class="fa fa-truck"></i>
                       </span>
@@ -481,7 +483,7 @@
                       <span class="input-group-addon">
                         <i class="fa fa-sitemap "></i>
                       </span>
-                      <input type="text" class="form-control">
+                      <input type="text" name="weight" class="form-control">
                       <span class="input-group-addon">
                         <i class="fa fa-truck"></i>
                       </span>
@@ -493,7 +495,7 @@
                       <label>装货地点：</label>
                     </div>
                     <div class="  input-group  col-md-10">
-                      <select class=" form-control  js-example-data-ajax" style="width: 100%;">
+                      <select class=" form-control select2 js-getLocation-data-ajax" style="width: 100%;">
                       </select>
                     </div>
                   </div>
@@ -503,8 +505,8 @@
                       <label>装货车辆：</label>
                     </div>
                     <div class="  input-group  col-md-10">
-                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
-
+                       <select class="form-control select2 js-getVehicle-data-ajax" style="width: 100%;">
+                        
                       </select>
                     </div>
                   </div>
@@ -514,7 +516,7 @@
                       <label>装货司机：</label>
                     </div>
                     <div class="input-group  col-md-10">
-                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
+                      <select class=" form-control  select2 js-getDrivers-data-ajax" style="width: 100%;">
 
                       </select>
                     </div>
@@ -525,7 +527,7 @@
                       <label>送货地点：</label>
                     </div>
                     <div class="input-group  col-md-10">
-                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
+                      <select class=" form-control  select2 js-getLocation-data-ajax" style="width: 100%;">
 
                       </select>
                     </div>
@@ -537,7 +539,7 @@
                       <label>送货车辆：</label>
                     </div>
                     <div class="input-group  col-md-10">
-                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
+                      <select class=" form-control select2  js-getVehicle-data-ajax" style="width: 100%;">
 
                       </select>
                     </div>
@@ -548,7 +550,7 @@
                       <label>送货司机：</label>
                     </div>
                     <div class="input-group  col-md-10">
-                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
+                      <select class=" form-control  select2 js-getDrivers-data-ajax" style="width: 100%;">
                       </select>
                     </div>
                   </div>
@@ -587,12 +589,12 @@
                     <div class="input-group  col-md-10">
                       <div class="col-md-6">
                         <label>
-                          <input type="radio" name="Chartered" class="minimal"> 包车
+                          <input  value="1" type="radio" name="Chartered" class="minimal"> 包车
                         </label>
                       </div>
                       <div class="col-md-6">
                         <label>
-                          <input type="radio" name="Chartered" class="minimal" checked> 不包车
+                          <input value="0" type="radio" name="Chartered" class="minimal" checked> 不包车
                         </label>
                       </div>
 
@@ -624,9 +626,8 @@
                       <label>价格方案：</label>
                     </div>
                     <div class="input-group  col-md-10">
-                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
-                        <option value="123123" selected="selected">默认的价格方案·11</option>
-
+                      <select class=" form-control  select2 js-getPlans-data-ajax" style="width: 100%;">
+                        
                       </select>
                     </div>
                   </div>
@@ -715,28 +716,28 @@
                     <label for="customerName" class="col-sm-2 control-label">客户名称</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="customerName" placeholder="客户全称">
+                      <input type="text" class="form-control" id="customerName" name="customerName" placeholder="客户全称">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="customerAddress" class="col-sm-2 control-label">客户地址</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="customerAddress" placeholder="详细地址">
+                      <input type="text" class="form-control" id="customerAddress" name="customerAddress" placeholder="详细地址">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="customerContactName" class="col-sm-2 control-label">联系人</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="customerContactName" placeholder="客户联系人姓名">
+                      <input type="text" class="form-control" id="customerContactName" name="customerContactName" placeholder="客户联系人姓名">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="customerContactPhone" class="col-sm-2 control-label">联系电话</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="customerContactPhone" placeholder="客户联系人电话">
+                      <input type="text" class="form-control" id="customerContactPhone" name="customerContactPhone" placeholder="客户联系人电话">
                     </div>
                   </div>
                 </div>
@@ -1075,7 +1076,7 @@
 
 
       $(".js-getFactories-data-ajax").select2({
-         tags: true,
+         tags: false,
         allowClear: true,
         ajax: {
           url: "http://127.0.0.1:8888/getFactories",
@@ -1100,7 +1101,7 @@
         escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
         minimumInputLength: 0,
         maximumSelectionLength : 5,
-   
+ 
         templateResult: formatFactories,
         templateSelection: formatFactoriesSelection
       });
@@ -1122,6 +1123,42 @@
         return repo.name || repo.id;
       }
 	  
+	  
+	  
+	  
+	     $(".js-getDrivers-data-ajax").select2({
+         tags: true,
+        allowClear: true,
+        ajax: {
+          url: "http://127.0.0.1:8888/getDrivers",
+          dataType: 'json',
+          delay: 100,
+          data: function (params) {
+            return {
+              key: params.term // search term
+        
+            };
+          },
+          processResults: function (data) {
+           
+            return {
+              results: data.data 
+             
+            };
+          },
+          cache: true
+        },
+        placeholder: '输入关键字以实时获取结果',
+        escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        minimumInputLength: 0,
+        maximumSelectionLength : 5,
+    tags: true,
+        templateResult: formatDrivers,
+        templateSelection: formatDriversSelection
+      });
+	  
+	   
+	  
 		function formatDriversSelection(repo) {
         return repo.name || repo.id;
       }
@@ -1139,8 +1176,39 @@
       }
 
 
+	     $(".js-getVehicle-data-ajax").select2({
+         tags: true,
+        allowClear: true,
+        ajax: {
+          url: "http://127.0.0.1:8888/getVehicles",
+          dataType: 'json',
+          delay: 100,
+          data: function (params) {
+            return {
+              key: params.term // search term
+        
+            };
+          },
+          processResults: function (data) {
+           
+            return {
+              results: data.data 
+             
+            };
+          },
+          cache: true
+        },
+        placeholder: '输入关键字以实时获取结果',
+        escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        minimumInputLength: 0,
+        maximumSelectionLength : 5,
+    tags: true,
+        templateResult: formatVehicle,
+        templateSelection: formatVehicleSelection
+      });
+	  
 		function formatVehicleSelection(repo) {
-        return repo.name || repo.id;
+        return repo.car_license_plate || repo.id;
       }
  	     function formatVehicle(repo) {
         if (repo.loading) {
@@ -1155,8 +1223,43 @@
       }
 
 
+	     $(".js-getPlans-data-ajax").select2({
+		 
+		
+		 
+         tags: true,
+        allowClear: true,
+        ajax: {
+          url: "http://127.0.0.1:8888/getPlans",
+          dataType: 'json',
+          delay: 100,
+          data: function (params) {
+            return {
+              key: params.term // search term
+        
+            };
+          },
+		  //id: function(data){return data.data.id},
+          processResults: function (data) {
+           
+            return {
+              results: data.data 
+             
+            };
+          },
+          cache: true
+        },
+        placeholder: '输入关键字以实时获取结果',
+        escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        minimumInputLength: 0,
+        maximumSelectionLength : 5,
+   
+        templateResult: formatPlans,
+        templateSelection: formatPlansSelection
+      });
+	  
 		function formatPlansSelection(repo) {
-        return repo.car_license_plate || repo.id;
+        return repo.company_name || repo.id;
       }
 	       function formatPlans(repo) {
         if (repo.loading) {
@@ -1165,7 +1268,15 @@
 
        var markup = "<div class='select2-result-repository clearfix'>" +
           "运输方案：" + repo.company_name + "    " +
-          "工厂地址：" + repo.address + "    " +
+          "公司名称：" + repo.company_name + "    " +
+		  "起始地：" + repo.source + "    " +
+		  "目的地：" + repo.destination + "    " +
+		  "运输类型：" + repo.freight_tpye_string + "    " +
+		  "大小：" + repo.size + "    " +
+		  "重量：" + repo.weight + "    " +
+		  "距离：" + repo.distance + "    " +
+		  "价格：" + repo.price + "    " +
+		   "包车价：" + repo.chartered_price + "    " +
           "</div>";;
 
         return markup;

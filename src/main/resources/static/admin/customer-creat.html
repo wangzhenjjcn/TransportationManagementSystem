@@ -88,7 +88,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">主菜单</li>
-        <li class="active treeview">
+        <li class=" treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>主控中心</span>
             <span class="pull-right-container">
@@ -96,7 +96,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> 监控中心</a></li>
+            <li ><a href="index.html"><i class="fa fa-circle-o"></i> 监控中心</a></li>
             <li><a href="index.html"><i class="fa fa-circle-o"></i> 财务中心</a></li>
           </ul>
         </li>
@@ -113,7 +113,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-			<li><a href="order-creat.html"><i class="fa fa-circle-o"></i> 创建订单</a></li>
+			<li ><a href="order-creat.html"><i class="fa fa-circle-o"></i> 创建订单</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 待审订单</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 运输订单</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 送达订单</a></li>
@@ -124,7 +124,7 @@
         </li>
 		
 	 
-        <li class="treeview">
+        <li class="active treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>客户管理</span>
             <span class="pull-right-container">
@@ -132,7 +132,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-           <li><a href="customer-creat.html"><i class="fa fa-circle-o"></i> 创建客户</a></li>
+            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> 创建客户</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 查找客户</a></li>
           </ul>
         </li>
@@ -213,9 +213,15 @@
         <small>控制台</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 系统</a></li>
-        <li class="active">主控中心</li>
-      </ol>
+          <li>
+            <a href="index.html">
+              <i class="fa fa-dashboard"></i> 系统</a>
+          </li>
+          <li>
+            <a href="#">客户管理</a>
+          </li>
+          <li class="active">创建客户</li>
+        </ol>
     </section>
 
     <!-- Main content -->
@@ -288,237 +294,68 @@
       <div class="row">
         <!-- Left col -->
 		<section class="col-lg-7 connectedSortable">
-		
-          <!-- TABLE: LATEST ORDERS -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">最新订单</h3>
+		 <!-- Horizontal Form -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                <h3 class="box-title">创建客户</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form class="form-horizontal">
+                <div class="box-body">
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                  <tr>
-                    <th>订单号</th>
-                    <th>摘要</th>
-                    <th>状态</th>
-                    <th>司机</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td><a href="order.html">OR9842</a></td>
-                    <td>上海浦东-苏州工业园-鼎泰</td>
-                    <td><span class="label label-success">已送达</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
-                    </td>
-                  </tr>
-                   <tr>
-                    <td><a href="order.html">OR9842</a></td>
-                    <td>上海浦东-苏州工业园-鼎泰</td>
-                    <td><span class="label label-warning">运输超时</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
-                    </td>
-                  </tr>
-				   <tr>
-                    <td><a href="order.html">OR9842</a></td>
-                    <td>上海浦东-苏州工业园-鼎泰</td>
-                    <td><span class="label label-info">运输中</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
-                    </td>
-                  </tr>
-				   <tr>
-                    <td><a href="order.html">OR9842</a></td>
-                    <td>上海浦东-苏州工业园-鼎泰</td>
-                    <td><span class="label label-danger">严重超时</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
-                    </td>
-                  </tr>
-				   <tr>
-                    <td><a href="order.html">OR9842</a></td>
-                    <td>上海浦东-苏州工业园-鼎泰</td>
-                    <td><span class="label label-success">已送达</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
-                    </td>
-                  </tr>
-				   <tr>
-                    <td><a href="order.html">OR9842</a></td>
-                    <td>上海浦东-苏州工业园-鼎泰</td>
-                    <td><span class="label label-success">已送达</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
-                    </td>
-                  </tr>
-				   <tr>
-                    <td><a href="order.html">OR9842</a></td>
-                    <td>上海浦东-苏州工业园-鼎泰</td>
-                    <td><span class="label label-success">已送达</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00a65a" data-height="20">张师傅-13862109982</div>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.table-responsive -->
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              <a href="order-creat.html" class="btn btn-sm btn-info btn-flat pull-left">新订单</a>
-              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">查看所有订单</a>
-            </div>
-            <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
-		  
-		  
-		  
-		   <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
-            <div class="box-header">
-              <i class="fa fa-calendar"></i>
-
-              <h3 class="box-title">Calendar</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bars"></i></button>
-                  <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="#">Add new event</a></li>
-                    <li><a href="#">Clear events</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View calendar</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar" style="width: 100%"></div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer text-black">
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- Progress bars -->
-                  <div class="clearfix">
-                    <span class="pull-left">待审核订单</span>
-                    <small class="pull-right">90%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                  <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4>
+                      <i class="icon fa fa-check"></i> 创建成功</h4>
+                    你可以使用此客户了.
                   </div>
 
-                  <div class="clearfix">
-                    <span class="pull-left">运输订单</span>
-                    <small class="pull-right">70%</small>
+
+                  <div class="form-group">
+                    <label for="customerName" class="col-sm-2 control-label">客户名称</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="customerName" placeholder="客户全称">
+                    </div>
                   </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                  <div class="form-group">
+                    <label for="customerAddress" class="col-sm-2 control-label">客户地址</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="customerAddress" placeholder="详细地址">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="customerContactName" class="col-sm-2 control-label">联系人</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="customerContactName" placeholder="客户联系人姓名">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="customerContactPhone" class="col-sm-2 control-label">联系电话</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="customerContactPhone" placeholder="客户联系人电话">
+                    </div>
                   </div>
                 </div>
-                <!-- /.col -->
-                <div class="col-sm-6">
-                  <div class="clearfix">
-                    <span class="pull-left">待付费订单</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">异常订单</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                  </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-default">清空</button>
+                  <button type="submit" class="btn btn-info pull-right">创建</button>
                 </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
+                <!-- /.box-footer -->
+              </form>
             </div>
-          </div>
-          <!-- /.box -->
-
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
+            <!-- /.box -->
         </section>     
-        
-		
-		
-		
-		
-		<!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
         <section class="col-lg-5 connectedSortable">
  
          
-		  
-		  
-		  
-		  
-		  
-		  
-		       <!-- DONUT CHART -->
-          <div class="box box-danger">
-            <div class="box-header with-border">
-              <h3 class="box-title">订单分布图</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <canvas id="pieChart" style="height:130px"></canvas>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
+          
         </section>
         <!-- right col -->
       </div>
@@ -569,8 +406,6 @@
 <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
 <script src="static/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- ChartJS -->
-<script src="static/chart.js/Chart.js"></script>
 <!-- FastClick -->
 <script src="static/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -579,80 +414,5 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-
-
-
-
-
-<!-- page script -->
-<script>
-  $(function () {
-    
-    //-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieChart       = new Chart(pieChartCanvas)
-    var PieData        = [
-      {
-        value    : 65,
-        color    : '#f56954',
-        highlight: '#f56954',
-        label    : '异常订单'
-      },
-      {
-        value    : 53,
-        color    : '#00a65a',
-        highlight: '#00a65a',
-        label    : '运输中订单'
-      },
-      {
-        value    : 44,
-        color    : '#f39c12',
-        highlight: '#f39c12',
-        label    : '已完成订单'
-      },
-      {
-        value    : 150,
-        color    : '#3c8dbc',
-        highlight: '#3c8dbc',
-        label    : '新订单'
-      } 
-    ]
-    var pieOptions     = {
-      //Boolean - Whether we should show a stroke on each segment
-      segmentShowStroke    : true,
-      //String - The colour of each segment stroke
-      segmentStrokeColor   : '#fff',
-      //Number - The width of each segment stroke
-      segmentStrokeWidth   : 2,
-      //Number - The percentage of the chart that we cut out of the middle
-      percentageInnerCutout: 50, // This is 0 for Pie charts
-      //Number - Amount of animation steps
-      animationSteps       : 100,
-      //String - Animation easing effect
-      animationEasing      : 'easeOutBounce',
-      //Boolean - Whether we animate the rotation of the Doughnut
-      animateRotate        : true,
-      //Boolean - Whether we animate scaling the Doughnut from the centre
-      animateScale         : false,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive           : true,
-      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio  : true,
-      //String - A legend template
-      legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    pieChart.Doughnut(PieData, pieOptions)
-
-    
-  })
-</script>
-
-
-
 </body>
 </html>

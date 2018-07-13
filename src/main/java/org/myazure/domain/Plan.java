@@ -30,6 +30,12 @@ public class Plan extends BaseEntity implements Serializable {
 	@JSONField(name = "freight_tpye")
 	@Column(name = "freight_tpye", columnDefinition = "int(11) unsigned DEFAULT NULL")
 	private int freight_tpye;
+
+	@JsonProperty("freight_tpye_String")
+	@JSONField(name = "freight_tpye_String")
+	@Transient
+	private String freight_tpye_string;
+
 	@JsonProperty("price")
 	@JSONField(name = "price")
 	@Column(name = "price", columnDefinition = "int(11) unsigned DEFAULT NULL")
@@ -101,17 +107,17 @@ public class Plan extends BaseEntity implements Serializable {
 
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
-		this.companyNamepy=S.getPinYinFirstChar(companyName);
+		this.companyNamepy = S.getPinYinFirstChar(companyName);
 	}
 
 	public void setSource(String source) {
 		this.source = source;
-		this.sourcepy=S.getPinYinFirstChar(source);
+		this.sourcepy = S.getPinYinFirstChar(source);
 	}
 
 	public void setDestination(String destination) {
 		this.destination = destination;
-		this.destinationpy=S.getPinYinFirstChar(destination);
+		this.destinationpy = S.getPinYinFirstChar(destination);
 	}
 
 	public Plan() {
@@ -176,6 +182,27 @@ public class Plan extends BaseEntity implements Serializable {
 
 	public void setFreight_tpye(int freight_tpye) {
 		this.freight_tpye = freight_tpye;
+		//1.陆运，2.空运，3.海运，4.其他
+		switch (freight_tpye) {
+		case 1:
+			this.freight_tpye_string="陆运";
+			break;
+		case 2:
+			this.freight_tpye_string="空运";
+			break;
+
+		case 3:
+			this.freight_tpye_string="海运";
+			break;
+
+		case 4:
+			this.freight_tpye_string="其他";
+			break;
+
+		default:
+			break;
+		}
+
 	}
 
 	public String getCompanyNamepy() {
@@ -184,6 +211,14 @@ public class Plan extends BaseEntity implements Serializable {
 
 	public void setCompanyNamepy(String companyNamepy) {
 		this.companyNamepy = companyNamepy;
+	}
+
+	public String getFreight_tpye_string() {
+		return freight_tpye_string;
+	}
+
+	public void setFreight_tpye_string(String freight_tpye_string) {
+		this.freight_tpye_string = freight_tpye_string;
 	}
 
 }
