@@ -21,8 +21,8 @@ public class Factory extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@JsonProperty("factory_id")
-	@JSONField(name = "factory_id")
+	@JsonProperty("id")
+	@JSONField(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "factory_id", nullable = false, length = 11, columnDefinition = "bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号'", insertable = true)
 	private Long id;

@@ -36,6 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.permitAll().and().rememberMe();
 	}
 
+	
+	
 	@Bean
 	public AnonymousAuthenticationProvider anonymousAuthenticationProvider() {
 		return new AnonymousAuthenticationProvider("foobar");

@@ -24,8 +24,8 @@ public class Cushion extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@JsonProperty("cushion_id")
-	@JSONField(name = "cushion_id")
+	@JsonProperty("id")
+	@JSONField(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cushion_id", nullable = false, length = 11, columnDefinition = "bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单编号'", insertable = true)
 	private Long cushionId;

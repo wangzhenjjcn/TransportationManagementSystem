@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>物流管理系统 | 主控中心</title>
+  <title>物流管理系统 | 创建订单</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -12,7 +13,7 @@
   <link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="static/Ionicons/css/ionicons.min.css">
-   <!-- daterange picker -->
+  <!-- daterange picker -->
   <link rel="stylesheet" href="static/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="static/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
@@ -82,793 +83,1126 @@
     }
   </style>
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+  <div class="wrapper">
 
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="index.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>D</b>XH</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>鼎宏鑫</b>物流管理</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-        <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">导航</span>
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">
+          <b>D</b>XH</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">
+          <b>鼎宏鑫</b>物流管理</span>
       </a>
-       
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">导航</span>
+        </a>
+
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p>Username</p>
+            <a href="#">
+              <i class="fa fa-circle text-success"></i> Online</a>
+          </div>
         </div>
-        <div class="pull-left info">
-          <p>Username</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">主菜单</li>
+          <li class=" treeview">
+            <a href="#">
+              <i class="fa fa-dashboard"></i>
+              <span>主控中心</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
               </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">主菜单</li>
-        <li class=" treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>主控中心</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li ><a href="index.html"><i class="fa fa-circle-o"></i> 监控中心</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> 财务中心</a></li>
-          </ul>
-        </li>
-		
-		
-		
-		
-        <li class=" active treeview">
-          <a href="#">
-            <i class="fa fa-th"></i>
-            <span>订单管理</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-			<li class="active"><a href="orderCreat.html"><i class="fa fa-circle-o"></i> 创建订单</a></li>
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> 待审订单</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> 运输订单</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> 送达订单</a></li>
-			<li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> 待付费订单</a></li>
-			<li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> 历史订单</a></li>
-			<li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> 查询订单</a></li>
-          </ul>
-        </li>
-		
-	 
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>客户管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> 创建客户</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> 查找客户</a></li>
-          </ul>
-        </li>
-		
-		
-		
-		
-		
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>工厂管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> 创建工厂</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> 查找工厂</a></li>
-          </ul>
-        </li>
-		
-		 <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>车辆管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> 创建货车</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> 查找货车</a></li>
-          </ul>
-        </li>
-		
-		<li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>司机管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> 创建司机</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> 查找司机</a></li>
-          </ul>
-        </li>
-		
-		
-		<li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>物流管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> 创建物流方案</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> 查找物流方案</a></li>
-          </ul>
-        </li>
-		
-	   
-        <li class="header">LABELS</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>重要提示</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>订单警告</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>系统信息</span></a></li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <a href="index.html">
+                  <i class="fa fa-circle-o"></i> 监控中心</a>
+              </li>
+              <li>
+                <a href="index2.html">
+                  <i class="fa fa-circle-o"></i> 财务中心</a>
+              </li>
+            </ul>
+          </li>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        订单管理：
-        <small>创建订单</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 系统</a></li>
-		 <li><a href="#">订单管理</a></li>
-        <li class="active">创建订单</li>
-      </ol>
-    </section>
 
-    <!-- Main content -->
-    <section class="content">
-  
-      <!-- Main row -->
-       <div class="row">
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">创建订单</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form">
-              <div class="box-body">
-			  <div class="form-group">
-                  <div class="col-md-2">
-				<label>订单日期：</label>
-				</div>
-                <div class="input-group date col-md-10">
-                  <div class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
-                  </div>
-                  <input type="text" class="form-control pull-right" id="datepicker">
-                </div>
-                <!-- /.input group -->
-              </div>
-			   <div class="form-group">
-			    <div class="col-md-2">
-                <label>客户：</label></div>
-				<div class="input-group col-md-10">
-                <select class="form-control select2 " style="width: 100%;">
-                  <option selected="selected">三星半导体</option>
-                  <option>国家测控</option>
-                  <option>园区创维</option>
-                  <option>新区辛哈</option>
-                  <option>相城看书</option>
-                  <option>吴中阿里</option>
-                  <option>园区雷我</option>
-                </select></div>
-              </div>
-			   <div class="form-group">
-			     <div class="col-md-2">
-                <label>工厂：</label></div>
-				<div class="input-group col-md-10">
-                <select class="form-control select2 " style="width: 100%;">
-                  <option selected="selected">三星半导体</option>
-                  <option>国家测控</option>
-                  <option>园区创维</option>
-                  <option>新区辛哈</option>
-                  <option>相城看书</option>
-                  <option>吴中阿里</option>
-                  <option>园区雷我</option>
-                </select></div>
-              </div>
-		 	  
-			    
-			    <div class="form-group">
-			  <div class="col-md-2">
-			  <label>客户编号：</label>
-			   </div>
-			  <div class="input-group col-md-10">
-                <input type="text" class="form-control" id="customer_number" placeholder="customer_number">
-              </div>
-			   </div>
-	 	  
-			    <div class="form-group">
-			  <div class="col-md-2">
-			  <label>运编号：</label>
-			   </div>
-			  <div class="input-group col-md-10">
-                <input type="text" class="form-control" id="transfer_number" placeholder="transfer_number">
-              </div>
-			   </div>
-			  
-			    <div class="form-group">
-			  <div class="col-md-2">
-			  <label>进仓编号：</label>
-			   </div>
-			  <div class="input-group col-md-10">
-                <input type="text" class="form-control" id="entry_number" placeholder="entry_number">
-              </div>
-			   </div>
-			  
-			      <div class="form-group">
-			  <div class="col-md-2">
-			  <label>取件号：</label>
-			   </div>
-			  <div class="input-group col-md-10">
-                <input type="text" class="form-control" id="pickup_number" placeholder="pickup_number">
-              </div>
-			   </div>
-			  
-			
-			  
-			  
-			  <div class="form-group">
-			  <div class="col-md-2">
-				<label>件数：</label>
-			  </div>
-			  <div class="input-group col-md-10">
-                <span class="input-group-addon"><i class="fa fa-th "></i></span>
-                <input type="text" class="form-control">
-                <span class="input-group-addon"><i class="fa fa-truck"></i></span>
-              </div>
-			  </div>
-			   <div class="form-group">
-			  <div class="col-md-2">
-			  <label>体积：</label> 
-			  </div>
-			  <div class="input-group col-md-10">
-                <span class="input-group-addon"><i class="fa fa-reorder  "></i></span>
-                <input type="text" class="form-control">
-                <span class="input-group-addon"><i class="fa fa-truck"></i></span>
-              </div>
-			  </div>
-			  
-			  <div class="form-group">
-			  <div class="col-md-2">
-			  <label>重量：</label>
-			    </div>
-			  <div class="input-group col-md-10">
-				
-                <span class="input-group-addon"><i class="fa fa-sitemap "></i></span>
-                <input type="text" class="form-control">
-                <span class="input-group-addon"><i class="fa fa-truck"></i></span>
-              </div>
-			   </div>
-			  
-			  <div class="form-group">
-			    <div class="col-md-2">
-                <label>装货地点：</label></div>
-				<div class="input-group col-md-10">
-                <select class="form-control select2 " style="width: 100%;">
-                  <option selected="selected">三星半导体</option>
-                  <option>上海浦东</option>
-                  <option>园区</option>
-                  <option>新区</option>
-                  <option>相城</option>
-                  <option>吴中</option>
-                  <option>上海外高桥</option>
-                </select></div>
-              </div>
-			  
-			  <div class="form-group">
-			    <div class="col-md-2">
-                <label>装货车辆：</label></div>
-				<div class="input-group col-md-10">
-                <select class="form-control select2 " style="width: 100%;">
-                  <option selected="selected">苏E92JH5</option>
-                  <option>苏E922H5</option>
-                  <option>苏E12JH5</option>
-                  <option>苏EC43S5</option>
-                  <option>苏ED33H5</option>
-                  <option>苏E2NDF5</option>
-                  <option>苏EC3G4FD</option>
-                </select></div>
-              </div>
-			  
-			  <div class="form-group">
-			    <div class="col-md-2">
-                <label>装货司机：</label></div>
-				<div class="input-group col-md-10">
-                <select class="form-control select2 " style="width: 100%;">
-                  <option selected="selected">王师傅</option>
-                  <option>赵师傅</option>
-                  <option>钱师傅</option>
-                  <option>孙师傅</option>
-                  <option>李师傅</option>
-                  <option>周师傅</option>
-                  <option>问师傅</option>
-                </select></div>
-              </div>
-			  
-			    <div class="form-group">
-			    <div class="col-md-2">
-                <label>送货地点：</label></div>
-				<div class="input-group col-md-10">
-                <select class="form-control select2 " style="width: 100%;">
-                  <option selected="selected">三星半导体</option>
-                  <option>上海浦东</option>
-                  <option>园区</option>
-                  <option>新区</option>
-                  <option>相城</option>
-                  <option>吴中</option>
-                  <option>上海外高桥</option>
-                </select></div>
-              </div>
-			  
-			   
-			  <div class="form-group">
-			    <div class="col-md-2">
-                <label>送货车辆：</label></div>
-				<div class="input-group col-md-10">
-                <select class="form-control select2 " style="width: 100%;">
-                  <option selected="selected">苏E92JH5</option>
-                  <option>苏E922H5</option>
-                  <option>苏E12JH5</option>
-                  <option>苏EC43S5</option>
-                  <option>苏ED33H5</option>
-                  <option>苏E2NDF5</option>
-                  <option>苏EC3G4FD</option>
-                </select></div>
-              </div>
-			  
-			  <div class="form-group">
-			    <div class="col-md-2">
-                <label>送货司机：</label></div>
-				<div class="input-group col-md-10">
-                <select class="form-control select2 " style="width: 100%;">
-                  <option selected="selected">王师傅</option>
-                  <option>赵师傅</option>
-                  <option>钱师傅</option>
-                  <option>孙师傅</option>
-                  <option>李师傅</option>
-                  <option>周师傅</option>
-                  <option>问师傅</option>
-                </select></div>
-              </div>
-			  
-			  
-			  
-			  
-			  
-			    <div class="form-group">
-			  <div class="col-md-2">
-			  <label>联系人姓名：</label>
-			   </div>
-			  <div class="input-group col-md-10">
-                <input type="text" class="form-control" id="contact" placeholder="contact">
-              </div>
-			   </div>
-			  
-			      <div class="form-group">
-			  <div class="col-md-2">
-			  <label>联系人电话：</label>
-			   </div>
-			  <div class="input-group col-md-10">
-               <div class="input-group-addon">
-                    <i class="fa fa-phone"></i>
-                  </div>
-                  <input type="text" class="form-control"
-                         data-inputmask="'mask': ['9999-999-9999', '+086 9999 9999999']" data-mask>
-              </div>
-			   </div>
-			  
-			  
-			  
-			  <div class="form-group">
-			  <div class="col-md-2">
-			  <label>是否包车：</label>
-			    </div>
-			  <div class="input-group col-md-10">
-				  <div class="col-md-6">
-                <label>
-                 <input type="radio" name="Chartered" class="minimal" >
-                 包车
-                </label></div>
-                   <div class="col-md-6">
-                <label>
-                 <input type="radio" name="Chartered" class="minimal"  checked>
-                 不包车
-                </label></div>
-          
-              </div>
-			   </div>
-			  
-			  
-			  <div class="form-group">
-			  <div class="col-md-2">
-			  <label>里程：</label>
-			    </div>
-			  <div class="input-group col-md-10">
-				
-                <span class="input-group-addon"><i class="fa fa-share "></i></span>
-                <input type="text" class="form-control">
-                <span class="input-group-addon"><i class="fa fa-road"></i></span>
-              </div>
-			   </div>
-			  
-			  
-			  
-			    
-			  <div class="form-group">
-			    <div class="col-md-2">
-                <label>价格方案：</label></div>
-				<div class="input-group col-md-10">
-                <select class="form-control select2 " style="width: 100%;">
-                  <option selected="selected">德邦400元/1方/200Kg</option>
-                  <option>德邦300元/1方/200Kg</option>
-                  <option>德邦420元/1方/201Kg</option>
-                  <option>德邦430元/2方/220Kg</option>
-                  <option>德邦440元/2方/200Kg</option>
-                  <option>德邦400元/2方/203Kg</option>
-                  <option>德邦400元/1方/270Kg</option>
-                </select></div>
-              </div>
-			  
-			  
-			  
-			  
-			  <div class="form-group">
-			  <div class="col-md-2">
-			  <label>运费：</label>
-			   </div>
-			  <div class="input-group col-md-10">
-				
-                <span class="input-group-addon"><i class="fa fa-cny "></i></span>
-                <input type="text" class="form-control">
-                <span class="input-group-addon"><i class="fa fa-truck"></i></span>
-              </div>
-			   </div>
-			  
-			  
-			    
-			  <div class="form-group">
-			  <div class="col-md-2">
-			  <label>代付费：</label>
-			   </div>
-			  <div class="input-group col-md-10">
-				
-                <span class="input-group-addon"><i class="fa fa-cny "></i></span>
-                <input type="text" class="form-control">
-                <span class="input-group-addon"><i class="fa fa-truck"></i></span>
-              </div>
-			   </div>
-			  
-			  
-			  
-			  
-			   <div class="form-group">
-			  <div class="col-md-2">
-			  <label>备注：</label>
-			   </div>
-			  <div class="input-group col-md-10">
-                <input type="text" class="form-control" id="remarks" placeholder="remarks">
-              </div>
-			   </div>
-			  
-			  </div>
-              <!-- /.box-body -->
 
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">提交保存订单</button>
+
+          <li class=" active treeview">
+            <a href="#">
+              <i class="fa fa-th"></i>
+              <span>订单管理</span>
+              <span class="pull-right-container">
+                <span class="label label-primary pull-right">4</span>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="active">
+                <a href="orderCreat.html">
+                  <i class="fa fa-circle-o"></i> 创建订单</a>
+              </li>
+              <li>
+                <a href="pages/layout/top-nav.html">
+                  <i class="fa fa-circle-o"></i> 待审订单</a>
+              </li>
+              <li>
+                <a href="pages/layout/boxed.html">
+                  <i class="fa fa-circle-o"></i> 运输订单</a>
+              </li>
+              <li>
+                <a href="pages/layout/fixed.html">
+                  <i class="fa fa-circle-o"></i> 送达订单</a>
+              </li>
+              <li>
+                <a href="pages/layout/fixed.html">
+                  <i class="fa fa-circle-o"></i> 待付费订单</a>
+              </li>
+              <li>
+                <a href="pages/layout/fixed.html">
+                  <i class="fa fa-circle-o"></i> 历史订单</a>
+              </li>
+              <li>
+                <a href="pages/layout/fixed.html">
+                  <i class="fa fa-circle-o"></i> 查询订单</a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-edit"></i>
+              <span>客户管理</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <a href="pages/forms/general.html">
+                  <i class="fa fa-circle-o"></i> 创建客户</a>
+              </li>
+              <li>
+                <a href="pages/forms/advanced.html">
+                  <i class="fa fa-circle-o"></i> 查找客户</a>
+              </li>
+            </ul>
+          </li>
+
+
+
+
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-table"></i>
+              <span>工厂管理</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <a href="pages/tables/simple.html">
+                  <i class="fa fa-circle-o"></i> 创建工厂</a>
+              </li>
+              <li>
+                <a href="pages/tables/data.html">
+                  <i class="fa fa-circle-o"></i> 查找工厂</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-table"></i>
+              <span>车辆管理</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <a href="pages/tables/simple.html">
+                  <i class="fa fa-circle-o"></i> 创建货车</a>
+              </li>
+              <li>
+                <a href="pages/tables/data.html">
+                  <i class="fa fa-circle-o"></i> 查找货车</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-table"></i>
+              <span>司机管理</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <a href="pages/tables/simple.html">
+                  <i class="fa fa-circle-o"></i> 创建司机</a>
+              </li>
+              <li>
+                <a href="pages/tables/data.html">
+                  <i class="fa fa-circle-o"></i> 查找司机</a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-table"></i>
+              <span>物流管理</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <a href="pages/tables/simple.html">
+                  <i class="fa fa-circle-o"></i> 创建物流方案</a>
+              </li>
+              <li>
+                <a href="pages/tables/data.html">
+                  <i class="fa fa-circle-o"></i> 查找物流方案</a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="header">LABELS</li>
+          <li>
+            <a href="#">
+              <i class="fa fa-circle-o text-red"></i>
+              <span>重要提示</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-circle-o text-yellow"></i>
+              <span>订单警告</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-circle-o text-aqua"></i>
+              <span>系统信息</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          订单管理：
+          <small>创建订单</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li>
+            <a href="#">
+              <i class="fa fa-dashboard"></i> 系统</a>
+          </li>
+          <li>
+            <a href="#">订单管理</a>
+          </li>
+          <li class="active">创建订单</li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+
+        <!-- Main row -->
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">创建订单</h3>
               </div>
-            </form>
-          </div>
-          <!-- /.box -->
-        </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
-          <!-- Horizontal Form -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">创建客户</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form class="form-horizontal">
-              <div class="box-body">
-			  
-			   <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-check"></i> 创建成功</h4>
-                你可以使用此客户了.
-              </div>
-			  
-			  
-                <div class="form-group">
-                  <label for="customerName" class="col-sm-2 control-label">客户名称</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="customerName" placeholder="客户全称">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="customerAddress" class="col-sm-2 control-label">客户地址</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="customerAddress" placeholder="详细地址">
-                  </div>
-                </div>
-                   <div class="form-group">
-                  <label for="customerContactName" class="col-sm-2 control-label">联系人</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="customerContactName" placeholder="客户联系人姓名">
-                  </div>
-                </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form role="form">
+                <div class="box-body">
                   <div class="form-group">
-                  <label for="customerContactPhone" class="col-sm-2 control-label">联系电话</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="customerContactPhone" placeholder="客户联系人电话">
+                    <div class="col-md-2">
+                      <label>订单日期：</label>
+                    </div>
+                    <div class="input-group date col-md-10">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="text" class="form-control pull-right" value="" id="datepicker">
+                    </div>
+                    <!-- /.input group -->
                   </div>
-                </div>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <button type="submit" class="btn btn-default">清空</button>
-                <button type="submit" class="btn btn-info pull-right">创建</button>
-              </div>
-              <!-- /.box-footer -->
-            </form>
-          </div>
-          <!-- /.box -->
-		  
-           
-		   <!-- Horizontal Form -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">创建工厂</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form class="form-horizontal">
-              <div class="box-body">
-			  
-			  <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			   <h4><i class="icon fa fa-ban"></i> 创建失败!</h4>
-                该工厂已经存在！
-              </div>
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-                <div class="form-group">
-                  <label for="factoryName" class="col-sm-2 control-label">工厂名称</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="factoryName" placeholder="工厂全称">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="factoryAddress" class="col-sm-2 control-label">工厂地址</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="factoryAddress" placeholder="工厂详细地址">
-                  </div>
-                </div>
-                   <div class="form-group">
-                  <label for="factoryContactName" class="col-sm-2 control-label">联系人</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="factoryContactName" placeholder="工厂联系人姓名">
-                  </div>
-                </div> 
                   <div class="form-group">
-                  <label for="factoryContactPhone" class="col-sm-2 control-label">联系电话</label>
+                    <div class="col-md-2">
+                      <label>客户：</label>
+                    </div>
+                    <div class="  input-group  col-md-10">
+            
+                         <select class="form-control select2 js-getCustomers-data-ajax" style="width: 100%;">
+                      </select>
+                    </div>
+                  </div>
 
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="factoryContactPhone" placeholder="工厂联系人电话">
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>工厂：</label>
+                    </div>
+                     <div class="input-group  col-md-10">
+                      <select class="form-control select2 js-getFactories-data-ajax" style="width: 100%;">
+                        
+                      </select>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>客户编号：</label>
+                    </div>
+                    <div class="  input-group  col-md-10">
+                      <input type="text" class="form-control" id="customer_number" placeholder="customer_number">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>运编号：</label>
+                    </div>
+                    <div class="  input-group  col-md-10">
+                      <input type="text" class="form-control" id="transfer_number" placeholder="transfer_number">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>进仓编号：</label>
+                    </div>
+                    <div class="  input-group  col-md-10">
+                      <input type="text" class="form-control" id="entry_number" placeholder="entry_number">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>取件号：</label>
+                    </div>
+                    <div class=" input-group  col-md-10">
+                      <input type="text" class="form-control" id="pickup_number" placeholder="pickup_number">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>件数：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+                      <span class="input-group-addon">
+                        <i class="fa fa-th "></i>
+                      </span>
+                      <input type="text" class="form-control">
+                      <span class="input-group-addon">
+                        <i class="fa fa-truck"></i>
+                      </span>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>体积：</label>
+                    </div>
+                    <div class="  input-group  col-md-10">
+                      <span class="input-group-addon">
+                        <i class="fa fa-reorder  "></i>
+                      </span>
+                      <input type="text" class="form-control">
+                      <span class="input-group-addon">
+                        <i class="fa fa-truck"></i>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>重量：</label>
+                    </div>
+                    <div class=" input-group  col-md-10">
+                      <span class="input-group-addon">
+                        <i class="fa fa-sitemap "></i>
+                      </span>
+                      <input type="text" class="form-control">
+                      <span class="input-group-addon">
+                        <i class="fa fa-truck"></i>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>装货地点：</label>
+                    </div>
+                    <div class="  input-group  col-md-10">
+                      <select class=" form-control  js-example-data-ajax" style="width: 100%;">
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>装货车辆：</label>
+                    </div>
+                    <div class="  input-group  col-md-10">
+                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
+
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>装货司机：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
+
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>送货地点：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
+
+                      </select>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>送货车辆：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
+
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>送货司机：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
+                      </select>
+                    </div>
+                  </div>
+
+
+
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>联系人姓名：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+                      <input type="text" class="form-control" id="contact" placeholder="contact">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>联系人电话：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+                      <div class="input-group-addon">
+                        <i class="fa fa-phone"></i>
+                      </div>
+                      <input type="text" class="form-control" data-inputmask="'mask': ['9999-999-9999', '+086 9999 9999999']" data-mask>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>是否包车：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+                      <div class="col-md-6">
+                        <label>
+                          <input type="radio" name="Chartered" class="minimal"> 包车
+                        </label>
+                      </div>
+                      <div class="col-md-6">
+                        <label>
+                          <input type="radio" name="Chartered" class="minimal" checked> 不包车
+                        </label>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>里程：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+
+                      <span class="input-group-addon">
+                        <i class="fa fa-share "></i>
+                      </span>
+                      <input type="text" class="form-control">
+                      <span class="input-group-addon">
+                        <i class="fa fa-road"></i>
+                      </span>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>价格方案：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+                      <select class=" form-control  select2 js-example-data-ajax" style="width: 100%;">
+                        <option value="123123" selected="selected">默认的价格方案·11</option>
+
+                      </select>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>运费：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+
+                      <span class="input-group-addon">
+                        <i class="fa fa-cny "></i>
+                      </span>
+                      <input type="text" class="form-control">
+                      <span class="input-group-addon">
+                        <i class="fa fa-truck"></i>
+                      </span>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>代付费：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+
+                      <span class="input-group-addon">
+                        <i class="fa fa-cny "></i>
+                      </span>
+                      <input type="text" class="form-control">
+                      <span class="input-group-addon">
+                        <i class="fa fa-truck"></i>
+                      </span>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label>备注：</label>
+                    </div>
+                    <div class="input-group  col-md-10">
+                      <input type="text" class="form-control" id="remarks" placeholder="remarks">
+                    </div>
+                  </div>
+
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">提交保存订单</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.box -->
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                <h3 class="box-title">创建客户</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form class="form-horizontal">
+                <div class="box-body">
+
+                  <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4>
+                      <i class="icon fa fa-check"></i> 创建成功</h4>
+                    你可以使用此客户了.
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="customerName" class="col-sm-2 control-label">客户名称</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="customerName" placeholder="客户全称">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="customerAddress" class="col-sm-2 control-label">客户地址</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="customerAddress" placeholder="详细地址">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="customerContactName" class="col-sm-2 control-label">联系人</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="customerContactName" placeholder="客户联系人姓名">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="customerContactPhone" class="col-sm-2 control-label">联系电话</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="customerContactPhone" placeholder="客户联系人电话">
+                    </div>
                   </div>
                 </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-default">清空</button>
+                  <button type="submit" class="btn btn-info pull-right">创建</button>
+                </div>
+                <!-- /.box-footer -->
+              </form>
+            </div>
+            <!-- /.box -->
+
+
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                <h3 class="box-title">创建工厂</h3>
               </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <button type="submit" class="btn btn-default">清空</button>
-                <button type="submit" class="btn btn-info pull-right">创建</button>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form class="form-horizontal">
+                <div class="box-body">
+
+                  <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4>
+                      <i class="icon fa fa-ban"></i> 创建失败!</h4>
+                    该工厂已经存在！
+                  </div>
+
+
+
+
+                  <div class="form-group">
+                    <label for="factoryName" class="col-sm-2 control-label">工厂名称</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="factoryName" placeholder="工厂全称">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="factoryAddress" class="col-sm-2 control-label">工厂地址</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="factoryAddress" placeholder="工厂详细地址">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="factoryContactName" class="col-sm-2 control-label">联系人</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="factoryContactName" placeholder="工厂联系人姓名">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="factoryContactPhone" class="col-sm-2 control-label">联系电话</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="factoryContactPhone" placeholder="工厂联系人电话">
+                    </div>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-default">清空</button>
+                  <button type="submit" class="btn btn-info pull-right">创建</button>
+                </div>
+                <!-- /.box-footer -->
+              </form>
+            </div>
+            <!-- /.box -->
+
+
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                <h3 class="box-title">创建车辆</h3>
               </div>
-              <!-- /.box-footer -->
-            </form>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form class="form-horizontal">
+                <div class="box-body">
+
+                  <div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4>
+                      <i class="icon fa fa-ban"></i> 请填写车牌号!</h4>
+                    请完善资料再提交请求！
+                  </div>
+
+                  <div class="form-group">
+                    <label for="carLicensePlate" class="col-sm-2 control-label">车牌号</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="carLicensePlate" placeholder="车牌号码">
+                    </div>
+                  </div>
+
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-default">清空</button>
+                  <button type="submit" class="btn btn-info pull-right">创建</button>
+                </div>
+                <!-- /.box-footer -->
+              </form>
+            </div>
+            <!-- /.box -->
+
+
+
+
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                <h3 class="box-title">创建司机</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form class="form-horizontal">
+                <div class="box-body">
+
+                  <div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4>
+                      <i class="icon fa fa-ban"></i> 请填写完整信息!</h4>
+                    请完善资料再提交请求！
+                  </div>
+
+                  <div class="form-group">
+                    <label for="driverName" class="col-sm-2 control-label">司机姓名</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="driverName" placeholder="司机姓名">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="driverPhone" class="col-sm-2 control-label">司机电话</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="driverPhone" placeholder="司机电话">
+                    </div>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-default">清空</button>
+                  <button type="submit" class="btn btn-info pull-right">创建</button>
+                </div>
+                <!-- /.box-footer -->
+              </form>
+            </div>
+            <!-- /.box -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </div>
-          <!-- /.box -->
-		  
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
-		   
+          <!--/.col (right) -->
         </div>
-        <!--/.col (right) -->
-      </div>
-      <!-- /.row -->
-	</section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0.1
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
     </div>
-    <strong>Copyright &copy; 2018-2018 <a href="https://myazure.org">Myazure.org</a>.</strong> All rights
-    reserved.
-  </footer>
- 
- 
-</div>
-<!-- ./wrapper -->
- 
- 
-<!-- jQuery 3 -->
-<script src="static/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="static/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Select2 -->
-<script src="static/select2/dist/js/select2.full.min.js"></script>
-<!-- InputMask -->
-<script src="static/input-mask/jquery.inputmask.js"></script>
-<script src="static/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="static/input-mask/jquery.inputmask.extensions.js"></script>
-<!-- date-range-picker -->
-<script src="static/moment/min/moment.min.js"></script>
-<script src="static/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap datepicker -->
-<script src="static/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<!-- bootstrap color picker -->
-<script src="static/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-<!-- bootstrap time picker -->
-<script src="static/timepicker/bootstrap-timepicker.min.js"></script>
-<!-- SlimScroll -->
-<script src="static/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="static/iCheck/icheck.min.js"></script>
-<!-- FastClick -->
-<script src="static/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- Page script -->
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="pull-right hidden-xs">
+        <b>Version</b> 1.0.1
+      </div>
+      <strong>Copyright &copy; 2018-2018
+        <a href="https://myazure.org">Myazure.org</a>.</strong> All rights reserved.
+    </footer>
 
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
 
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+  </div>
+  <!-- ./wrapper -->
+
+
+  <!-- jQuery 3 -->
+  <script src="static/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="static/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Select2 -->
+  <script src="static/select2/dist/js/select2.full.min.js"></script>
+
+
+  <!-- InputMask -->
+  <script src="static/input-mask/jquery.inputmask.js"></script>
+  <script src="static/input-mask/jquery.inputmask.date.extensions.js"></script>
+  <script src="static/input-mask/jquery.inputmask.extensions.js"></script>
+  <!-- date-range-picker -->
+  <script src="static/moment/min/moment.min.js"></script>
+  <script src="static/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <!-- bootstrap datepicker -->
+  <script src="static/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <!-- bootstrap color picker -->
+  <script src="static/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+  <!-- bootstrap time picker -->
+  <script src="static/timepicker/bootstrap-timepicker.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="static/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- iCheck 1.0.1 -->
+  <script src="static/iCheck/icheck.min.js"></script>
+  <!-- FastClick -->
+  <script src="static/fastclick/lib/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
+  <!-- Page script -->
+  <script>
+
+
+    $(function () {
+
+
+      //Initialize Select2 Elements
+      $('.select2').select2()
+
+      //Datemask dd/mm/yyyy
+      $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+      //Datemask2 mm/dd/yyyy
+      $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+      //Money Euro
+      $('[data-mask]').inputmask()
+
+      //Date range picker
+      $('#reservation').daterangepicker()
+      //Date range picker with time picker
+      $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+      //Date range as a button
+      $('#daterange-btn').daterangepicker(
+        {
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment()
         },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        function (start, end) {
+          $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        }
+      )
+
+      //Date picker
+      $('#datepicker').datepicker({
+        autoclose: true
+      })
+
+      //iCheck for checkbox and radio inputs
+      $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+      })
+      //Red color scheme for iCheck
+      $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+        checkboxClass: 'icheckbox_minimal-red',
+        radioClass: 'iradio_minimal-red'
+      })
+      //Flat red color scheme for iCheck
+      $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass: 'iradio_flat-green'
+      })
+
+      //Colorpicker
+      $('.my-colorpicker1').colorpicker()
+      //color picker with addon
+      $('.my-colorpicker2').colorpicker()
+
+      //Timepicker
+      $('.timepicker').timepicker({
+        showInputs: false
+      })
+
+
+
+      $(".js-getCustomers-data-ajax").select2({
+        tags: false,
+        allowClear: true,
+        ajax: {
+          url: "http://127.0.0.1:8888/getCustomers",
+          dataType: 'json',
+          delay: 100,
+          data: function (params) {
+            return {
+              key: params.term// search term
+            };
+          },
+          processResults: function (data) {
+            return {
+              results: data.customers
+            };
+          },
+          cache: true
+        },
+        placeholder: '输入关键字以实时获取结果',
+        escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        minimumInputLength: 0,
+        templateResult: formatCustomers,
+        templateSelection: formatCustomersSelection
+      });
+
+      function formatCustomers(repo) {
+        if (repo.loading) {
+          return "正在服务器上检索客户数据中，请稍候";
+        }
+        var markup = "<div class='select2-result-repository clearfix'>" +
+          "客户名称：" + repo.name + "    " +
+          "客户地址：" + repo.address + "    " +
+          "</div>";;
+        return markup;
       }
-    )
 
-    //Date picker
-    $('#datepicker').datepicker({
-      autoclose: true
+      function formatCustomersSelection(repo) {
+        return repo.name;
+      }
+
+
+
+      $(".js-getFactories-data-ajax").select2({
+         tags: true,
+        allowClear: true,
+        ajax: {
+          url: "http://127.0.0.1:8888/getFactories",
+          dataType: 'json',
+          delay: 100,
+          data: function (params) {
+            return {
+              key: params.term // search term
+        
+            };
+          },
+          processResults: function (data) {
+           
+            return {
+              results: data.data 
+             
+            };
+          },
+          cache: true
+        },
+        placeholder: '输入关键字以实时获取结果',
+        escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        minimumInputLength: 0,
+        maximumSelectionLength : 5,
+   
+        templateResult: formatFactories,
+        templateSelection: formatFactoriesSelection
+      });
+
+      function formatFactories(repo) {
+        if (repo.loading) {
+          return "正在服务器上检索工厂数据中，请稍候";
+        }
+
+       var markup = "<div class='select2-result-repository clearfix'>" +
+          "工厂名称：" + repo.name + "    " +
+          "工厂地址：" + repo.address + "    " +
+          "</div>";;
+
+        return markup;
+      }
+
+		function formatFactoriesSelection(repo) {
+        return repo.name || repo.id;
+      }
+	  
+		function formatDriversSelection(repo) {
+        return repo.name || repo.id;
+      }
+	       function formatDrivers(repo) {
+        if (repo.loading) {
+          return "正在服务器上检索司机数据中，请稍候";
+        }
+
+       var markup = "<div class='select2-result-repository clearfix'>" +
+          "司机姓名：" + repo.name + "    " +
+          "司机电话：" + repo.phone + "    " +
+          "</div>";;
+
+        return markup;
+      }
+
+
+		function formatVehicleSelection(repo) {
+        return repo.name || repo.id;
+      }
+ 	     function formatVehicle(repo) {
+        if (repo.loading) {
+          return "正在服务器上检索卡车数据中，请稍候";
+        }
+
+       var markup = "<div class='select2-result-repository clearfix'>" +
+          "卡车车牌：" + repo.car_license_plate + "" + 
+          "</div>";;
+
+        return markup;
+      }
+
+
+		function formatPlansSelection(repo) {
+        return repo.car_license_plate || repo.id;
+      }
+	       function formatPlans(repo) {
+        if (repo.loading) {
+          return "正在服务器上检索运输方案数据中，请稍候";
+        }
+
+       var markup = "<div class='select2-result-repository clearfix'>" +
+          "运输方案：" + repo.company_name + "    " +
+          "工厂地址：" + repo.address + "    " +
+          "</div>";;
+
+        return markup;
+      }
+
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
     })
 
-    //iCheck for checkbox and radio inputs
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass   : 'iradio_minimal-blue'
-    })
-    //Red color scheme for iCheck
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-      checkboxClass: 'icheckbox_minimal-red',
-      radioClass   : 'iradio_minimal-red'
-    })
-    //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass   : 'iradio_flat-green'
-    })
-
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    })
-  })
-</script>
-
-
-
-
-
+  </script>
 
 
 
@@ -887,4 +1221,5 @@
 
 
 </body>
+
 </html>

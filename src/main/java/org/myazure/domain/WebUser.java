@@ -51,8 +51,8 @@ public class WebUser extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonProperty("user_id")
-	@JSONField(name = "user_id")
+	@JsonProperty("id")
+	@JSONField(name = "id")
 	@Column(name = "user_id", nullable = false, length = 11)
 	private Long id;
 

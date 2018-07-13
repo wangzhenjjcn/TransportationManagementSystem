@@ -19,8 +19,8 @@ public class Vehicle extends BaseEntity implements Serializable {
 	@Transient
 	private static final long serialVersionUID = 1L;
 	@Id
-	@JsonProperty("vehicle_id")
-	@JSONField(name = "vehicle_id")
+	@JsonProperty("id")
+	@JSONField(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "vehicle_id", nullable = false, length = 11, columnDefinition = "bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号'", insertable = true)
 	private Long id;

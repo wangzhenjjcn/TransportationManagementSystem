@@ -22,8 +22,8 @@ public class Plan extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonProperty("plan_id")
-	@JSONField(name = "plan_id")
+	@JsonProperty("id")
+	@JSONField(name = "id")
 	@Column(name = "plan_id", nullable = false, length = 11)
 	private Long id;
 	@JsonProperty("freight_tpye")

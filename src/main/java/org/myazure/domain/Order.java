@@ -29,8 +29,8 @@ public class Order extends BaseEntity implements Serializable {
 	@Transient
 	private static final long serialVersionUID = 1L;
 	@Id
-	@JsonProperty("order_id")
-	@JSONField(name = "order_id")
+	@JsonProperty("id")
+	@JSONField(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_id", nullable = false, length = 11, columnDefinition = "bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单编号'", insertable = true)
 	private Long orderId;
