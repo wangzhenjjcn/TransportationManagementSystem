@@ -1,5 +1,17 @@
 package org.myazure.utils;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.myazure.domain.Order;
+
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -11,6 +23,23 @@ public class S {
 
 	public S() {
 
+	}
+
+	public static Integer getInteger(String numString) {
+		if (numString == null) {
+			return 0;
+		} else {
+			String regEx = "[^0-9]";
+			Pattern p = Pattern.compile(regEx);
+			Matcher m = p.matcher(numString);
+			String resaultString = m.replaceAll("").trim();
+			if (resaultString.length() > 0) {
+				return Integer.parseInt(resaultString);
+			} else {
+				return 0;
+
+			}
+		}
 	}
 
 	public static String getRandomNumString(int number) {
@@ -289,4 +318,110 @@ public class S {
 		return spz.toString();
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static String[][]  getTableData(String tableString) {
+		Document doc = Jsoup.parse(tableString);
+		Elements table = doc.getElementsByTag("table");
+		// LOG.debug(table.size() + "  tables");
+		Elements tablebody = table.get(0).select("tbody");
+		int hang = 0;
+		int lie = 0;
+		int header = 0;
+		// LOG.debug(tablebody.size() + "  tablebody");
+		Elements trs = tablebody.get(0).select("tr");
+		// LOG.debug(trs.size() + "  tr");
+		hang = trs.size();
+		for (int i = 0; i < trs.size(); ++i) {
+			Element tr = trs.get(i);
+			Elements tds = tr.select("td");
+			if (trs.get(i).outerHtml().contains("日期")) {
+				lie = tds.size();
+				hang -= i + 1;
+				header = i;
+			}
+		}
+		String[][] datas = new String[hang][lie];
+		for (int i = 0; i < hang; i++) {
+			int datajnum = trs.get(i + header + 1).select("td").size();
+			for (int j = 0; j < datajnum; j++) {
+				if (trs.get(i + header + 1).select("td").get(j)
+						.hasAttr("rowspan")) {
+					int sameHangShu = Integer.valueOf(trs.get(i + header + 1)
+							.select("td").get(j).attr("rowspan"));
+					String sameString = trs.get(i + header + 1).select("td")
+							.get(j).ownText();
+					for (int k = 0; k < sameHangShu; k++) {
+						if (trs.get(header).select("td").get(j).ownText()
+								.contains("费")
+								&& k > 0) {
+							sameString = "0";
+						}
+						datas[i + k][j] = sameString;
+					}
+
+				}
+			}
+
+		}
+		for (int i = 0; i < hang; i++) {
+			int datajnum = trs.get(i + header + 1).select("td").size();
+			for (int j = 0; j < datajnum; j++) {
+				if (trs.get(i + header + 1).select("td").get(j)
+						.hasAttr("rowspan")) {
+					continue;
+				}
+				for (int k = j; k < lie; k++) {
+					if (datas[i][k] == null) {
+						datas[i][k] = trs.get(i + header + 1).select("td")
+								.get(j).ownText();
+						k = lie;
+					}
+				}
+			}
+		}
+		for (int i = 0; i < hang; i++) {
+			System.out.print(i + "   ");
+			for (int j = 0; j < lie; j++) {
+				System.out.print(datas[i][j] + "=");
+			}
+			System.out.println();
+		}
+		return datas;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

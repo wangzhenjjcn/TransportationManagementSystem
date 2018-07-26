@@ -347,4 +347,28 @@ public class InfoDataServiceImpl implements InfoDataService {
 		return customerRepository.findOne(id);
 	}
 
+	@Override
+	public Customer findOrCreatCustomer(String name) {
+		List<Customer> resault=getCustomers(name);
+		if (resault==null||resault.size()<1) {
+			Customer customer=new Customer();
+			customer.setName(name);
+			return creatCustomer(customer);
+		}else {
+			return resault.get(0);
+		}
+	}
+
+	@Override
+	public Factory findOrCreatFactory(String factoryName) {
+		List<Factory> resault=getFactories(factoryName);
+		if (resault==null||resault.size()<1) {
+			Factory factory=new Factory();
+			factory.setName(factoryName);
+			return creatFactory(factory);
+		}else {
+			return resault.get(0);
+		}
+	}
+
 }

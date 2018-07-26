@@ -73,12 +73,16 @@ public interface InfoDataService {
 	List<Order> getOrdersByRemarks(String remarks);
 
 	Customer getCustomer(String name, String address);
+	
+	Customer findOrCreatCustomer(String name);
 
 	Customer creatCustomer(Customer customer);
 
 	Factory getFactory(String name, String address);
 
 	Factory creatFactory(Factory factory);
+	
+	Factory findOrCreatFactory(String factoryName);
 
 	Vehicle getVehicle(String carLicensePlate);
 	

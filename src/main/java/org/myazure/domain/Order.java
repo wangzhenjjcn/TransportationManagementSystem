@@ -92,9 +92,9 @@ public class Order extends BaseEntity implements Serializable {
 	@JoinColumn(name = "factory_id")
 	@ManyToOne(targetEntity = Factory.class, fetch = FetchType.LAZY)
 	private Factory factory = new Factory();
-	@Transient
 	@JSONField(name = "factory_name")
 	@JsonProperty("factory_name")
+	@Column(name = "factory_name", columnDefinition = "varchar(255) DEFAULT NULL")
 	private String factoryName;
 	@Transient
 	@JSONField(name = "factory_address")
@@ -177,6 +177,10 @@ public class Order extends BaseEntity implements Serializable {
 	@JoinColumn(name = "customer_id")
 	@ManyToOne(targetEntity = Customer.class, fetch = FetchType.LAZY)
 	private Customer customer;
+	@JSONField(name = "customer_name")
+	@JsonProperty("customer_name")
+	@Column(name = "customer_name", columnDefinition = "varchar(255) DEFAULT NULL")
+	private String customerName;
 	@JsonProperty("plan")
 	@JSONField(name = "plan")
 	@JoinColumn(name = "plan_id", columnDefinition = "bigint(11) DEFAULT NULL")
@@ -292,6 +296,9 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setFactory(Factory factory) {
 		this.factory = factory;
+		if (factory==null) {
+			return;
+		}
 		this.factoryName = factory.getName();
 		this.factoryAddress = factory.getAddress();
 	}

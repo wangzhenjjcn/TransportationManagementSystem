@@ -2,18 +2,26 @@ package org.myazure.web.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.myazure.domain.Driver;
 import org.myazure.domain.Factory;
 import org.myazure.domain.Order;
 import org.myazure.domain.Plan;
 import org.myazure.domain.Vehicle;
 import org.myazure.domain.WebUser;
+import org.myazure.response.StatusResponse;
 import org.myazure.transportation.response.DatasResponse;
+import org.myazure.utils.S;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -111,10 +119,10 @@ public class OrderController extends BaseController {
 		Order order = new Order();
 		order.setCreatorUser(creatorUser);
 		order.setOrderState(0);
-		order.setTransportVehicle(infoDataService.getVehicle(Long.valueOf(request
-				.getParameter("transport_vehicle_id"))));
-		order.setDeliveryVehicle(infoDataService.getVehicle(Long.valueOf(request
-				.getParameter("delivery_vehicle_id"))));
+		order.setTransportVehicle(infoDataService.getVehicle(Long
+				.valueOf(request.getParameter("transport_vehicle_id"))));
+		order.setDeliveryVehicle(infoDataService.getVehicle(Long
+				.valueOf(request.getParameter("delivery_vehicle_id"))));
 		order.setTransportVehicleDriver(infoDataService.getDrivers(Long
 				.valueOf(request.getParameter("transport_driver_id"))));
 		order.setDeliveryVehicleDriver(infoDataService.getDrivers(Long
@@ -128,13 +136,15 @@ public class OrderController extends BaseController {
 		order.setDistence(Integer.valueOf(request.getParameter("distance")));
 		order.setEntryNumber(request.getParameter("entry_number"));
 		order.setCustomerNumber(request.getParameter("customer_number"));
-		order.setCustomer(infoDataService.getCustomer(Long.valueOf(request.getParameter("customer_id"))));
+		order.setCustomer(infoDataService.getCustomer(Long.valueOf(request
+				.getParameter("customer_id"))));
 		order.setPickupNumber(request.getParameter("pickup_number"));
 		order.setTransferNumber(request.getParameter("transfer_number"));
 		order.setSource(request.getParameter("source"));
 		order.setDestination(request.getParameter("destination"));
 		order.setPakages(Integer.valueOf(request.getParameter("packages")));
-		order.setFreightType(Integer.valueOf(request.getParameter("freight_tpye")));
+		order.setFreightType(Integer.valueOf(request
+				.getParameter("freight_tpye")));
 		order.setCarriageFee(Integer.valueOf(request
 				.getParameter("carriage_fee")));
 		order.setCushionFee(Integer.valueOf(request.getParameter("cushion_fee")));
@@ -166,11 +176,12 @@ public class OrderController extends BaseController {
 			sentMissParamResponse(response);
 			return;
 		}
-		
+
 		LOG.debug(JSON.toJSONString(request.getParameterNames()));
 		WebUser currentUser = webUserService.checkUser(request);
-		Order order = orderService.getOrder(Long.valueOf(request.getParameter("order_id")));
-		if (order==null) {
+		Order order = orderService.getOrder(Long.valueOf(request
+				.getParameter("order_id")));
+		if (order == null) {
 			sentMissParamResponse(response);
 			return;
 		}
@@ -179,10 +190,10 @@ public class OrderController extends BaseController {
 			return;
 		}
 		order.setOrderState(0);
-		order.setTransportVehicle(infoDataService.getVehicle(Long.valueOf(request
-				.getParameter("transport_vehicle_id"))));
-		order.setDeliveryVehicle(infoDataService.getVehicle(Long.valueOf(request
-				.getParameter("delivery_vehicle_id"))));
+		order.setTransportVehicle(infoDataService.getVehicle(Long
+				.valueOf(request.getParameter("transport_vehicle_id"))));
+		order.setDeliveryVehicle(infoDataService.getVehicle(Long
+				.valueOf(request.getParameter("delivery_vehicle_id"))));
 		order.setTransportVehicleDriver(infoDataService.getDrivers(Long
 				.valueOf(request.getParameter("transport_driver_id"))));
 		order.setDeliveryVehicleDriver(infoDataService.getDrivers(Long
@@ -195,14 +206,16 @@ public class OrderController extends BaseController {
 		order.setSize(Integer.valueOf(request.getParameter("size")));
 		order.setDistence(Integer.valueOf(request.getParameter("distance")));
 		order.setEntryNumber(request.getParameter("entry_number"));
-		order.setCustomer(infoDataService.getCustomer(Long.valueOf(request.getParameter("customer_id"))));
+		order.setCustomer(infoDataService.getCustomer(Long.valueOf(request
+				.getParameter("customer_id"))));
 		order.setCustomerNumber(request.getParameter("customer_number"));
 		order.setPickupNumber(request.getParameter("pickup_number"));
 		order.setTransferNumber(request.getParameter("transfer_number"));
 		order.setSource(request.getParameter("source"));
 		order.setDestination(request.getParameter("destination"));
 		order.setPakages(Integer.valueOf(request.getParameter("packages")));
-		order.setFreightType(Integer.valueOf(request.getParameter("freight_tpye")));
+		order.setFreightType(Integer.valueOf(request
+				.getParameter("freight_tpye")));
 		order.setCarriageFee(Integer.valueOf(request
 				.getParameter("carriage_fee")));
 		order.setCushionFee(Integer.valueOf(request.getParameter("cushion_fee")));
@@ -218,12 +231,6 @@ public class OrderController extends BaseController {
 		sentResponse(response, data);
 	}
 
-	
-	
-
-
-	
-	
 	@RequestMapping(path = "/creatFactory", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public void creatFactory(HttpServletRequest request,
@@ -371,6 +378,159 @@ public class OrderController extends BaseController {
 		data.addData(plan);
 		data.setPlans(data.getData());
 		sentResponse(response, data);
+	}
+
+	@RequestMapping(path = "/debug", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public void debugInfo(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+
+		String data = "";
+		Enumeration<String> e = request.getParameterNames();
+		while (e.hasMoreElements()) {
+			String paramName = (String) e.nextElement();
+			String value2 = request.getParameter(paramName);
+			// System.err.println(paramName + "=" + value2);
+			if (paramName.equals("editor1")) {
+				data = value2;
+			}
+		}
+		List<Order> orders = getOrderByTable(data);
+		for (Order order : orders) {
+			orderService.saveOrder(order);
+		}
+		sentResponse(response, new StatusResponse("sucess", 0, true));
+	}
+
+	@SuppressWarnings("deprecation")
+	public static List<Order> getOrderByTable(String tableString) {
+		List<Order> resaultsList = new ArrayList<Order>();
+		Document doc = Jsoup.parse(tableString);
+		Elements table = doc.getElementsByTag("table");
+		// LOG.debug(table.size() + "  tables");
+		Elements tablebody = table.get(0).select("tbody");
+		int hang = 0;
+		int lie = 0;
+		int header = 0;
+		// LOG.debug(tablebody.size() + "  tablebody");
+		Elements trs = tablebody.get(0).select("tr");
+		// LOG.debug(trs.size() + "  tr");
+		hang = trs.size();
+		LOG.debug("一共" + (hang) + "行数据");
+		for (int i = 0; i < trs.size(); ++i) {
+			Element tr = trs.get(i);
+			Elements tds = tr.select("td");
+			if (trs.get(i).outerHtml().contains("日期")) {
+				lie = tds.size();
+				hang -= i + 1;
+				header = i;
+				// LOG.debug("一共有" + trs.size() + "行数据");
+				// LOG.debug("一共有" + (hang + 1) + "行有效数据");
+				// LOG.debug("日期所在行：" + (i + 1));
+			}
+		}
+		// LOG.debug("hang:" + (hang) + "，lie:" + (lie) + ",header:" + (header)
+		// + "!");
+		// LOG.debug("一共" + (hang) + "行，" + (lie) + "列,表头在第" + (header + 1) +
+		// "行");
+		// for (int i = 0; i < lie; ++i) {
+		// LOG.debug("第" + (i + 1) + "个表头是："
+		// + trs.get(header).select("td").get(i).ownText());
+		// }
+		String[][] datas = new String[hang][lie];
+		for (int i = 0; i < hang; i++) {
+			int datajnum = trs.get(i + header + 1).select("td").size();
+			for (int j = 0; j < datajnum; j++) {
+				if (trs.get(i + header + 1).select("td").get(j)
+						.hasAttr("rowspan")) {
+					int sameHangShu = Integer.valueOf(trs.get(i + header + 1)
+							.select("td").get(j).attr("rowspan"));
+					String sameString = trs.get(i + header + 1).select("td")
+							.get(j).ownText();
+					for (int k = 0; k < sameHangShu; k++) {
+						if (trs.get(header).select("td").get(j).ownText()
+								.contains("费")
+								&& k > 0) {
+							sameString = "0";
+						}
+						datas[i + k][j] = sameString;
+					}
+
+				}
+			}
+
+		}
+		for (int i = 0; i < hang; i++) {
+			int datajnum = trs.get(i + header + 1).select("td").size();
+			for (int j = 0; j < datajnum; j++) {
+				if (trs.get(i + header + 1).select("td").get(j)
+						.hasAttr("rowspan")) {
+					continue;
+				}
+				for (int k = j; k < lie; k++) {
+					if (datas[i][k] == null) {
+						datas[i][k] = trs.get(i + header + 1).select("td")
+								.get(j).ownText();
+						k = lie;
+					}
+				}
+			}
+		}
+
+		for (int i = 0; i < hang; i++) {
+			System.out.print(i + "   ");
+			for (int j = 0; j < lie; j++) {
+				System.out.print(datas[i][j] + "=");
+			}
+			System.out.println();
+		}
+		for (int i = 0; i < hang; i++) {
+			try {
+				Order order = new Order();
+				order.setOrderDate(new Date((Integer.valueOf(datas[i][0]
+						.split("-")[0])) % 1900, (Integer.valueOf(datas[i][0]
+						.split("-")[1])), (Integer.valueOf(datas[i][0]
+						.split("-")[2]))));
+				order.setOrderCreatDate(new Date(System.currentTimeMillis()));
+				order.setSource(datas[i][2]);
+				order.setTransferNumber(datas[i][3]);
+				order.setEntryNumber(datas[i][4]);
+				order.setPakages(S.getInteger(datas[i][5]));
+				order.setWeight(S.getInteger(datas[i][6]));
+				order.setSize(S.getInteger(datas[i][7]));
+				order.setDestination(datas[i][8]);
+				if (datas[i][9].contains("+")) {
+					String[] toadd = datas[i][9].replace("￥", "").split("+");
+					int sum = 0;
+					for (int j = 0; j < toadd.length; j++) {
+						sum += Integer.valueOf(toadd[j]);
+					}
+					order.setCarriageFee(sum);
+				} else {
+					order.setCarriageFee(Integer.valueOf(datas[i][9].replace(
+							"￥", "").replace(".00", "")));
+				}
+				if (datas[i][10].contains("+")) {
+					String[] toadd = datas[i][10].replace("￥", "")
+							.replace(".00", "").split("+");
+					int sum = 0;
+					for (int j = 0; j < toadd.length; j++) {
+						sum += Integer.valueOf(toadd[j]);
+					}
+					order.setCushionFee(sum);
+				} else {
+					order.setCushionFee(S.getInteger(datas[i][10].replace("￥",
+							"").replace(".00", "")));
+				}
+				order.setRemarks(datas[i][11]);
+				resaultsList.add(order);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+				continue;
+			}
+		}
+		return resaultsList;
+
 	}
 
 }

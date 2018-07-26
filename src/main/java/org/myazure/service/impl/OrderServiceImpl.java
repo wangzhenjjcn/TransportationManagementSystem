@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private DriverRepository driverRepository;
-	
+
 	public static WebUser defaultUser;
 	public static Vehicle defaultVehicle;
 	public static Factory defaultFactory;
@@ -72,8 +72,8 @@ public class OrderServiceImpl implements OrderService {
 		if (defaultPlan == null) {
 			defaultPlan = planRepository.findOne(1L);
 		}
-		if (defaultDriver==null) {
-			defaultDriver=driverRepository.findOne(1L);
+		if (defaultDriver == null) {
+			defaultDriver = driverRepository.findOne(1L);
 		}
 
 	}
@@ -87,33 +87,71 @@ public class OrderServiceImpl implements OrderService {
 	public Order saveOrder(Order order) {
 		Check();
 		Order newOrder = order;
-		if (newOrder.getCreatorUser().getId() == null) {
+		if (newOrder.getCreatorUser() == null) {
+			newOrder.setCreatorUser(defaultUser);
+		} else if (newOrder.getCreatorUser().getId() == null) {
 			newOrder.setCreatorUser(defaultUser);
 		}
-		if (newOrder.getDeliveryDriverUser().getId() == null) {
+
+		if (newOrder.getDeliveryDriverUser() == null) {
+			newOrder.setDeliveryDriverUser(defaultUser);
+		} else if (newOrder.getDeliveryDriverUser().getId() == null) {
 			newOrder.setDeliveryDriverUser(defaultUser);
 		}
-		if (newOrder.getCustomerUser().getId() == null) {
+
+		if (newOrder.getCustomerUser() == null) {
+			newOrder.setCustomerUser(defaultUser);
+		} else if (newOrder.getCustomerUser().getId() == null) {
 			newOrder.setCustomerUser(defaultUser);
 		}
-		if (newOrder.getTransportDriverUser().getId() == null) {
+		if (newOrder.getTransportDriverUser() == null) {
+			newOrder.setTransportDriverUser(defaultUser);
+		} else if (newOrder.getTransportDriverUser().getId() == null) {
 			newOrder.setTransportDriverUser(defaultUser);
 		}
-		if (newOrder.getDeliveryDriverUser().getId() == null) {
+		if (newOrder.getDeliveryDriverUser() == null) {
+			newOrder.setDeliveryDriverUser(defaultUser);
+		} else if (newOrder.getDeliveryDriverUser().getId() == null) {
 			newOrder.setDeliveryDriverUser(defaultUser);
 		}
-		if (newOrder.getFactoryUser().getId() == null) {
+		if (newOrder.getFactoryUser() == null) {
+			newOrder.setFactoryUser(defaultUser);
+		} else if (newOrder.getFactoryUser().getId() == null) {
 			newOrder.setFactoryUser(defaultUser);
 		}
-		if (newOrder.getDeliveryVehicle().getId() == null) {
+		if (newOrder.getDeliveryVehicle() == null) {
+			newOrder.setDeliveryVehicle(defaultVehicle);
+		} else if (newOrder.getDeliveryVehicle().getId() == null) {
 			newOrder.setDeliveryVehicle(defaultVehicle);
 		}
-		if (newOrder.getTransportVehicle().getId() == null) {
+		if (newOrder.getTransportVehicle() == null) {
+			newOrder.setTransportVehicle(defaultVehicle);
+		} else if (newOrder.getTransportVehicle().getId() == null) {
 			newOrder.setTransportVehicle(defaultVehicle);
 		}
-		if (newOrder.getFactory().getId() == null) {
+		if (newOrder.getFactory() == null) {
+			newOrder.setFactory(defaultFactory);
+		} else if (newOrder.getFactory().getId() == null) {
 			newOrder.setFactory(defaultFactory);
 		}
+		
+		
+		if (newOrder.getTransportVehicleDriver() == null) {
+			newOrder.setTransportVehicleDriver(defaultDriver);
+		} else if (newOrder.getTransportVehicleDriver().getId() == null) {
+			newOrder.setTransportVehicleDriver(defaultDriver);
+		}
+		
+		
+
+		if (newOrder.getDeliveryVehicleDriver() == null) {
+			newOrder.setDeliveryVehicleDriver(defaultDriver);
+		} else if (newOrder.getDeliveryVehicleDriver().getId() == null) {
+			newOrder.setDeliveryVehicleDriver(defaultDriver);
+		}
+		
+		
+		
 		System.out.println(JSON.toJSONString(newOrder));
 		return orderRepository.save(newOrder);
 	}
