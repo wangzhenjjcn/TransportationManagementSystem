@@ -1,6 +1,7 @@
 package org.myazure.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -185,6 +186,50 @@ public class InfoDataServiceImpl implements InfoDataService {
 	}
 
 	@Override
+	public List<Order> getLastFiveOrders() {
+		List<Order> orders = new ArrayList<Order>();
+		orders=orderRepository.findTop5OrderByCreatAtDesc();
+		return orders;
+	}
+
+	@Override
+	public List<Order> getTodayOrders() {
+		List<Order> orders = new ArrayList<Order>();
+		orders=orderRepository.findByCreatedAtAfter(new Date(System.currentTimeMillis()-System.currentTimeMillis()%100000));
+		return orders;
+	}
+
+	@Override
+	public List<Order> getYesterdayOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getThisMonthOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getLastMonthOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getThisSeasonOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getThisYearOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public List<Order> getOrdersByState(int state) {
 		// TODO Auto-generated method stub
 		return null;
@@ -306,7 +351,7 @@ public class InfoDataServiceImpl implements InfoDataService {
 	@Override
 	public List<Driver> getDriversByLast5Orders() {
 		Map<Long, Driver> driversMap=new HashMap<Long, Driver>();
-		for (Order	order : orderRepository.findTop5ByOrderByOrderIdDesc()) {
+		for (Order	order : orderRepository.findTop5OrderByCreatAtDesc()) {
 			driversMap.put(order.getDeliveryVehicleDriver().getId(), order.getDeliveryVehicleDriver());
 			driversMap.put(order.getTransportVehicleDriver().getId(), order.getTransportVehicleDriver());
 		}

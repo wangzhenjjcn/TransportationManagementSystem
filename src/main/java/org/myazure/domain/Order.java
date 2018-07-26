@@ -130,7 +130,7 @@ public class Order extends BaseEntity implements Serializable {
 	private String pickupNumber;
 	@JsonProperty("entry_number")
 	@Column(name = "entry_number", columnDefinition = "varchar(255) DEFAULT NULL")
-	@JSONField(name = "entry_number")
+	@JSONField(name = "取件号entry_number")
 	private String entryNumber;
 	@JsonProperty("weight")
 	@Column(name = "weight", columnDefinition = "int(11) DEFAULT NULL")

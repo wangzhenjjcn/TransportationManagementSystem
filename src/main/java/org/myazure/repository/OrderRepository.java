@@ -1,5 +1,6 @@
 package org.myazure.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.myazure.domain.Order;
@@ -12,7 +13,7 @@ public interface OrderRepository extends
 		PagingAndSortingRepository<Order, Long> {
 
 	// List<Order> findByFactoryId(int factoryId);
-	List<Order> findTop5ByOrderByOrderIdDesc();
+	List<Order> findTop5OrderByCreatAtDesc();
 
 
 
@@ -21,4 +22,11 @@ public interface OrderRepository extends
 			String key6, String key7, String key8, String key9, String key10,
 			String key11, String key12, String key13, String key14);
 
+
+
+	List<Order> findByCreatedAtAfter(Date date);
+
+	List<Order> findByLastModifiedAfter(Date date);
+
+	List<Order> findByOrderDateAfter(Date date);
 }

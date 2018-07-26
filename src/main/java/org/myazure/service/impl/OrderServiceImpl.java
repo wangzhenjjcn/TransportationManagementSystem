@@ -80,7 +80,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<Order> getLast5Orders() {
-		return orderRepository.findTop5ByOrderByOrderIdDesc();
+		return orderRepository.findTop5OrderByCreatAtDesc();
 	}
 
 	@Override

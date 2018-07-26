@@ -44,6 +44,20 @@ public interface InfoDataService {
 
 	List<Order> getOrders(String key);
 
+	List<Order> getLastFiveOrders();
+	
+	List<Order> getTodayOrders();
+	
+	List<Order> getYesterdayOrders();
+	
+	List<Order> getThisMonthOrders();
+	
+	List<Order> getLastMonthOrders();
+	
+	List<Order> getThisSeasonOrders();
+	
+	List<Order> getThisYearOrders();
+
 	List<Order> getOrdersByState(int state);
 
 	List<Order> getOrdersByCreator(Long id);

@@ -72,16 +72,20 @@ public class OrderController extends BaseController {
 			return;
 		}
 		String key = request.getParameter("key");
-		if (key == null || key.isEmpty()) {
-			sentMissParamResponse(response);
-			return;
-		}
 		List<Order> orders = new ArrayList<Order>();
 		DatasResponse data = new DatasResponse();
-		orders = infoDataService.getOrders(key);
-		for (Order order : orders) {
-			data.addData(order);
+		if (key == null || key.isEmpty()) {
+			orders = infoDataService.getLastFiveOrders();
+			for (Order order : orders) {
+				data.addData(order);
+			}
+		}else {
+			orders = infoDataService.getOrders(key);
+			for (Order order : orders) {
+				data.addData(order);
+			}
 		}
+		data.setCode(0);
 		sentResponse(response, data);
 	}
 
