@@ -78,10 +78,7 @@
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="检索">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
+          <span class="input-group-btn">  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>  </button></span>
         </div>
       </form>
       <!-- /.search form -->
@@ -91,8 +88,7 @@
         <li class=" treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>主控中心</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
@@ -108,18 +104,18 @@
           <a href="#">
             <i class="fa fa-th"></i>
             <span>订单管理</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
+            <span class="pull-right-container"><span class="label label-primary pull-right">4</span>
             </span>
           </a>
           <ul class="treeview-menu">
-			<li ><a href="order-creat.html"><i class="fa fa-circle-o"></i> 创建订单</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 待审订单</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 运输订单</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 送达订单</a></li>
-			<li><a href="#"><i class="fa fa-circle-o"></i> 待付费订单</a></li>
-			<li><a href="#"><i class="fa fa-circle-o"></i> 历史订单</a></li>
-			<li><a href="#"><i class="fa fa-circle-o"></i> 查询订单</a></li>
+			 <li class="active"><a href="order-creat.html"><i class="fa fa-circle-o"></i> 创建订单</a></li>
+			<li><a href="order-examine.html"><i class="fa fa-circle-o"></i> 导入订单</a></li>
+            <li><a href="order-new.html"><i class="fa fa-circle-o"></i> 待审订单</a></li>
+            <li><a href="order-trans.html"><i class="fa fa-circle-o"></i> 运输订单</a></li>
+           <li><a href="order-arrived.html"><i class="fa fa-circle-o"></i> 送达订单</a></li>
+			<li><a href="order-pay.html"><i class="fa fa-circle-o"></i> 待付订单</a></li>
+			<li><a href="order-history.html"><i class="fa fa-circle-o"></i> 历史订单</a></li>
+			<li><a href="order-search.html"><i class="fa fa-circle-o"></i> 检索订单</a></li>
           </ul>
         </li>
 		
@@ -127,8 +123,7 @@
         <li class="active treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>客户管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
@@ -144,8 +139,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>工厂管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
@@ -157,8 +151,7 @@
 		 <li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>车辆管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
@@ -170,8 +163,7 @@
 		<li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>司机管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
@@ -184,8 +176,7 @@
 		<li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>物流管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
@@ -214,8 +205,7 @@
       </h1>
       <ol class="breadcrumb">
           <li>
-            <a href="index.html">
-              <i class="fa fa-dashboard"></i> 系统</a>
+            <a href="index.html"><i class="fa fa-dashboard"></i> 系统</a>
           </li>
           <li>
             <a href="#">客户管理</a>
@@ -231,13 +221,10 @@
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>150</h3>
-
-              <p>新订单</p>
+            <div class="inner"><h3>150</h3>
+<p>新订单</p>
             </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
+            <div class="icon"><i class="ion ion-bag"></i>
             </div>
             <a href="#" class="small-box-footer">查看详细列表 <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -246,13 +233,10 @@
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px"></sup></h3>
-
-              <p>运输中订单</p>
+            <div class="inner"><h3>53<sup style="font-size: 20px"></sup></h3>
+<p>运输中订单</p>
             </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+            <div class="icon"><i class="ion ion-stats-bars"></i>
             </div>
             <a href="#" class="small-box-footer">查看详细列表 <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -261,13 +245,10 @@
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>已完成订单</p>
+            <div class="inner"><h3>44</h3>
+<p>已完成订单</p>
             </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
+            <div class="icon"><i class="ion ion-person-add"></i>
             </div>
             <a href="#" class="small-box-footer">查看详细列表 <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -276,13 +257,10 @@
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-red">
-            <div class="inner">
-              <h3>65</h3>
-
-              <p>异常订单</p>
+            <div class="inner"><h3>65</h3>
+<p>异常订单</p>
             </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+            <div class="icon"><i class="ion ion-pie-graph"></i>
             </div>
             <a href="#" class="small-box-footer">查看详细列表 <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -295,59 +273,14 @@
         <!-- Left col -->
 		<section class="col-lg-7 connectedSortable">
 		 <!-- Horizontal Form -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                <h3 class="box-title">创建客户</h3>
-              </div>
-              <!-- /.box-header -->
-              <!-- form start -->
-              <form class="form-horizontal">
-                <div class="box-body">
+            <div class="box box-info"><div class="box-header with-border">  <h3 class="box-title">创建客户</h3></div><!-- /.box-header --><!-- form start --><form class="form-horizontal">  <div class="box-body">
+    <div class="alert alert-success alert-dismissible">      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>      <h4>        <i class="icon fa fa-check"></i> 创建成功</h4>      你可以使用此客户了.    </div>
 
-                  <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4>
-                      <i class="icon fa fa-check"></i> 创建成功</h4>
-                    你可以使用此客户了.
-                  </div>
-
-
-                  <div class="form-group">
-                    <label for="customerName" class="col-sm-2 control-label">客户名称</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="customerName" placeholder="客户全称">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="customerAddress" class="col-sm-2 control-label">客户地址</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="customerAddress" placeholder="详细地址">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="customerContactName" class="col-sm-2 control-label">联系人</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="customerContactName" placeholder="客户联系人姓名">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="customerContactPhone" class="col-sm-2 control-label">联系电话</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="customerContactPhone" placeholder="客户联系人电话">
-                    </div>
-                  </div>
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                  <button type="submit" class="btn btn-default">清空</button>
-                  <button type="submit" class="btn btn-info pull-right">创建</button>
-                </div>
-                <!-- /.box-footer -->
-              </form>
+    <div class="form-group">      <label for="customerName" class="col-sm-2 control-label">客户名称</label>
+      <div class="col-sm-10">        <input type="text" class="form-control" id="customerName" placeholder="客户全称">      </div>    </div>    <div class="form-group">      <label for="customerAddress" class="col-sm-2 control-label">客户地址</label>
+      <div class="col-sm-10">        <input type="text" class="form-control" id="customerAddress" placeholder="详细地址">      </div>    </div>    <div class="form-group">      <label for="customerContactName" class="col-sm-2 control-label">联系人</label>
+      <div class="col-sm-10">        <input type="text" class="form-control" id="customerContactName" placeholder="客户联系人姓名">      </div>    </div>    <div class="form-group">      <label for="customerContactPhone" class="col-sm-2 control-label">联系电话</label>
+      <div class="col-sm-10">        <input type="text" class="form-control" id="customerContactPhone" placeholder="客户联系人电话">      </div>    </div>  </div>  <!-- /.box-body -->  <div class="box-footer">    <button type="submit" class="btn btn-default">清空</button>    <button type="submit" class="btn btn-info pull-right">创建</button>  </div>  <!-- /.box-footer --></form>
             </div>
             <!-- /.box -->
         </section>     

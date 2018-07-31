@@ -62,9 +62,12 @@ public class OrderController extends BaseController {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping(path = "/getOrders", method = RequestMethod.GET)
+	@RequestMapping(path = "/getOrders", method = { RequestMethod.POST,
+			RequestMethod.GET })
 	public void getOrders(HttpServletRequest request,
 			HttpServletResponse response) {
+		System.err.println(System.currentTimeMillis()+"");
+		
 		String JSSESSION = request.getRequestedSessionId();
 		System.err.println(JSSESSION);
 		if (!checkUser(request)) {
@@ -75,7 +78,7 @@ public class OrderController extends BaseController {
 		List<Order> orders = new ArrayList<Order>();
 		DatasResponse data = new DatasResponse();
 		if (key == null || key.isEmpty()) {
-			orders = infoDataService.getLastFiveOrders();
+			orders = infoDataService.getTodayOrders();
 			for (Order order : orders) {
 				data.addData(order);
 			}

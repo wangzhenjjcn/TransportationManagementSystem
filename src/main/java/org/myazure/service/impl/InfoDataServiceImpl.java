@@ -188,14 +188,25 @@ public class InfoDataServiceImpl implements InfoDataService {
 	@Override
 	public List<Order> getLastFiveOrders() {
 		List<Order> orders = new ArrayList<Order>();
-		orders=orderRepository.findTop5OrderByCreatAtDesc();
+		orders=orderRepository.findFiveByOrderDateAfter(new Date(System.currentTimeMillis()));
 		return orders;
 	}
 
+	
+	
+	
+	
+	
 	@Override
 	public List<Order> getTodayOrders() {
+		Date timeNow=new Date(System.currentTimeMillis()-86400000);
+		System.err.println(System.currentTimeMillis()+"");
+		System.err.println(timeNow.getTime()+"");
+		@SuppressWarnings("deprecation")
+		Date today=new Date(timeNow.getYear(),timeNow.getMonth(),timeNow.getDate());
+		System.err.println(today.getTime()+"");
 		List<Order> orders = new ArrayList<Order>();
-		orders=orderRepository.findByCreatedAtAfter(new Date(System.currentTimeMillis()-System.currentTimeMillis()%100000));
+		orders=orderRepository.findByCreatedAtAfter(today);
 		return orders;
 	}
 
@@ -351,7 +362,7 @@ public class InfoDataServiceImpl implements InfoDataService {
 	@Override
 	public List<Driver> getDriversByLast5Orders() {
 		Map<Long, Driver> driversMap=new HashMap<Long, Driver>();
-		for (Order	order : orderRepository.findTop5OrderByCreatAtDesc()) {
+		for (Order	order : orderRepository.findFiveByOrderDateAfter(new Date(System.currentTimeMillis()))) {
 			driversMap.put(order.getDeliveryVehicleDriver().getId(), order.getDeliveryVehicleDriver());
 			driversMap.put(order.getTransportVehicleDriver().getId(), order.getTransportVehicleDriver());
 		}
