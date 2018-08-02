@@ -85,14 +85,14 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">主菜单</li>
-        <li class="treeview">
+        <li class=" treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>主控中心</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> 监控中心</a></li>
+            <li ><a href="index.html"><i class="fa fa-circle-o"></i> 监控中心</a></li>
             <li><a href="index.html"><i class="fa fa-circle-o"></i> 财务中心</a></li>
           </ul>
         </li>
@@ -100,7 +100,7 @@
 		
 		
 		
-        <li class="active treeview">
+        <li class="  treeview">
           <a href="#">
             <i class="fa fa-th"></i>
             <span>订单管理</span>
@@ -108,11 +108,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-			<li><a href="order-creat.html"><i class="fa fa-circle-o"></i> 创建订单</a></li>
-			 <li class="active"><a href="order-examine.html"><i class="fa fa-circle-o"></i> 导入订单</a></li>
+			 <li  ><a href="order-creat.html"><i class="fa fa-circle-o"></i> 创建订单</a></li>
+			<li><a href="order-examine.html"><i class="fa fa-circle-o"></i> 导入订单</a></li>
             <li><a href="order-new.html"><i class="fa fa-circle-o"></i> 待审订单</a></li>
             <li><a href="order-trans.html"><i class="fa fa-circle-o"></i> 运输订单</a></li>
-            <li><a href="order-arrived.html"><i class="fa fa-circle-o"></i> 送达订单</a></li>
+           <li><a href="order-arrived.html"><i class="fa fa-circle-o"></i> 送达订单</a></li>
 			<li><a href="order-pay.html"><i class="fa fa-circle-o"></i> 待付订单</a></li>
 			<li><a href="order-history.html"><i class="fa fa-circle-o"></i> 历史订单</a></li>
 			<li><a href="order-search.html"><i class="fa fa-circle-o"></i> 检索订单</a></li>
@@ -127,7 +127,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-           <li><a href="customer-creat.html"><i class="fa fa-circle-o"></i> 创建客户</a></li>
+            <li><a href="customer-creat.html"><i class="fa fa-circle-o"></i> 创建客户</a></li>
             <li><a href="customer-search.html"><i class="fa fa-circle-o"></i> 查找客户</a></li>
           </ul>
         </li>
@@ -136,15 +136,15 @@
 		
 		
 		
-        <li class="treeview">
+        <li class="active treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>工厂管理</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
+          <ul class="  treeview-menu">
             <li><a href="factory-creat.html"><i class="fa fa-circle-o"></i> 创建工厂</a></li>
-            <li><a href="factory-search.html"><i class="fa fa-circle-o"></i> 查找工厂</a></li>
+             <li class="active" ><a href="factory-search.html"><i class="fa fa-circle-o"></i> 查找工厂</a></li>
           </ul>
         </li>
 		
@@ -204,9 +204,14 @@
         <small>控制台</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="index.html"><i class="fa fa-dashboard"></i> 系统</a></li>
-        <li class="active">主控中心</li>
-      </ol>
+          <li>
+            <a href="index.html"><i class="fa fa-dashboard"></i> 系统</a>
+          </li>
+          <li>
+            <a href="#">客户管理</a>
+          </li>
+          <li class="active">创建客户</li>
+        </ol>
     </section>
 
     <!-- Main content -->
@@ -250,238 +255,24 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-		<section class="col-lg-12 connectedSortable">
-		
-      
-		  
-          <div class="box">
-            <div class="box-header"><h3 class="box-title">待审核订单</h3>
+		<section class="col-lg-7 connectedSortable">
+		 <!-- Horizontal Form -->
+            <div class="box box-info"><div class="box-header with-border">  <h3 class="box-title">创建客户</h3></div><!-- /.box-header --><!-- form start --><form class="form-horizontal">  <div class="box-body">
+    <div class="alert alert-success alert-dismissible">      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>      <h4>        <i class="icon fa fa-check"></i> 创建成功</h4>      你可以使用此客户了.    </div>
+
+    <div class="form-group">      <label for="customerName" class="col-sm-2 control-label">客户名称</label>
+      <div class="col-sm-10">        <input type="text" class="form-control" id="customerName" placeholder="客户全称">      </div>    </div>    <div class="form-group">      <label for="customerAddress" class="col-sm-2 control-label">客户地址</label>
+      <div class="col-sm-10">        <input type="text" class="form-control" id="customerAddress" placeholder="详细地址">      </div>    </div>    <div class="form-group">      <label for="customerContactName" class="col-sm-2 control-label">联系人</label>
+      <div class="col-sm-10">        <input type="text" class="form-control" id="customerContactName" placeholder="客户联系人姓名">      </div>    </div>    <div class="form-group">      <label for="customerContactPhone" class="col-sm-2 control-label">联系电话</label>
+      <div class="col-sm-10">        <input type="text" class="form-control" id="customerContactPhone" placeholder="客户联系人电话">      </div>    </div>  </div>  <!-- /.box-body -->  <div class="box-footer">    <button type="submit" class="btn btn-default">清空</button>    <button type="submit" class="btn btn-info pull-right">创建</button>  </div>  <!-- /.box-footer --></form>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body"><table id="dshdd" class="table table-bordered table-striped">  <thead>  <tr>    <th>订单号</th>    <th>订单状态</th>
-				  <th>客户</th>    <th>工厂</th>      <th>运编号</th>    <th>进仓号</th>
-				  <th>件数</th>    <th>重量</th>
-				    <th>体积</th>    <th>目的地</th>
-				  <th>运费</th>    <th>代垫费</th>
-				    <th>备注</th>    <th>运货车</th>
-				  <th>送货车</th>
-				  <th>操作</th>
-				     </tr>  </thead>  <tbody>  <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>
-						  <td>修改  删除  复制</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>HJD892ND29</td>
-				   <td>H87N12AJK</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>KJD9023J90</td>
-				   <td>NDF89D3D4</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>3F45F345T</td>
-				   <td>RVT23T2F4</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>2CF5T254V</td>
-				   <td>2FV5T24VFT2</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72JF4</td>
-						  <td>沪A7F30A</td>  </tr>   <tr>    <td>1</td>    <td>待审核</td>    <td>景程</td>    <td>三星电子</td>    <td>234F534F5</td>
-				   <td>ERVTV3345F</td>
-			
-					 <td>2</td>
-					  <td>126</td>
-					   <td>1.2</td>
-					    <td>上海浦东</td>
-						 <td>200</td>
-						  <td>130</td>
-						  <td>2T包车</td>
-						  <td>沪A72J0A</td>
-						  <td>沪A72J0A</td>  </tr>     </tbody>  <tfoot>  <tr>      <th>订单号</th>    <th>订单状态</th>
-				  <th>客户</th>    <th>工厂</th>      <th>运编号</th>    <th>进仓号</th>
-				  <th>件数</th>    <th>重量</th>
-				    <th>体积</th>    <th>目的地</th>
-				  <th>运费</th>    <th>代垫费</th>
-				    <th>备注</th>    <th>运货车</th>
-				  <th>送货车</th>  </tr>  </tfoot></table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-		  
-		  
-		  
+            <!-- /.box -->
         </section>     
-        
-		
-		
-		
-		
-		<!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
         <section class="col-lg-5 connectedSortable">
  
          
-		  
-		   
-		  
-		  
+          
         </section>
         <!-- right col -->
       </div>
@@ -532,8 +323,6 @@
 <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
 <script src="static/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- ChartJS -->
-<script src="static/chart.js/Chart.js"></script>
 <!-- FastClick -->
 <script src="static/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -542,87 +331,5 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<!-- DataTables -->
-<script src="static/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="static/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
-
-
-
-<!-- page script -->
-<script>
-  $(function () {
-    
-    //-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieChart       = new Chart(pieChartCanvas)
-    var PieData        = [
-      {
-        value    : 65,
-        color    : '#f56954',
-        highlight: '#f56954',
-        label    : '异常订单'
-      },
-      {
-        value    : 53,
-        color    : '#00a65a',
-        highlight: '#00a65a',
-        label    : '运输中订单'
-      },
-      {
-        value    : 44,
-        color    : '#f39c12',
-        highlight: '#f39c12',
-        label    : '已完成订单'
-      },
-      {
-        value    : 150,
-        color    : '#3c8dbc',
-        highlight: '#3c8dbc',
-        label    : '新订单'
-      } 
-    ]
-    var pieOptions     = {
-      //Boolean - Whether we should show a stroke on each segment
-      segmentShowStroke    : true,
-      //String - The colour of each segment stroke
-      segmentStrokeColor   : '#fff',
-      //Number - The width of each segment stroke
-      segmentStrokeWidth   : 2,
-      //Number - The percentage of the chart that we cut out of the middle
-      percentageInnerCutout: 50, // This is 0 for Pie charts
-      //Number - Amount of animation steps
-      animationSteps       : 100,
-      //String - Animation easing effect
-      animationEasing      : 'easeOutBounce',
-      //Boolean - Whether we animate the rotation of the Doughnut
-      animateRotate        : true,
-      //Boolean - Whether we animate scaling the Doughnut from the centre
-      animateScale         : false,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive           : true,
-      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio  : true,
-      //String - A legend template
-      legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    pieChart.Doughnut(PieData, pieOptions)
-
-    
-  })
-</script>
-<script>
-  $(function () {
-    $('#dshdd').DataTable()
-    
-  })
-</script>
-
-
 </body>
 </html>
