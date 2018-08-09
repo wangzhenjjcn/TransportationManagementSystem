@@ -440,7 +440,14 @@ public class OrderController extends BaseController {
 		switch (dataType) {
 		case "orders":
 			checkParam(datas,Order.NotNullList);
+			List<Order> orders=new ArrayList<Order>();
+			infoDataService.save(orders);
 			break;
+		case "driver":
+			checkParam(datas,Driver.NotNullList);
+			Driver driver=new Driver();
+			infoDataService.save(driver);
+			break;	
 		default:
 			break;
 		}

@@ -115,4 +115,22 @@ public interface InfoDataService {
 	Plan creatPlan(Plan plan);
 
 	Customer getCustomer(Long id);
+
+	List<Order> save(List<Order> orders);
+
+	Order save(Order order);
+
+	Driver save(Driver driver);
+	
+	Factory save(Factory factory);
+	
+	Vehicle save(Vehicle vehicle);
+	
+	Customer save(Customer customer);
+	
+	Plan save(Plan plan);
+	
+	Cushion save(Cushion cushion);
+	
+	Payment save(Payment payment);
 }

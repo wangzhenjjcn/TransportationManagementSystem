@@ -124,7 +124,7 @@ public class BaseController {
 			return true;
 		}
 		if (datas.keySet().containsAll(requoreListString)) {
-			return false;
+			throw new MissingParamException();
 		}else {
 			return false;
 		}

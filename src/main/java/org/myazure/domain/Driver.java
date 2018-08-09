@@ -1,6 +1,8 @@
 package org.myazure.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Driver extends BaseEntity implements Serializable {
 	@Transient
 	private static final long serialVersionUID = 1L;
+	public static final List<String> NotNullList = new ArrayList<String>();
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonProperty("id")
@@ -39,6 +42,13 @@ public class Driver extends BaseEntity implements Serializable {
 	@Column(name = "phone", columnDefinition = "varchar(255) DEFAULT NULL")
 	private String phone;
 
+	
+	public Driver() {
+		super();
+		NotNullList.add("name");
+	}
+	
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -52,9 +62,6 @@ public class Driver extends BaseEntity implements Serializable {
 		this.phone = phone;
 	}
 
-	public Driver() {
-
-	}
 
 	public Long getId() {
 		return id;

@@ -427,4 +427,53 @@ public class InfoDataServiceImpl implements InfoDataService {
 		}
 	}
 
+	@Override
+	public List<Order> save(List<Order> orders) {
+		List<Order> savList=new ArrayList<Order>();
+		for (Order order : orders) {
+		savList.add(orderRepository.save(order));	
+		}
+		return savList;
+	}
+
+	@Override
+	public Driver save(Driver driver) {
+		return driverRepository.save(driver);
+	}
+
+	@Override
+	public Factory save(Factory factory) {
+		return factoryRepository.save(factory);
+	}
+
+	@Override
+	public Vehicle save(Vehicle vehicle) {
+		return vehicleRepository.save(vehicle);
+	}
+
+	@Override
+	public Customer save(Customer customer) {
+		return customerRepository.save(customer);
+	}
+
+	@Override
+	public Plan save(Plan plan) {
+		return planRepository.save(plan);
+	}
+
+	@Override
+	public Cushion save(Cushion cushion) {
+		return cushionRepository.save(cushion);
+	}
+
+	@Override
+	public Payment save(Payment payment) {
+		return paymentRepository.save(payment);
+	}
+
+	@Override
+	public Order save(Order order) {
+		return orderRepository.save(order);
+	}
+
 }
