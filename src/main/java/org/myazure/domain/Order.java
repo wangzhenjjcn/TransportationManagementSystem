@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Order extends BaseEntity implements Serializable {
 	@Transient
 	private static final long serialVersionUID = 1L;
+	public static final List<String> NotNullList = new ArrayList<String>();
 	@Id
 	@JsonProperty("id")
 	@JSONField(name = "id")
@@ -245,8 +246,14 @@ public class Order extends BaseEntity implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Payment.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_id")
 	private List<Payment> accountPayable = new ArrayList<Payment>();
-
+	@JSONField(name = "remarks_list")
+	@JsonProperty("remarks_list")
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Remarks.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "order_id")
+	private List<Remarks> remarksList = new ArrayList<Remarks>();
+	
 	public Order() {
+		NotNullList.add("orderCreatDate");
 		orderCreatDate = new Date(System.currentTimeMillis());
 		orderDate = new Date(System.currentTimeMillis());
 		contactName = "";
@@ -296,7 +303,7 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setFactory(Factory factory) {
 		this.factory = factory;
-		if (factory==null) {
+		if (factory == null) {
 			return;
 		}
 		this.factoryName = factory.getName();
@@ -380,7 +387,7 @@ public class Order extends BaseEntity implements Serializable {
 		default:
 			break;
 		}
-		this.freightTypeStringPy=S.getPinYinFirstChar(freightTypeString);
+		this.freightTypeStringPy = S.getPinYinFirstChar(freightTypeString);
 	}
 
 	public void setChartered(boolean isChartered) {
@@ -615,12 +622,12 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setFactoryName(String factoryName) {
 		this.factoryName = factoryName;
-		
+
 	}
 
 	public void setFactoryAddress(String factoryAddress) {
 		this.factoryAddress = factoryAddress;
-		this.factoryAddresspy=S.getPinYinFirstChar(factoryAddress);
+		this.factoryAddresspy = S.getPinYinFirstChar(factoryAddress);
 	}
 
 	public void setSourcepy(String sourcepy) {
@@ -708,6 +715,22 @@ public class Order extends BaseEntity implements Serializable {
 
 	public void setFactoryAddresspy(String factoryAddresspy) {
 		this.factoryAddresspy = factoryAddresspy;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public List<Remarks> getRemarksList() {
+		return remarksList;
+	}
+
+	public void setRemarksList(List<Remarks> remarksList) {
+		this.remarksList = remarksList;
 	}
 
 }

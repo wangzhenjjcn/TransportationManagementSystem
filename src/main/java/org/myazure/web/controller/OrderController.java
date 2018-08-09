@@ -2,9 +2,12 @@ package org.myazure.web.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +22,7 @@ import org.myazure.domain.Order;
 import org.myazure.domain.Plan;
 import org.myazure.domain.Vehicle;
 import org.myazure.domain.WebUser;
+import org.myazure.exception.MissingParamException;
 import org.myazure.response.StatusResponse;
 import org.myazure.transportation.response.DatasResponse;
 import org.myazure.utils.S;
@@ -110,9 +114,9 @@ public class OrderController extends BaseController {
 		sentResponse(response, data);
 	}
 
-	@RequestMapping(path = "/creatOrder", method = { RequestMethod.POST,
+	@RequestMapping(path = "/creataOrder", method = { RequestMethod.POST,
 			RequestMethod.GET })
-	public void creatOrder(HttpServletRequest request,
+	public void creataOrder(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		if (!checkUser(request)) {
 			sentUnauthorizedResponse(response);
@@ -387,9 +391,9 @@ public class OrderController extends BaseController {
 		sentResponse(response, data);
 	}
 
-	@RequestMapping(path = "/debug", method = { RequestMethod.POST,
+	@RequestMapping(path = "/importOrder", method = { RequestMethod.POST,
 			RequestMethod.GET })
-	public void debugInfo(HttpServletRequest request,
+	public void importOrder(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 
 		String data = "";
@@ -409,6 +413,44 @@ public class OrderController extends BaseController {
 		sentResponse(response, new StatusResponse("sucess", 0, true));
 	}
 
+	
+	
+	@RequestMapping(path = "/submit", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public void creatOrder(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		StatusResponse resault=new StatusResponse("unknown", 0, true);
+		try {
+			resault.setMessage(submit(getRequestDatas(request)));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+			resault.setMessage(e2.getMessage());
+		}
+		sentResponse(response, resault);
+	}
+	
+	private String submit(Map<String, String> datas) throws MissingParamException{
+		for (String key : datas.keySet()) {
+			LOG.debug(key+" is "+datas.get(key));
+		}
+		String dataType=datas.get("dataType");
+		if (dataType==null) {
+			return "NoDataType";
+		}
+		switch (dataType) {
+		case "orders":
+			checkParam(datas,Order.NotNullList);
+			break;
+		default:
+			break;
+		}
+		return "";
+	}
+	
+	
+	
+	
+	
 	@SuppressWarnings("deprecation")
 	public static List<Order> getOrderByTable(String tableString) {
 		List<Order> resaultsList = new ArrayList<Order>();
@@ -431,19 +473,8 @@ public class OrderController extends BaseController {
 				lie = tds.size();
 				hang -= i + 1;
 				header = i;
-				// LOG.debug("一共有" + trs.size() + "行数据");
-				// LOG.debug("一共有" + (hang + 1) + "行有效数据");
-				// LOG.debug("日期所在行：" + (i + 1));
 			}
 		}
-		// LOG.debug("hang:" + (hang) + "，lie:" + (lie) + ",header:" + (header)
-		// + "!");
-		// LOG.debug("一共" + (hang) + "行，" + (lie) + "列,表头在第" + (header + 1) +
-		// "行");
-		// for (int i = 0; i < lie; ++i) {
-		// LOG.debug("第" + (i + 1) + "个表头是："
-		// + trs.get(header).select("td").get(i).ownText());
-		// }
 		String[][] datas = new String[hang][lie];
 		for (int i = 0; i < hang; i++) {
 			int datajnum = trs.get(i + header + 1).select("td").size();

@@ -2,6 +2,9 @@ package org.myazure.web.controller;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.myazure.configuration.PrimaryConfiguration;
 import org.myazure.domain.WebUser;
+import org.myazure.exception.MissingParamException;
 import org.myazure.response.StatusResponse;
 import org.myazure.service.InfoDataService;
 import org.myazure.service.MyazureDataService;
@@ -98,6 +102,31 @@ public class BaseController {
 		} catch (IOException e) {
 			LOG.debug(e.getMessage());
 			e.printStackTrace();
+		}
+	}
+	
+	protected Map<String, String>  getRequestDatas(HttpServletRequest request) {
+		Enumeration<String> e = request.getParameterNames();
+		Map<String, String> datas=new HashMap<String, String>();
+		while (e.hasMoreElements()) {
+			String paramName = (String) e.nextElement();
+			String value = request.getParameter(paramName);
+			datas.put(paramName, value);
+		}
+		return datas;
+	}
+	
+	protected boolean checkParam(Map<String, String> datas,List<String> requoreListString) throws MissingParamException{
+		for (String key : datas.keySet()) {
+			LOG.debug("***********"+key+"***********"+datas.get(key)+"***********");
+		}
+		if (requoreListString==null) {
+			return true;
+		}
+		if (datas.keySet().containsAll(requoreListString)) {
+			return false;
+		}else {
+			return false;
 		}
 	}
 
