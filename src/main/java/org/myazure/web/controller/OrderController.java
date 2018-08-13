@@ -16,6 +16,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.myazure.domain.Customer;
 import org.myazure.domain.Driver;
 import org.myazure.domain.Factory;
 import org.myazure.domain.Order;
@@ -70,8 +71,8 @@ public class OrderController extends BaseController {
 			RequestMethod.GET })
 	public void getOrders(HttpServletRequest request,
 			HttpServletResponse response) {
-		System.err.println(System.currentTimeMillis()+"");
-		
+		System.err.println(System.currentTimeMillis() + "");
+
 		String JSSESSION = request.getRequestedSessionId();
 		System.err.println(JSSESSION);
 		if (!checkUser(request)) {
@@ -86,7 +87,7 @@ public class OrderController extends BaseController {
 			for (Order order : orders) {
 				data.addData(order);
 			}
-		}else {
+		} else {
 			orders = infoDataService.getOrders(key);
 			for (Order order : orders) {
 				data.addData(order);
@@ -413,51 +414,79 @@ public class OrderController extends BaseController {
 		sentResponse(response, new StatusResponse("sucess", 0, true));
 	}
 
-	
-	
 	@RequestMapping(path = "/submit", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public void creatOrder(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
-		StatusResponse resault=new StatusResponse("unknown", 0, true);
+		StatusResponse resault = new StatusResponse("unknown", 0, true);
 		try {
-			resault.setMessage(submit(getRequestDatas(request)));
+			Map<String, String> datas=getRequestDatas(request);
+			String op = datas.get("operation");
+			if (op=="save"||op.equals("save")) {
+				resault.setMessage(saveFormData(datas));
+			}
 		} catch (Exception e2) {
 			e2.printStackTrace();
 			resault.setMessage(e2.getMessage());
 		}
 		sentResponse(response, resault);
 	}
-	
-	private String submit(Map<String, String> datas) throws MissingParamException{
+
+	private String saveFormData(Map<String, String> datas)
+			throws MissingParamException {
 		for (String key : datas.keySet()) {
-			LOG.debug(key+" is "+datas.get(key));
+			LOG.debug(key + " is " + datas.get(key));
 		}
-		String dataType=datas.get("dataType");
-		if (dataType==null) {
+		String dataType = datas.get("dataType");
+		if (dataType == null) {
 			return "NoDataType";
 		}
-		switch (dataType) {
+		switch (dataType.toLowerCase().trim().toString()) {
 		case "orders":
-			checkParam(datas,Order.NotNullList);
-			List<Order> orders=new ArrayList<Order>();
-			infoDataService.save(orders);
+			if (checkParam(datas, Order.NotNullList)) {
+				List<Order> orders = new ArrayList<Order>();
+				infoDataService.save(orders);
+			}
 			break;
 		case "driver":
-			checkParam(datas,Driver.NotNullList);
-			Driver driver=new Driver();
-			infoDataService.save(driver);
-			break;	
+			if (checkParam(datas, Driver.NotNullList)) {
+				Driver driver = new Driver();
+				infoDataService.save(driver);
+			}
+			break;
+		case "customer":
+			if (checkParam(datas, Customer.NotNullList)) {
+				Customer customer = new Customer();
+				infoDataService.save(customer);
+			}
+			break;
+		case "factory":
+			if (checkParam(datas, Factory.NotNullList)) {
+				Factory factory = new Factory();
+				infoDataService.save(factory);
+			}
+			break;
+		case "vehicle":
+			if (checkParam(datas, Vehicle.NotNullList)) {
+				Vehicle vehicle = new Vehicle();
+				infoDataService.save(vehicle);
+			}
+			break;
+			
+		case "plan":
+			if (checkParam(datas, Plan.NotNullList)) {
+				Plan plan = new Plan();
+				infoDataService.save(plan);
+			}
+			break;
+			
+			
 		default:
 			break;
 		}
 		return "";
 	}
-	
-	
-	
-	
-	
+
 	@SuppressWarnings("deprecation")
 	public static List<Order> getOrderByTable(String tableString) {
 		List<Order> resaultsList = new ArrayList<Order>();

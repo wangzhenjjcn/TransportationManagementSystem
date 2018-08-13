@@ -1,6 +1,8 @@
 package org.myazure.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Vehicle extends BaseEntity implements Serializable {
 	@Transient
 	private static final long serialVersionUID = 1L;
+	public static final List<String> NotNullList = new ArrayList<String>();
 	@Id
 	@JsonProperty("id")
 	@JSONField(name = "id")
@@ -30,12 +33,6 @@ public class Vehicle extends BaseEntity implements Serializable {
 	@JSONField(name = "car_license_plate")
 	private String carLicensePlate;
 
-	
-	
-	
-	
-	
-	
 	public String getCarLicensePlate() {
 		return carLicensePlate;
 	}
@@ -45,7 +42,8 @@ public class Vehicle extends BaseEntity implements Serializable {
 	}
 
 	public Vehicle() {
-
+		super();
+		NotNullList.add("car_license_plate");
 	}
 
 	public Long getId() {

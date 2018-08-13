@@ -1,6 +1,8 @@
 package org.myazure.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Plan extends BaseEntity implements Serializable {
 	@Transient
 	private static final long serialVersionUID = 1L;
+	public static final List<String> NotNullList = new ArrayList<String>();
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonProperty("id")
@@ -121,7 +124,8 @@ public class Plan extends BaseEntity implements Serializable {
 	}
 
 	public Plan() {
-
+		super();
+		NotNullList.add("price");
 	}
 
 	public Long getId() {
@@ -182,21 +186,21 @@ public class Plan extends BaseEntity implements Serializable {
 
 	public void setFreight_tpye(int freight_tpye) {
 		this.freight_tpye = freight_tpye;
-		//1.陆运，2.空运，3.海运，4.其他
+		// 1.陆运，2.空运，3.海运，4.其他
 		switch (freight_tpye) {
 		case 1:
-			this.freight_tpye_string="陆运";
+			this.freight_tpye_string = "陆运";
 			break;
 		case 2:
-			this.freight_tpye_string="空运";
+			this.freight_tpye_string = "空运";
 			break;
 
 		case 3:
-			this.freight_tpye_string="海运";
+			this.freight_tpye_string = "海运";
 			break;
 
 		case 4:
-			this.freight_tpye_string="其他";
+			this.freight_tpye_string = "其他";
 			break;
 
 		default:

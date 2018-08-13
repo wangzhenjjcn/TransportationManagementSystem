@@ -1,6 +1,8 @@
 package org.myazure.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +23,7 @@ public class Customer extends BaseEntity implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static final List<String> NotNullList = new ArrayList<String>();
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JsonProperty("id")
@@ -53,7 +56,8 @@ public class Customer extends BaseEntity implements Serializable {
 	private String phone;
 
 	public Customer() {
-
+		super();
+		NotNullList.add("name");
 	}
 
 	public void setCustomerId(Long customerId) {

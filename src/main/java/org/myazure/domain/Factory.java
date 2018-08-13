@@ -1,6 +1,8 @@
 package org.myazure.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Factory extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final List<String> NotNullList = new ArrayList<String>();
 
 	@Id
 	@JsonProperty("id")
@@ -61,12 +65,12 @@ public class Factory extends BaseEntity implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-		this.namepy=S.getPinYinFirstChar(name);
+		this.namepy = S.getPinYinFirstChar(name);
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
-		this.addresspy=S.getPinYinFirstChar(address);
+		this.addresspy = S.getPinYinFirstChar(address);
 	}
 
 	public void setContact(String contact) {
@@ -78,7 +82,8 @@ public class Factory extends BaseEntity implements Serializable {
 	}
 
 	public Factory() {
-
+		super();
+		NotNullList.add("name");
 	}
 
 	public Long getId() {
