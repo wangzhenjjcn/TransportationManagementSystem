@@ -116,7 +116,16 @@ public class BaseController {
 		return datas;
 	}
 	
-	protected boolean checkParam(Map<String, String> datas,List<String> requoreListString) throws MissingParamException{
+	protected boolean checkParam(Map<String, String> datas,List<String> requoreListString)  {
+		if (datas==null) {
+			return true;
+		}
+		if (datas.keySet()==null) {
+			return true;
+		}
+		if (datas.keySet().size()<1) {
+			return true;
+		}
 		for (String key : datas.keySet()) {
 			LOG.debug("***********"+key+"***********"+datas.get(key)+"***********");
 		}
@@ -124,10 +133,34 @@ public class BaseController {
 			return true;
 		}
 		if (datas.keySet().containsAll(requoreListString)) {
-			throw new MissingParamException();
+			return true;
 		}else {
 			return false;
+//			throw new MissingParamException("Params Not Founded");
 		}
+	}
+	
+	
+	protected String checkParamString(Map<String, String> datas,List<String> requoreListString) {
+		for (String key : datas.keySet()) {
+			LOG.debug("***********"+key+"***********"+datas.get(key)+"***********");
+		}
+		if (requoreListString==null) {
+			return "No Param Required";
+		}
+		if (datas.keySet().containsAll(requoreListString)) {
+			
+			
+		}else {
+			for (String string : requoreListString) {
+				if (datas.keySet().contains(string)) {
+					
+				}else {
+					return string+" Not Founded in Params!";
+				}
+			}
+		}
+		return "All Param Here";
 	}
 
 }
