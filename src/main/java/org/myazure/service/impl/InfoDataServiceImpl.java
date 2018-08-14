@@ -473,6 +473,15 @@ public class InfoDataServiceImpl implements InfoDataService {
 
 	@Override
 	public Order save(Order order) {
+		webUserRepository.save(order.getCreatorUser());
+		webUserRepository.save(order.getCustomerUser());
+		webUserRepository.save(order.getDeliveryDriverUser());
+		webUserRepository.save(order.getTransportDriverUser());
+		webUserRepository.save(order.getFactoryUser());
+		driverRepository.save(order.getDeliveryVehicleDriver());
+		driverRepository.save(order.getTransportVehicleDriver());
+		vehicleRepository.save(order.getDeliveryVehicle());
+		vehicleRepository.save(order.getTransportVehicle());
 		return orderRepository.save(order);
 	}
 

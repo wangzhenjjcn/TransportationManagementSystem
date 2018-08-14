@@ -499,12 +499,13 @@ public class OrderController extends BaseController {
 						: false);
 				order.setFeeTime(Integer.valueOf(datas.get("fee_time")));
 				order.setRemarks(datas.get("remarks"));
-				infoDataService.save(order);
+				Order orderSaved=infoDataService.save(order);
+				LOG.debug("ORDER SAVED!!");
+				return JSON.toJSONString(orderSaved);
 			}else {
 				LOG.debug("More Param Required");
 				return checkParamString(datas, Order.NotNullList);
 			}
-			break;
 		case "driver":
 			if (checkParam(datas, Driver.NotNullList)) {
 				Driver driver = new Driver();
