@@ -68,14 +68,14 @@ public class BaseController {
 	}
 
 	protected void sentLoginErrResponse(HttpServletResponse response) {
-		response.addCookie(new Cookie("4682543566466", System
+		response.addCookie(new Cookie("UserId", System
 				.currentTimeMillis() + ""));
 		sentResponse(response, new StatusResponse(
 				"invalid username/password logon denied", 6, false));
 	}
 
 	protected void sentAuthorizedResponse(HttpServletResponse response) {
-		response.addCookie(new Cookie("4682543566466", ""));
+		response.addCookie(new Cookie("UserId", ""));
 		sentResponse(response, new StatusResponse("logon sucess", 0, true));
 	}
 
