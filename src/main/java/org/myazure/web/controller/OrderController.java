@@ -416,24 +416,24 @@ public class OrderController extends BaseController {
 
 	@RequestMapping(path = "/submit", method = { RequestMethod.POST,
 			RequestMethod.GET })
-	public void submit(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
+	public void submit(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 		StatusResponse resault = new StatusResponse("unknown", 0, true);
-		Map<String, String> datas=getRequestDatas(request);
+		Map<String, String> datas = getRequestDatas(request);
 		String op = datas.get("operation");
-		if (op==null) {
+		if (op == null) {
 			resault.setMessage("operation needed!!");
-		}else {
+		} else {
 			try {
-				if (op=="save"||op.equals("save")) {
-					LOG.debug("NEW SAVE REQUEST:"+request.getRemoteAddr());
+				if (op == "save" || op.equals("save")) {
+					LOG.debug("NEW SAVE REQUEST:" + request.getRemoteAddr());
 					resault.setMessage(saveFormData(datas));
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();
 				resault.setMessage(e2.getMessage());
 			}
-			
+
 		}
 		sentResponse(response, resault);
 	}
@@ -447,79 +447,23 @@ public class OrderController extends BaseController {
 		if (dataType == null) {
 			LOG.debug("No data Type Request!!!!!!!!!");
 			return "NoDataType";
-		}else {
-			LOG.debug("DataType:"+dataType);
+		} else {
+			LOG.debug("DataType:" + dataType);
 		}
 		switch (dataType.toLowerCase().trim().toString()) {
 		case "orders":
 			LOG.debug("NEW ORDER SAVE REQUEST RECIEVED");
-			if (checkParam(datas, Order.NotNullList)) {
-				List<Order> orders = new ArrayList<Order>();
-				
-				infoDataService.save(orders);
-			}else {
-				LOG.debug("More Param Required");
-				return checkParamString(datas, Order.NotNullList);
-			}
-			break;
+			return saveOrders(datas);
 		case "order":
 			LOG.debug("NEW ORDER SAVE REQUEST RECIEVED");
-			if (checkParam(datas, Order.NotNullList)) {
-				Order order = new  Order();
-				order.setEntryNumber(datas.get("entry_number"));
-				order.setCustomerNumber(datas.get("customer_number"));
-				order.setOrderState(0);
-				order.setTransportVehicle(infoDataService.getVehicle(Long
-						.valueOf(datas.get("transport_vehicle_id"))));
-				order.setDeliveryVehicle(infoDataService.getVehicle(Long
-						.valueOf(datas.get("delivery_vehicle_id"))));
-				order.setTransportVehicleDriver(infoDataService.getDrivers(Long
-						.valueOf(datas.get("transport_driver_id"))));
-				order.setDeliveryVehicleDriver(infoDataService.getDrivers(Long
-						.valueOf(datas.get("delivery_driver_id"))));
-				order.setFactory(infoDataService.getFactories(Long.valueOf(datas.get("factory_id"))));
-				order.setPlan(infoDataService.getPlans(Long.valueOf(datas.get("plan_id"))));
-				order.setWeight(Integer.valueOf(datas.get("weight")));
-				order.setSize(Integer.valueOf(datas.get("size")));
-				order.setDistence(Integer.valueOf(datas.get("distance")));
-				order.setEntryNumber(datas.get("entry_number"));
-				order.setCustomer(infoDataService.getCustomer(Long.valueOf(datas.get("customer_id"))));
-				order.setCustomerNumber(datas.get("customer_number"));
-				order.setPickupNumber(datas.get("pickup_number"));
-				order.setTransferNumber(datas.get("transfer_number"));
-				order.setSource(datas.get("source"));
-				order.setDestination(datas.get("destination"));
-				order.setPakages(Integer.valueOf(datas.get("packages")));
-				order.setFreightType(Integer.valueOf(datas.get("freight_tpye")));
-				order.setCarriageFee(Integer.valueOf(datas.get("carriage_fee")));
-				order.setCushionFee(Integer.valueOf(datas.get("cushion_fee")));
-				order.setContactName(datas.get("contact"));
-				order.setContactPhone(datas.get("phone"));
-				order.setChartered(datas.get("isChartered") == "true" ? true
-						: false);
-				order.setFeeTime(Integer.valueOf(datas.get("fee_time")));
-				order.setRemarks(datas.get("remarks"));
-				Order orderSaved=infoDataService.save(order);
-				LOG.debug("ORDER SAVED!!");
-				return JSON.toJSONString(orderSaved);
-			}else {
-				LOG.debug("More Param Required");
-				return checkParamString(datas, Order.NotNullList);
-			}
+			return saveOrder(datas);
 		case "driver":
-			if (checkParam(datas, Driver.NotNullList)) {
-				Driver driver = new Driver();
-				infoDataService.save(driver);
-			}else {
-				LOG.debug("More Param Required");
-				return checkParamString(datas, Order.NotNullList);
-			}
-			break;
+			return saveDriver(datas);
 		case "customer":
 			if (checkParam(datas, Customer.NotNullList)) {
 				Customer customer = new Customer();
 				infoDataService.save(customer);
-			}else {
+			} else {
 				LOG.debug("More Param Required");
 				return checkParamString(datas, Order.NotNullList);
 			}
@@ -528,7 +472,7 @@ public class OrderController extends BaseController {
 			if (checkParam(datas, Factory.NotNullList)) {
 				Factory factory = new Factory();
 				infoDataService.save(factory);
-			}else {
+			} else {
 				LOG.debug("More Param Required");
 				return checkParamString(datas, Order.NotNullList);
 			}
@@ -537,27 +481,100 @@ public class OrderController extends BaseController {
 			if (checkParam(datas, Vehicle.NotNullList)) {
 				Vehicle vehicle = new Vehicle();
 				infoDataService.save(vehicle);
-			}else {
+			} else {
 				LOG.debug("More Param Required");
 				return checkParamString(datas, Order.NotNullList);
 			}
 			break;
-			
+
 		case "plan":
 			if (checkParam(datas, Plan.NotNullList)) {
 				Plan plan = new Plan();
 				infoDataService.save(plan);
-			}else {
+			} else {
 				LOG.debug("More Param Required");
 				return checkParamString(datas, Order.NotNullList);
 			}
 			break;
-			
-			
+
 		default:
 			break;
 		}
 		return "";
+	}
+
+	private String saveOrders(Map<String, String> datas) {
+		List<Order> orders = new ArrayList<Order>();
+		if (datas.get("orders")!=null) {
+			infoDataService.save(orders);
+			orders=getOrderByTable(datas.get("orders"));
+			return JSON.toJSONString(orders);
+		} else {
+			LOG.debug("More Param Required");
+			return checkParamString(datas, Order.NotNullList);
+		}
+	}
+
+	private String saveDriver(Map<String, String> datas) {
+		Driver driverSaved = new Driver();
+		if (checkParam(datas, Driver.NotNullList)) {
+			Driver driver = new Driver();
+			driver.setName(datas.get("name"));
+			driver.setPhone(datas.get("phone"));
+			driverSaved = infoDataService.save(driver);
+		} else {
+			LOG.debug("More Param Required");
+			return checkParamString(datas, Order.NotNullList);
+		}
+		return JSON.toJSONString(driverSaved);
+	}
+
+	private String saveOrder(Map<String, String> datas) {
+		if (checkParam(datas, Order.NotNullList)) {
+			Order order = new Order();
+			order.setEntryNumber(datas.get("entry_number"));
+			order.setCustomerNumber(datas.get("customer_number"));
+			order.setOrderState(0);
+			order.setTransportVehicle(infoDataService.getVehicle(Long
+					.valueOf(datas.get("transport_vehicle_id"))));
+			order.setDeliveryVehicle(infoDataService.getVehicle(Long
+					.valueOf(datas.get("delivery_vehicle_id"))));
+			order.setTransportVehicleDriver(infoDataService.getDrivers(Long
+					.valueOf(datas.get("transport_driver_id"))));
+			order.setDeliveryVehicleDriver(infoDataService.getDrivers(Long
+					.valueOf(datas.get("delivery_driver_id"))));
+			order.setFactory(infoDataService.getFactories(Long.valueOf(datas
+					.get("factory_id"))));
+			order.setPlan(infoDataService.getPlans(Long.valueOf(datas
+					.get("plan_id"))));
+			order.setWeight(Integer.valueOf(datas.get("weight")));
+			order.setSize(Integer.valueOf(datas.get("size")));
+			order.setDistence(Integer.valueOf(datas.get("distance")));
+			order.setEntryNumber(datas.get("entry_number"));
+			order.setCustomer(infoDataService.getCustomer(Long.valueOf(datas
+					.get("customer_id"))));
+			order.setCustomerNumber(datas.get("customer_number"));
+			order.setPickupNumber(datas.get("pickup_number"));
+			order.setTransferNumber(datas.get("transfer_number"));
+			order.setSource(datas.get("source"));
+			order.setDestination(datas.get("destination"));
+			order.setPakages(Integer.valueOf(datas.get("packages")));
+			order.setFreightType(Integer.valueOf(datas.get("freight_tpye")));
+			order.setCarriageFee(Integer.valueOf(datas.get("carriage_fee")));
+			order.setCushionFee(Integer.valueOf(datas.get("cushion_fee")));
+			order.setContactName(datas.get("contact"));
+			order.setContactPhone(datas.get("phone"));
+			order.setChartered(datas.get("isChartered") == "true" ? true
+					: false);
+			order.setFeeTime(Integer.valueOf(datas.get("fee_time")));
+			order.setRemarks(datas.get("remarks"));
+			Order orderSaved = infoDataService.save(order);
+			LOG.debug("ORDER SAVED!!");
+			return JSON.toJSONString(orderSaved);
+		} else {
+			LOG.debug("More Param Required");
+			return checkParamString(datas, Order.NotNullList);
+		}
 	}
 
 	@SuppressWarnings("deprecation")

@@ -32,15 +32,15 @@ public class Driver extends BaseEntity implements Serializable {
 	@JsonProperty("name")
 	@JSONField(name = "name")
 	@Column(name = "name", columnDefinition = "varchar(255) DEFAULT NULL")
-	private String name;
+	private String name="";
 	@JsonProperty("namepy")
 	@JSONField(name = "namepy")
 	@Column(name = "namepy", columnDefinition = "varchar(255) DEFAULT NULL")
-	private String namepy;
+	private String namepy="";
 	@JsonProperty("phone")
 	@JSONField(name = "phone")
 	@Column(name = "phone", columnDefinition = "varchar(255) DEFAULT NULL")
-	private String phone;
+	private String phone="";
 
 	
 	public Driver() {
