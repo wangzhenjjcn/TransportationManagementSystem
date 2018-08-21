@@ -460,59 +460,201 @@ public class OrderController extends BaseController {
 		case "driver":
 			return saveDriver(datas);
 		case "customer":
-			if (checkParam(datas, Customer.NotNullList)) {
-				Customer customer = new Customer();
-				infoDataService.save(customer);
-			} else {
-				LOG.debug("More Param Required");
-				return checkParamString(datas, Order.NotNullList);
-			}
-			break;
+			return saveCustomer(datas);
 		case "factory":
-			if (checkParam(datas, Factory.NotNullList)) {
-				Factory factory = new Factory();
-				infoDataService.save(factory);
-			} else {
-				LOG.debug("More Param Required");
-				return checkParamString(datas, Order.NotNullList);
-			}
-			break;
+			return saveFactory(datas);
 		case "vehicle":
-			if (checkParam(datas, Vehicle.NotNullList)) {
-				Vehicle vehicle = new Vehicle();
-				infoDataService.save(vehicle);
-			} else {
-				LOG.debug("More Param Required");
-				return checkParamString(datas, Order.NotNullList);
-			}
-			break;
-
+			return saveVehicle(datas);
 		case "plan":
-			if (checkParam(datas, Plan.NotNullList)) {
-				Plan plan = new Plan();
-				infoDataService.save(plan);
-			} else {
-				LOG.debug("More Param Required");
-				return checkParamString(datas, Order.NotNullList);
-			}
-			break;
-
+			return savePlan(datas);
 		default:
-			break;
+			LOG.debug("UNKNOW TYPE:" + dataType);
+			return "UNKNOW TYPE:" + dataType;
 		}
-		return "";
 	}
 
-	private String saveOrders(Map<String, String> datas) {
-		List<Order> orders = new ArrayList<Order>();
-		if (datas.get("orders")!=null) {
-			infoDataService.save(orders);
-			orders=getOrderByTable(datas.get("orders"));
-			return JSON.toJSONString(orders);
+	@SuppressWarnings("unused")
+	private Object getFormData(Map<String, String> datas)
+			throws MissingParamException {
+		for (String key : datas.keySet()) {
+			LOG.debug(key + " is " + datas.get(key));
+		}
+		String dataType = datas.get("datatype");
+		if (dataType == null) {
+			LOG.debug("No data Type Request!!!!!!!!!");
+			return "NoDataType";
+		} else {
+			LOG.debug("DataType:" + dataType);
+		}
+		switch (dataType.toLowerCase().trim().toString()) {
+		case "orders":
+			return getOrders(datas);
+		case "order":
+			return getOrder(datas);
+		case "driver":
+			return getDriver(datas);
+		case "customer":
+			return getCustomer(datas);
+		case "factory":
+			return getFactory(datas);
+		case "vehicle":
+			return getVehicle(datas);
+		case "plan":
+			return getPlan(datas);
+		case "drivers":
+			return getDrivers(datas);
+		case "customers":
+			return getCustomers(datas);
+		case "factories":
+			return getFactories(datas);
+		case "vehicles":
+			return getVehicles(datas);
+		case "plans":
+			return getPlans(datas);
+		default:
+			LOG.debug("UNKNOW TYPE:" + dataType);
+			return "UNKNOW TYPE:" + dataType;
+		}
+	}
+
+	private Object getPlan(Map<String, String> datas) {
+		List<Plan> plans = new ArrayList<Plan>();
+		
+		
+		
+		
+		
+		if (plans.size() > 0) {
+			return plans.get(0);
+		}
+		return null;
+	}
+
+	private Object getVehicle(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Object getFactory(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Object getCustomer(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Object getDriver(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private List<Plan> getPlans(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private List<Vehicle> getVehicles(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private List<Factory> getFactories(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private List<Customer> getCustomers(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private List<Driver> getDrivers(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Order getOrder(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private List<Order> getOrders(Map<String, String> datas) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private String savePlan(Map<String, String> datas) {
+		Plan planSaved = new Plan();
+		if (checkParam(datas, Plan.NotNullList)) {
+			Plan plan = new Plan();
+			plan.setCompanyName(datas.get("company_name"));
+			plan.setPrice(Integer.valueOf(datas.get("price")));
+			planSaved = infoDataService.save(plan);
 		} else {
 			LOG.debug("More Param Required");
 			return checkParamString(datas, Order.NotNullList);
 		}
+		return JSON.toJSONString(planSaved);
+	}
+
+	private String saveVehicle(Map<String, String> datas) {
+		Vehicle vehicleSaved = new Vehicle();
+		if (checkParam(datas, Vehicle.NotNullList)) {
+			Vehicle vehicle = new Vehicle();
+			vehicle.setCarLicensePlate("car_license_plate");
+			vehicleSaved = infoDataService.save(vehicle);
+		} else {
+			LOG.debug("More Param Required");
+			return checkParamString(datas, Order.NotNullList);
+		}
+		return JSON.toJSONString(vehicleSaved);
+	}
+
+	private String saveFactory(Map<String, String> datas) {
+		Factory factorySaved = new Factory();
+		if (checkParam(datas, Factory.NotNullList)) {
+			Factory factory = new Factory();
+			factory.setAddress(datas.get("address"));
+			factory.setContact(datas.get("contact"));
+			factory.setName(datas.get("name"));
+			factory.setPhone(datas.get("phone"));
+			factorySaved = infoDataService.save(factory);
+		} else {
+			LOG.debug("More Param Required");
+			return checkParamString(datas, Order.NotNullList);
+		}
+		return JSON.toJSONString(factorySaved);
+	}
+
+	private String saveCustomer(Map<String, String> datas) {
+		Customer customerSaved = new Customer();
+		if (checkParam(datas, Customer.NotNullList)) {
+			Customer customer = new Customer();
+			customer.setAddress(datas.get("address"));
+			customer.setContact(datas.get("contact"));
+			customer.setName(datas.get("name"));
+			customer.setPhone(datas.get("phone"));
+			customerSaved = infoDataService.save(customer);
+		} else {
+			LOG.debug("More Param Required");
+			return checkParamString(datas, Order.NotNullList);
+		}
+		return JSON.toJSONString(customerSaved);
+	}
+
+	private String saveOrders(Map<String, String> datas) {
+		List<Order> ordersSaved = new ArrayList<Order>();
+		if (datas.get("orders") != null) {
+			List<Order> orders = new ArrayList<Order>();
+			orders = getOrderByTable(datas.get("orders"));
+			ordersSaved = infoDataService.save(orders);
+		} else {
+			LOG.debug("More Param Required");
+			return checkParamString(datas, Order.NotNullList);
+		}
+		return JSON.toJSONString(ordersSaved);
 	}
 
 	private String saveDriver(Map<String, String> datas) {
@@ -530,6 +672,7 @@ public class OrderController extends BaseController {
 	}
 
 	private String saveOrder(Map<String, String> datas) {
+		Order orderSaved = new Order();
 		if (checkParam(datas, Order.NotNullList)) {
 			Order order = new Order();
 			order.setEntryNumber(datas.get("entry_number"));
@@ -568,13 +711,13 @@ public class OrderController extends BaseController {
 					: false);
 			order.setFeeTime(Integer.valueOf(datas.get("fee_time")));
 			order.setRemarks(datas.get("remarks"));
-			Order orderSaved = infoDataService.save(order);
+			orderSaved = infoDataService.save(order);
 			LOG.debug("ORDER SAVED!!");
-			return JSON.toJSONString(orderSaved);
 		} else {
 			LOG.debug("More Param Required");
 			return checkParamString(datas, Order.NotNullList);
 		}
+		return JSON.toJSONString(orderSaved);
 	}
 
 	@SuppressWarnings("deprecation")
