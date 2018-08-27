@@ -458,7 +458,7 @@ public class OrderController extends BaseController {
 		for (String key : datas.keySet()) {
 			LOG.debug(key + " is " + datas.get(key));
 		}
-		String dataType = datas.get("datatype");
+		String dataType = datas.get("datatype").toLowerCase().trim().toString();
 		if (dataType == null) {
 			LOG.debug("No data Type Request!!!!!!!!!");
 			return "NoDataType";
