@@ -108,9 +108,9 @@ public interface InfoDataService {
 
 	Driver getDrivers(Long id);
 
-	Factory getFactories(Long id);
+	Factory getFactory(Long id);
 
-	Plan getPlans(Long id);
+	Plan getPlan(Long id);
 
 	Plan creatPlan(Plan plan);
 
@@ -133,4 +133,6 @@ public interface InfoDataService {
 	Cushion save(Cushion cushion);
 	
 	Payment save(Payment payment);
+
+	Order getOrder(Long id);
 }

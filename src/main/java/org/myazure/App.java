@@ -33,8 +33,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@EnableJpaAuditing
 
 
-
-
 @SpringBootApplication
 @EnableAutoConfiguration
 @Configuration

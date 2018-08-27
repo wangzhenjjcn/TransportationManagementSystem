@@ -2,10 +2,8 @@ package org.myazure.web.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +77,8 @@ public class OrderController extends BaseController {
 			sentUnauthorizedResponse(response);
 			return;
 		}
-		String key = request.getParameter("key");
+		String key = request.getParameter("key").toString().toLowerCase()
+				.trim().toString()+"";
 		List<Order> orders = new ArrayList<Order>();
 		DatasResponse data = new DatasResponse();
 		if (key == null || key.isEmpty()) {
@@ -87,13 +86,20 @@ public class OrderController extends BaseController {
 			for (Order order : orders) {
 				data.addData(order);
 			}
+			data.setCode(2);
 		} else {
 			orders = infoDataService.getOrders(key);
-			for (Order order : orders) {
-				data.addData(order);
+			LOG.debug("here is right test000");
+			LOG.debug("order size:"+orders.size());
+			if (orders.size() < 1) {
+				data.setCode(5);
+			} else {
+				data.setCode(1);
+				for (Order order : orders) {
+					data.addData(order);
+				}
 			}
 		}
-		data.setCode(0);
 		sentResponse(response, data);
 	}
 
@@ -139,9 +145,9 @@ public class OrderController extends BaseController {
 				.valueOf(request.getParameter("transport_driver_id"))));
 		order.setDeliveryVehicleDriver(infoDataService.getDrivers(Long
 				.valueOf(request.getParameter("delivery_driver_id"))));
-		order.setFactory(infoDataService.getFactories(Long.valueOf(request
+		order.setFactory(infoDataService.getFactory(Long.valueOf(request
 				.getParameter("factory_id"))));
-		order.setPlan(infoDataService.getPlans(Long.valueOf(request
+		order.setPlan(infoDataService.getPlan(Long.valueOf(request
 				.getParameter("plan_id"))));
 		order.setWeight(Integer.valueOf(request.getParameter("weight")));
 		order.setSize(Integer.valueOf(request.getParameter("size")));
@@ -210,9 +216,9 @@ public class OrderController extends BaseController {
 				.valueOf(request.getParameter("transport_driver_id"))));
 		order.setDeliveryVehicleDriver(infoDataService.getDrivers(Long
 				.valueOf(request.getParameter("delivery_driver_id"))));
-		order.setFactory(infoDataService.getFactories(Long.valueOf(request
+		order.setFactory(infoDataService.getFactory(Long.valueOf(request
 				.getParameter("factory_id"))));
-		order.setPlan(infoDataService.getPlans(Long.valueOf(request
+		order.setPlan(infoDataService.getPlan(Long.valueOf(request
 				.getParameter("plan_id"))));
 		order.setWeight(Integer.valueOf(request.getParameter("weight")));
 		order.setSize(Integer.valueOf(request.getParameter("size")));
@@ -429,6 +435,15 @@ public class OrderController extends BaseController {
 					LOG.debug("NEW SAVE REQUEST:" + request.getRemoteAddr());
 					resault.setMessage(saveFormData(datas));
 				}
+				if (op == "search" || op.equals("search")) {
+					LOG.debug("NEW SEARCH REQUEST:" + request.getRemoteAddr());
+					resault.setMessage(JSON.toJSONString(getFormData(datas)));
+				}
+				if (op == "get" || op.equals("get") || op == "read"
+						|| op.equals("read")) {
+					LOG.debug("NEW READ REQUEST:" + request.getRemoteAddr());
+					resault.setMessage(JSON.toJSONString(getFormData(datas)));
+				}
 			} catch (Exception e2) {
 				e2.printStackTrace();
 				resault.setMessage(e2.getMessage());
@@ -473,7 +488,6 @@ public class OrderController extends BaseController {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	private Object getFormData(Map<String, String> datas)
 			throws MissingParamException {
 		for (String key : datas.keySet()) {
@@ -488,28 +502,100 @@ public class OrderController extends BaseController {
 		}
 		switch (dataType.toLowerCase().trim().toString()) {
 		case "orders":
+			if (!datas.containsKey("key")) {
+				return null;
+			}
+			if (datas.get("key") == null) {
+				return null;
+			}
 			return getOrders(datas);
 		case "order":
+			if (!datas.containsKey("id")) {
+				return null;
+			}
+			if (datas.get("id") == null) {
+				return null;
+			}
 			return getOrder(datas);
 		case "driver":
+			if (!datas.containsKey("id")) {
+				return null;
+			}
+			if (datas.get("id") == null) {
+				return null;
+			}
 			return getDriver(datas);
 		case "customer":
+			if (!datas.containsKey("id")) {
+				return null;
+			}
+			if (datas.get("id") == null) {
+				return null;
+			}
 			return getCustomer(datas);
 		case "factory":
+			if (!datas.containsKey("id")) {
+				return null;
+			}
+			if (datas.get("id") == null) {
+				return null;
+			}
 			return getFactory(datas);
 		case "vehicle":
+			if (!datas.containsKey("id")) {
+				return null;
+			}
+			if (datas.get("id") == null) {
+				return null;
+			}
 			return getVehicle(datas);
 		case "plan":
+			if (!datas.containsKey("id")) {
+				return null;
+			}
+			if (datas.get("id") == null) {
+				return null;
+			}
 			return getPlan(datas);
 		case "drivers":
+			if (!datas.containsKey("key")) {
+				return null;
+			}
+			if (datas.get("key") == null) {
+				return null;
+			}
 			return getDrivers(datas);
 		case "customers":
+			if (!datas.containsKey("key")) {
+				return null;
+			}
+			if (datas.get("key") == null) {
+				return null;
+			}
 			return getCustomers(datas);
 		case "factories":
+			if (!datas.containsKey("key")) {
+				return null;
+			}
+			if (datas.get("key") == null) {
+				return null;
+			}
 			return getFactories(datas);
 		case "vehicles":
+			if (!datas.containsKey("key")) {
+				return null;
+			}
+			if (datas.get("key") == null) {
+				return null;
+			}
 			return getVehicles(datas);
 		case "plans":
+			if (!datas.containsKey("key")) {
+				return null;
+			}
+			if (datas.get("key") == null) {
+				return null;
+			}
 			return getPlans(datas);
 		default:
 			LOG.debug("UNKNOW TYPE:" + dataType);
@@ -518,71 +604,75 @@ public class OrderController extends BaseController {
 	}
 
 	private Object getPlan(Map<String, String> datas) {
-		List<Plan> plans = new ArrayList<Plan>();
-		
-		
-		
-		
-		
-		if (plans.size() > 0) {
-			return plans.get(0);
-		}
-		return null;
+		Plan plan = new Plan();
+		plan = infoDataService.getPlan(Long.valueOf(datas.get("id")));
+		return plan;
 	}
 
-	private Object getVehicle(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+	private Vehicle getVehicle(Map<String, String> datas) {
+		Vehicle vehicle = new Vehicle();
+		vehicle = infoDataService.getVehicle(Long.valueOf(datas.get("id")));
+		return vehicle;
 	}
 
-	private Object getFactory(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+	private Factory getFactory(Map<String, String> datas) {
+		Factory factory = new Factory();
+		factory = infoDataService.getFactory(Long.valueOf(datas.get("id")));
+		return factory;
 	}
 
-	private Object getCustomer(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+	private Customer getCustomer(Map<String, String> datas) {
+		Customer customers = new Customer();
+		customers = infoDataService.getCustomer(Long.valueOf(datas.get("id")));
+		return customers;
 	}
 
-	private Object getDriver(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+	private List<Driver> getDriver(Map<String, String> datas) {
+		List<Driver> drivers = new ArrayList<Driver>();
+		drivers = infoDataService.getDrivers(datas.get("key"));
+		return drivers;
 	}
 
 	private List<Plan> getPlans(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Plan> plans = new ArrayList<Plan>();
+		plans = infoDataService.getPlans(datas.get("key"));
+		return plans;
 	}
 
 	private List<Vehicle> getVehicles(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Vehicle> vehicles = new ArrayList<Vehicle>();
+		vehicles = infoDataService.getVehicles(datas.get("key"));
+		return vehicles;
 	}
 
 	private List<Factory> getFactories(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Factory> factories = new ArrayList<Factory>();
+		factories = infoDataService.getFactories(datas.get("key"));
+		return factories;
 	}
 
 	private List<Customer> getCustomers(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Customer> customers = new ArrayList<Customer>();
+		customers = infoDataService.getCustomers(datas.get("key"));
+		return customers;
 	}
 
 	private List<Driver> getDrivers(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Driver> drivers = new ArrayList<Driver>();
+		drivers = infoDataService.getDrivers(datas.get("key"));
+		return drivers;
 	}
 
 	private Order getOrder(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+		Order order = new Order();
+		order = infoDataService.getOrder(Long.valueOf(datas.get("id")));
+		return order;
 	}
 
 	private List<Order> getOrders(Map<String, String> datas) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Order> orders = new ArrayList<Order>();
+		orders = infoDataService.getOrders(datas.get("key"));
+		return orders;
 	}
 
 	private String savePlan(Map<String, String> datas) {
@@ -686,9 +776,9 @@ public class OrderController extends BaseController {
 					.valueOf(datas.get("transport_driver_id"))));
 			order.setDeliveryVehicleDriver(infoDataService.getDrivers(Long
 					.valueOf(datas.get("delivery_driver_id"))));
-			order.setFactory(infoDataService.getFactories(Long.valueOf(datas
+			order.setFactory(infoDataService.getFactory(Long.valueOf(datas
 					.get("factory_id"))));
-			order.setPlan(infoDataService.getPlans(Long.valueOf(datas
+			order.setPlan(infoDataService.getPlan(Long.valueOf(datas
 					.get("plan_id"))));
 			order.setWeight(Integer.valueOf(datas.get("weight")));
 			order.setSize(Integer.valueOf(datas.get("size")));
@@ -721,7 +811,7 @@ public class OrderController extends BaseController {
 	}
 
 	@SuppressWarnings("deprecation")
-	public static List<Order> getOrderByTable(String tableString) {
+	private static List<Order> getOrderByTable(String tableString) {
 		List<Order> resaultsList = new ArrayList<Order>();
 		Document doc = Jsoup.parse(tableString);
 		Elements table = doc.getElementsByTag("table");

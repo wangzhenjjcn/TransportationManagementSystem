@@ -27,7 +27,7 @@ public class DatasResponse<T> extends StatusResponse {
 
 	@JsonProperty("last_order")
 	@JSONField(name = "last_order")
-	private Order lastOrder;
+	private Order lastOrder=new Order();
 
 	public List<Order> getOrders() {
 		return orders;

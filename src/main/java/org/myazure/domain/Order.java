@@ -38,11 +38,11 @@ public class Order extends BaseEntity implements Serializable {
 	@JsonProperty("orderCreatDate")
 	@JSONField(name = "orderCreatDate")
 	@Column(name = "order_creat_date", columnDefinition = "datetime DEFAULT NULL")
-	private Date orderCreatDate;
+	private Date orderCreatDate=new Date();
 	@JsonProperty("orderDate")
 	@Column(name = "order_date", columnDefinition = "datetime DEFAULT NULL")
 	@JSONField(name = "orderDate")
-	private Date orderDate;
+	private Date orderDate=new Date();
 	@JSONField(name = "creator_user", serialize = false)
 	@JsonProperty("creator_user")
 	@JoinColumn(name = "creator_user_id")
@@ -96,125 +96,125 @@ public class Order extends BaseEntity implements Serializable {
 	@JSONField(name = "factory_name")
 	@JsonProperty("factory_name")
 	@Column(name = "factory_name", columnDefinition = "varchar(255) DEFAULT NULL")
-	private String factoryName;
+	private String factoryName="";
 	@Transient
 	@JSONField(name = "factory_address")
 	@JsonProperty("factory_address")
-	private String factoryAddress;
+	private String factoryAddress="";
 	@Transient
 	@JSONField(name = "factory_addresspy")
 	@JsonProperty("factory_addresspy")
-	private String factoryAddresspy;
+	private String factoryAddresspy="";
 	@JsonProperty("source")
 	@Column(name = "source", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "source")
-	private String source;
+	private String source="";
 	@JsonProperty("sourcepy")
 	@JSONField(name = "sourcepy")
 	@Column(name = "sourcepy", columnDefinition = "varchar(25) DEFAULT NULL")
-	private String sourcepy;
+	private String sourcepy="";
 	@JsonProperty("destination")
 	@Column(name = "destination", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "destination")
-	private String destination;
+	private String destination="";
 	@JsonProperty("destinationpy")
 	@Column(name = "destinationpy", columnDefinition = "varchar(25) DEFAULT NULL")
 	@JSONField(name = "destinationpy")
-	private String destinationpy;
+	private String destinationpy="";
 	@JsonProperty("transfer_number")
 	@Column(name = "transfer_number", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "transfer_number")
-	private String transferNumber;
+	private String transferNumber="";
 	@JsonProperty("pickup_number")
 	@Column(name = "pickup_number", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "pickup_number")
-	private String pickupNumber;
+	private String pickupNumber="";
 	@JsonProperty("entry_number")
 	@Column(name = "entry_number", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "取件号entry_number")
-	private String entryNumber;
+	private String entryNumber="";
 	@JsonProperty("weight")
 	@Column(name = "weight", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "weight")
-	private int weight;
+	private int weight=0;
 	@JsonProperty("size")
 	@Column(name = "size", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "size")
-	private int size;
+	private int size=0;
 	@JsonProperty("packages")
 	@Column(name = "packages", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "packages")
-	private int pakages;
+	private int pakages=0;
 	@JsonProperty("distence")
 	@Column(name = "distence", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "distence")
-	private int distence;
+	private int distence=0;
 	@JsonProperty("carriage_fee")
 	@Column(name = "carriage_fee", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "carriage_fee")
-	private int carriageFee;
+	private int carriageFee=0;
 	@JsonProperty("cushion_fee")
 	@Column(name = "cushion_fee", columnDefinition = "int(11) DEFAULT NULL")
 	@JSONField(name = "cushion_fee")
-	private int cushionFee;
+	private int cushionFee=0;
 	@JsonProperty("remarks")
 	@Column(name = "remarks", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "remarks")
-	private String remarks;
+	private String remarks="";
 	@JsonProperty("remarkspy")
 	@Column(name = "remarkspy", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "remarkspy")
-	private String remarkspy;
+	private String remarkspy="";
 	@JsonProperty("transport_vehicle_registration_number")
 	@Column(name = "transport_vehicle_registration_number", columnDefinition = "varchar(9) DEFAULT NULL")
 	@JSONField(name = "transport_vehicle_registration_number")
-	private String transportVehicleRegistrationNumber;
+	private String transportVehicleRegistrationNumber="";
 	@JsonProperty("delivery_vehicle_registration_number")
 	@Column(name = "delivery_vehicle_registration_number", columnDefinition = "varchar(9) DEFAULT NULL")
 	@JSONField(name = "delivery_vehicle_registration_number")
-	private String deliveryVehicleRegistrationNumber;
+	private String deliveryVehicleRegistrationNumber="";
 	@JSONField(name = "customer")
 	@JsonProperty("customer")
 	@JoinColumn(name = "customer_id")
 	@ManyToOne(targetEntity = Customer.class, fetch = FetchType.LAZY)
-	private Customer customer;
+	private Customer customer=new Customer();
 	@JSONField(name = "customer_name")
 	@JsonProperty("customer_name")
 	@Column(name = "customer_name", columnDefinition = "varchar(255) DEFAULT NULL")
-	private String customerName;
+	private String customerName="";
 	@JsonProperty("plan")
 	@JSONField(name = "plan")
 	@JoinColumn(name = "plan_id", columnDefinition = "bigint(11) DEFAULT NULL")
 	@ManyToOne(targetEntity = Plan.class, fetch = FetchType.LAZY)
-	private Plan plan;
+	private Plan plan=new Plan();;
 	@JsonProperty("customer_number")
 	@Column(name = "customer_number", columnDefinition = "varchar(30) DEFAULT NULL")
 	@JSONField(name = "customer_number")
-	private String customerNumber;
+	private String customerNumber="";
 	@JsonProperty("freight_tpye")
 	@JSONField(name = "freight_tpye")
 	@Column(name = "freight_tpye", columnDefinition = " int(1) DEFAULT '0'")
-	private int freightType;
+	private int freightType=0;
 	@Transient
 	@JsonProperty("freight_tpye_String")
 	@JSONField(name = "freight_tpye_String")
-	private String freightTypeString;
+	private String freightTypeString="";
 	@Transient
 	@JsonProperty("freight_tpye_string_py")
 	@JSONField(name = "freight_tpye_string_py")
-	private String freightTypeStringPy;
+	private String freightTypeStringPy="";
 	@JsonProperty("contact")
 	@Column(name = "contact", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "contact")
-	private String contactName;
+	private String contactName="";
 	@JsonProperty("contactpy")
 	@Column(name = "contactpy", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "contactpy")
-	private String contactNamepy;
+	private String contactNamepy="";
 	@JsonProperty("phone")
 	@Column(name = "phone", columnDefinition = "varchar(255) DEFAULT NULL")
 	@JSONField(name = "phone")
-	private String contactPhone;
+	private String contactPhone="";
 	@JsonProperty("isChartered")
 	@Column(name = "isChartered", columnDefinition = "bit(1) DEFAULT NULL")
 	@JSONField(name = "isChartered")
@@ -231,11 +231,11 @@ public class Order extends BaseEntity implements Serializable {
 	@Transient
 	@JsonProperty("order_state_string")
 	@JSONField(name = "order_state_string")
-	private String orderStateString;
+	private String orderStateString="";
 	@Transient
 	@JsonProperty("order_state_string_py")
 	@JSONField(name = "order_state_string_py")
-	private String orderStateStringPY;
+	private String orderStateStringPY="";
 	@JSONField(name = "payments")
 	@JsonProperty("payments")
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Payment.class, fetch = FetchType.LAZY)

@@ -379,12 +379,12 @@ public class InfoDataServiceImpl implements InfoDataService {
 	}
 
 	@Override
-	public Factory getFactories(Long id) {
+	public Factory getFactory(Long id) {
 		return factoryRepository.findOne(id);
 	}
 
 	@Override
-	public Plan getPlans(Long id) {
+	public Plan getPlan(Long id) {
 		return planRepository.findOne(id);
 	}
 
@@ -483,6 +483,11 @@ public class InfoDataServiceImpl implements InfoDataService {
 		vehicleRepository.save(order.getDeliveryVehicle());
 		vehicleRepository.save(order.getTransportVehicle());
 		return orderRepository.save(order);
+	}
+
+	@Override
+	public Order getOrder(Long id) {
+		return orderRepository.findOne(id);
 	}
 
 }

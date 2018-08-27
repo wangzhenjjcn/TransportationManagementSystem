@@ -90,15 +90,33 @@ public class BaseController {
 	}
 
 	protected void sentResponse(HttpServletResponse response, Object object) {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
 		try {
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("");
-			response.getWriter().write(
-					JSON.toJSONString(object,
-							SerializerFeature.DisableCircularReferenceDetect,
-							SerializerFeature.WriteMapNullValue));
+			LOG.debug("here is right test");
+			if (object==null) {
+				LOG.debug("here is right test2000");
+				response.getWriter().write(
+						JSON.toJSONString("Null MSG 500!",
+								SerializerFeature.DisableCircularReferenceDetect,
+								SerializerFeature.WriteMapNullValue));
+			}else {
+				LOG.debug(object.toString());
+				LOG.debug("here is right test266");
+				response.getWriter().write(
+						JSON.toJSONString(object,
+								SerializerFeature.DisableCircularReferenceDetect,
+								SerializerFeature.WriteNullNumberAsZero,
+								SerializerFeature.WriteNullStringAsEmpty,
+								SerializerFeature.WriteNullBooleanAsFalse,
+								SerializerFeature.WriteMapNullValue,
+								SerializerFeature.WriteNullListAsEmpty,
+								SerializerFeature.WriteEnumUsingToString,
+								SerializerFeature.WriteNonStringKeyAsString
+								));
+				LOG.debug("here is right test299");
+			}
 			response.getWriter().close();
-			return;
 		} catch (IOException e) {
 			LOG.debug(e.getMessage());
 			e.printStackTrace();
