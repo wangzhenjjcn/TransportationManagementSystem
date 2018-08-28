@@ -45,11 +45,12 @@ public class OrderController extends BaseController {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(path = "/getOrder", method = RequestMethod.GET)
 	public void getOrder(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws IOException {
 		String JSSESSION = request.getRequestedSessionId();
 		System.err.println(JSSESSION);
 		if (!checkUser(request)) {
 			sentUnauthorizedResponse(response);
+			response.sendRedirect("40400000.html");
 			return;
 		}
 		String key = request.getParameter("key");

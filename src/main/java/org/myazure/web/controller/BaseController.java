@@ -43,6 +43,21 @@ public class BaseController {
 
 	}
 
+	protected WebUser getWebUserBySESSIONID(HttpServletRequest request) {
+		WebUser user = webUserService
+				.checkUser(request.getRequestedSessionId());
+		System.out.println(request.getRequestedSessionId());
+		System.err.println(JSON.toJSONString(user));
+		return user;
+	}
+
+	protected WebUser getWebUserBySESSIONID(String SESSIONID) {
+		WebUser user = webUserService.checkUser(SESSIONID);
+		System.out.println(SESSIONID);
+		System.err.println(JSON.toJSONString(user));
+		return user;
+	}
+
 	protected boolean checkUser(HttpServletRequest request) {
 		if (request.getRequestedSessionId() == null) {
 			return false;
@@ -60,16 +75,16 @@ public class BaseController {
 		return true;
 	}
 
-	protected void sentUnauthorizedResponse(HttpServletResponse response) {
+	protected void sentUnauthorizedResponse(HttpServletResponse response) throws IOException {
 		response.addCookie(new Cookie("4682543566466", System
 				.currentTimeMillis() + ""));
+		response.sendRedirect("40400000.html");
 		sentResponse(response, new StatusResponse(
 				"access denied,login required", 6, false));
 	}
 
 	protected void sentLoginErrResponse(HttpServletResponse response) {
-		response.addCookie(new Cookie("UserId", System
-				.currentTimeMillis() + ""));
+		response.addCookie(new Cookie("UserId", System.currentTimeMillis() + ""));
 		sentResponse(response, new StatusResponse(
 				"invalid username/password logon denied", 6, false));
 	}
@@ -94,26 +109,29 @@ public class BaseController {
 		response.setContentType("application/json");
 		try {
 			LOG.debug("here is right test");
-			if (object==null) {
+			if (object == null) {
 				LOG.debug("here is right test2000");
-				response.getWriter().write(
-						JSON.toJSONString("Null MSG 500!",
-								SerializerFeature.DisableCircularReferenceDetect,
-								SerializerFeature.WriteMapNullValue));
-			}else {
+				response.getWriter()
+						.write(JSON
+								.toJSONString(
+										"Null MSG 500!",
+										SerializerFeature.DisableCircularReferenceDetect,
+										SerializerFeature.WriteMapNullValue));
+			} else {
 				LOG.debug(object.toString());
 				LOG.debug("here is right test266");
-				response.getWriter().write(
-						JSON.toJSONString(object,
-								SerializerFeature.DisableCircularReferenceDetect,
-								SerializerFeature.WriteNullNumberAsZero,
-								SerializerFeature.WriteNullStringAsEmpty,
-								SerializerFeature.WriteNullBooleanAsFalse,
-								SerializerFeature.WriteMapNullValue,
-								SerializerFeature.WriteNullListAsEmpty,
-								SerializerFeature.WriteEnumUsingToString,
-								SerializerFeature.WriteNonStringKeyAsString
-								));
+				response.getWriter()
+						.write(JSON
+								.toJSONString(
+										object,
+										SerializerFeature.DisableCircularReferenceDetect,
+										SerializerFeature.WriteNullNumberAsZero,
+										SerializerFeature.WriteNullStringAsEmpty,
+										SerializerFeature.WriteNullBooleanAsFalse,
+										SerializerFeature.WriteMapNullValue,
+										SerializerFeature.WriteNullListAsEmpty,
+										SerializerFeature.WriteEnumUsingToString,
+										SerializerFeature.WriteNonStringKeyAsString));
 				LOG.debug("here is right test299");
 			}
 			response.getWriter().close();
@@ -122,10 +140,10 @@ public class BaseController {
 			e.printStackTrace();
 		}
 	}
-	
-	protected Map<String, String>  getRequestDatas(HttpServletRequest request) {
+
+	protected Map<String, String> getRequestDatas(HttpServletRequest request) {
 		Enumeration<String> e = request.getParameterNames();
-		Map<String, String> datas=new HashMap<String, String>();
+		Map<String, String> datas = new HashMap<String, String>();
 		while (e.hasMoreElements()) {
 			String paramName = (String) e.nextElement();
 			String value = request.getParameter(paramName);
@@ -133,48 +151,50 @@ public class BaseController {
 		}
 		return datas;
 	}
-	
-	protected boolean checkParam(Map<String, String> datas,List<String> requoreListString)  {
-		if (datas==null) {
+
+	protected boolean checkParam(Map<String, String> datas,
+			List<String> requoreListString) {
+		if (datas == null) {
 			return true;
 		}
-		if (datas.keySet()==null) {
+		if (datas.keySet() == null) {
 			return true;
 		}
-		if (datas.keySet().size()<1) {
+		if (datas.keySet().size() < 1) {
 			return true;
 		}
 		for (String key : datas.keySet()) {
-			LOG.debug("***********"+key+"***********"+datas.get(key)+"***********");
+			LOG.debug("***********" + key + "***********" + datas.get(key)
+					+ "***********");
 		}
-		if (requoreListString==null) {
+		if (requoreListString == null) {
 			return true;
 		}
 		if (datas.keySet().containsAll(requoreListString)) {
 			return true;
-		}else {
+		} else {
 			return false;
-//			throw new MissingParamException("Params Not Founded");
+			// throw new MissingParamException("Params Not Founded");
 		}
 	}
-	
-	
-	protected String checkParamString(Map<String, String> datas,List<String> requoreListString) {
+
+	protected String checkParamString(Map<String, String> datas,
+			List<String> requoreListString) {
 		for (String key : datas.keySet()) {
-			LOG.debug("***********"+key+"***********"+datas.get(key)+"***********");
+			LOG.debug("***********" + key + "***********" + datas.get(key)
+					+ "***********");
 		}
-		if (requoreListString==null) {
+		if (requoreListString == null) {
 			return "No Param Required";
 		}
 		if (datas.keySet().containsAll(requoreListString)) {
-			
-			
-		}else {
+
+		} else {
 			for (String string : requoreListString) {
 				if (datas.keySet().contains(string)) {
-					
-				}else {
-					return string+" Not Founded in Params!";
+
+				} else {
+					return string + " Not Founded in Params!";
 				}
 			}
 		}
