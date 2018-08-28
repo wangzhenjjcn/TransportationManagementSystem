@@ -50,7 +50,7 @@ public class OrderController extends BaseController {
 		System.err.println(JSSESSION);
 		if (!checkUser(request)) {
 			sentUnauthorizedResponse(response);
-			response.sendRedirect("40400000.html");
+			
 			return;
 		}
 		String key = request.getParameter("key");
@@ -69,7 +69,7 @@ public class OrderController extends BaseController {
 	@RequestMapping(path = "/getOrders", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public void getOrders(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws IOException {
 		System.err.println(System.currentTimeMillis() + "");
 
 		String JSSESSION = request.getRequestedSessionId();
@@ -106,7 +106,7 @@ public class OrderController extends BaseController {
 
 	@RequestMapping(path = "/creatSampleOrders", method = RequestMethod.GET)
 	public void creatSampleOrders(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws IOException {
 		String JSSESSION = request.getRequestedSessionId();
 		System.err.println(JSSESSION);
 		if (!checkUser(request)) {
